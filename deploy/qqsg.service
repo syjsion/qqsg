@@ -1,0 +1,17 @@
+[Unit]
+Description=QQSG LAN cooperative server
+After=network.target
+
+[Service]
+Type=simple
+User=qqsg
+WorkingDirectory=/opt/qqsg
+ExecStart=/opt/qqsg/start-server.sh
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=10
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

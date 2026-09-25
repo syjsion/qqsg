@@ -1,0 +1,568 @@
+{
+  "schema_version": 1,
+  "version": "0.1.0",
+  "classes": {
+    "JS": {
+      "name": "剑侍",
+      "description": "近身剑术 · 以剑护友",
+      "skills": [
+        "slash",
+        "blood",
+        "wind"
+      ]
+    },
+    "XS": {
+      "name": "仙术士",
+      "description": "远程术法 · 回春济世",
+      "skills": [
+        "bolt",
+        "heal",
+        "renew"
+      ]
+    }
+  },
+  "skills": {
+    "slash": {
+      "name": "横击剑",
+      "job": "JS",
+      "type": "physical",
+      "level": 1,
+      "cost": 0,
+      "cooldown": 0.65,
+      "range": 120,
+      "coefficient": 1,
+      "power": 10,
+      "source": "provisional"
+    },
+    "blood": {
+      "name": "饮血剑舞",
+      "job": "JS",
+      "type": "physical",
+      "level": 1,
+      "cost": 10,
+      "cooldown": 2.5,
+      "range": 130,
+      "coefficient": 1.5,
+      "power": 12,
+      "source": "provisional"
+    },
+    "wind": {
+      "name": "回风拂柳",
+      "job": "JS",
+      "type": "physical",
+      "level": 5,
+      "cost": 12,
+      "cooldown": 4,
+      "range": 170,
+      "coefficient": 1.8,
+      "power": 20,
+      "source": "provisional"
+    },
+    "bolt": {
+      "name": "水瀑",
+      "job": "XS",
+      "type": "magic",
+      "level": 1,
+      "cost": 0,
+      "cooldown": 0.9,
+      "range": 380,
+      "coefficient": 1,
+      "power": 12,
+      "source": "provisional"
+    },
+    "heal": {
+      "name": "回春术",
+      "job": "XS",
+      "type": "heal",
+      "level": 1,
+      "cost": 22,
+      "cooldown": 0.5,
+      "range": 450,
+      "coefficient": 2,
+      "power": 125,
+      "source": "research_heal"
+    },
+    "renew": {
+      "name": "续命诀",
+      "job": "XS",
+      "type": "heal",
+      "level": 5,
+      "cost": 39,
+      "cooldown": 0.8,
+      "range": 450,
+      "coefficient": 4,
+      "power": 350,
+      "source": "research_heal"
+    }
+  },
+  "items": {
+    "potion": {
+      "name": "金疮药",
+      "price": 12,
+      "stack": 99,
+      "source": "provisional",
+      "hp": 100
+    },
+    "ether": {
+      "name": "清心露",
+      "price": 12,
+      "stack": 99,
+      "source": "provisional",
+      "mp": 100
+    },
+    "herb": {
+      "name": "青叶草",
+      "price": 3,
+      "stack": 99,
+      "source": "provisional"
+    },
+    "iron_sword": {
+      "name": "铁剑",
+      "price": 40,
+      "stack": 1,
+      "source": "provisional",
+      "job": "JS",
+      "slot": "weapon",
+      "stats": {
+        "physical_attack": 4
+      }
+    },
+    "wood_staff": {
+      "name": "桃木杖",
+      "price": 40,
+      "stack": 1,
+      "source": "provisional",
+      "job": "XS",
+      "slot": "weapon",
+      "stats": {
+        "magic_attack": 6
+      }
+    },
+    "bronze_sword": {
+      "name": "青铜剑",
+      "price": 180,
+      "stack": 1,
+      "source": "provisional",
+      "job": "JS",
+      "level": 5,
+      "slot": "weapon",
+      "stats": {
+        "physical_attack": 20
+      }
+    },
+    "jade_staff": {
+      "name": "青玉杖",
+      "price": 180,
+      "stack": 1,
+      "source": "provisional",
+      "job": "XS",
+      "level": 5,
+      "slot": "weapon",
+      "stats": {
+        "magic_attack": 22
+      }
+    },
+    "cloth": {
+      "name": "布衣",
+      "price": 35,
+      "stack": 1,
+      "source": "provisional",
+      "slot": "armor",
+      "stats": {
+        "defense": 4
+      }
+    },
+    "leather": {
+      "name": "皮甲",
+      "price": 160,
+      "stack": 1,
+      "source": "provisional",
+      "level": 5,
+      "slot": "armor",
+      "stats": {
+        "defense": 12,
+        "hp": 50
+      }
+    },
+    "seal": {
+      "name": "营寨令牌",
+      "price": 20,
+      "stack": 99,
+      "source": "provisional"
+    }
+  },
+  "monsters": {
+    "snake": {
+      "name": "竹叶青",
+      "level": 2,
+      "hp": 100,
+      "damage": 14,
+      "defense": 1,
+      "speed": 65,
+      "xp": 16,
+      "money": 8,
+      "loot": [
+        "herb",
+        "potion"
+      ],
+      "respawn": 15,
+      "source": "provisional"
+    },
+    "boar": {
+      "name": "小红猪",
+      "level": 4,
+      "hp": 220,
+      "damage": 25,
+      "defense": 4,
+      "speed": 90,
+      "xp": 42,
+      "money": 16,
+      "loot": [
+        "herb",
+        "ether"
+      ],
+      "respawn": 15,
+      "source": "provisional"
+    },
+    "soldier": {
+      "name": "益州斧兵",
+      "level": 7,
+      "hp": 420,
+      "damage": 42,
+      "defense": 8,
+      "speed": 100,
+      "xp": 95,
+      "money": 30,
+      "loot": [
+        "seal",
+        "leather"
+      ],
+      "respawn": 15,
+      "source": "provisional"
+    },
+    "boss": {
+      "name": "邓茂",
+      "level": 10,
+      "hp": 2800,
+      "damage": 65,
+      "defense": 15,
+      "speed": 70,
+      "xp": 900,
+      "money": 160,
+      "loot": [
+        "bronze_sword",
+        "jade_staff",
+        "leather"
+      ],
+      "respawn": 60,
+      "source": "provisional"
+    }
+  },
+  "quests": {
+    "arrival": {
+      "name": "初到巴郡",
+      "description": "与简雍交谈，了解城外的情况。",
+      "type": "talk",
+      "target": "guide",
+      "count": 1,
+      "previous": "",
+      "xp": 30,
+      "money": 30,
+      "source": "original_chapter"
+    },
+    "snakes": {
+      "name": "西郊除患",
+      "description": "在江陵西郊击败 5 只竹叶青。",
+      "type": "kill",
+      "target": "snake",
+      "count": 5,
+      "previous": "arrival",
+      "xp": 180,
+      "money": 60,
+      "source": "original_chapter"
+    },
+    "herbs": {
+      "name": "采药济世",
+      "description": "收集 3 份青叶草交给简雍。",
+      "type": "collect",
+      "target": "herb",
+      "count": 3,
+      "previous": "snakes",
+      "xp": 350,
+      "money": 80,
+      "source": "original_chapter"
+    },
+    "boars": {
+      "name": "清理山道",
+      "description": "在江陵西郊击败 5 只小红猪。",
+      "type": "kill",
+      "target": "boar",
+      "count": 5,
+      "previous": "herbs",
+      "xp": 650,
+      "money": 120,
+      "source": "original_chapter"
+    },
+    "soldiers": {
+      "name": "营寨探路",
+      "description": "击败营寨前门的 6 名益州斧兵。",
+      "type": "kill",
+      "target": "soldier",
+      "count": 6,
+      "previous": "boars",
+      "xp": 1200,
+      "money": 180,
+      "source": "original_chapter"
+    },
+    "dengmao": {
+      "name": "同心破敌",
+      "description": "与伙伴合力击败邓茂，回城复命。",
+      "type": "kill",
+      "target": "boss",
+      "count": 1,
+      "previous": "soldiers",
+      "xp": 3000,
+      "money": 300,
+      "source": "original_chapter"
+    }
+  },
+  "maps": {
+    "bajun": {
+      "name": "巴郡",
+      "subtitle": "烟火人间 · 蜀地初行",
+      "width": 2200,
+      "spawn": [
+        180,
+        600
+      ],
+      "platforms": [
+        [
+          0,
+          2200,
+          600
+        ],
+        [
+          680,
+          1040,
+          450
+        ],
+        [
+          1600,
+          1950,
+          420
+        ]
+      ],
+      "ladders": [
+        [
+          740,
+          450,
+          600
+        ],
+        [
+          1690,
+          420,
+          600
+        ]
+      ],
+      "portals": [
+        {
+          "x": 2100,
+          "y": 600,
+          "to": "west",
+          "spawn": [
+            150,
+            600
+          ]
+        }
+      ],
+      "spawns": [],
+      "npcs": [
+        {
+          "id": "guide",
+          "name": "简雍",
+          "role": "任务",
+          "x": 380,
+          "y": 600
+        },
+        {
+          "id": "merchant",
+          "name": "装备商人",
+          "role": "补给 / 装备",
+          "x": 780,
+          "y": 600
+        }
+      ],
+      "source": "reference_art_rebuilt_layout"
+    },
+    "west": {
+      "name": "江陵西郊",
+      "subtitle": "青山远黛 · 林间试剑",
+      "width": 2800,
+      "spawn": [
+        180,
+        600
+      ],
+      "platforms": [
+        [
+          0,
+          2800,
+          600
+        ],
+        [
+          680,
+          1040,
+          450
+        ],
+        [
+          1600,
+          1950,
+          420
+        ]
+      ],
+      "ladders": [
+        [
+          740,
+          450,
+          600
+        ],
+        [
+          1690,
+          420,
+          600
+        ]
+      ],
+      "portals": [
+        {
+          "x": 70,
+          "y": 600,
+          "to": "bajun",
+          "spawn": [
+            1980,
+            600
+          ]
+        },
+        {
+          "x": 2700,
+          "y": 600,
+          "to": "camp",
+          "spawn": [
+            150,
+            600
+          ]
+        }
+      ],
+      "spawns": [
+        {
+          "kind": "snake",
+          "x": 600,
+          "y": 600
+        },
+        {
+          "kind": "snake",
+          "x": 950,
+          "y": 600
+        },
+        {
+          "kind": "snake",
+          "x": 1250,
+          "y": 600
+        },
+        {
+          "kind": "boar",
+          "x": 1750,
+          "y": 600
+        },
+        {
+          "kind": "boar",
+          "x": 2080,
+          "y": 600
+        },
+        {
+          "kind": "boar",
+          "x": 2400,
+          "y": 600
+        }
+      ],
+      "npcs": [],
+      "source": "reference_art_rebuilt_layout"
+    },
+    "camp": {
+      "name": "营寨前门",
+      "subtitle": "旌旗猎猎 · 同心破敌",
+      "width": 2800,
+      "spawn": [
+        180,
+        600
+      ],
+      "platforms": [
+        [
+          0,
+          2800,
+          600
+        ],
+        [
+          680,
+          1040,
+          450
+        ],
+        [
+          1600,
+          1950,
+          420
+        ]
+      ],
+      "ladders": [
+        [
+          740,
+          450,
+          600
+        ],
+        [
+          1690,
+          420,
+          600
+        ]
+      ],
+      "portals": [
+        {
+          "x": 70,
+          "y": 600,
+          "to": "west",
+          "spawn": [
+            2580,
+            600
+          ]
+        }
+      ],
+      "spawns": [
+        {
+          "kind": "soldier",
+          "x": 600,
+          "y": 600
+        },
+        {
+          "kind": "soldier",
+          "x": 950,
+          "y": 600
+        },
+        {
+          "kind": "soldier",
+          "x": 1300,
+          "y": 600
+        },
+        {
+          "kind": "soldier",
+          "x": 1650,
+          "y": 600
+        },
+        {
+          "kind": "boss",
+          "x": 2370,
+          "y": 600
+        }
+      ],
+      "npcs": [],
+      "source": "reference_art_rebuilt_layout"
+    }
+  }
+}

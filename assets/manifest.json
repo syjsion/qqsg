@@ -1,0 +1,2785 @@
+{
+  "reference_commit": "96db41b95dbae673aeba1c8365aa8da4c459dfe8",
+  "files": [
+    {
+      "path": "assets/reference/assets/motion/idle2/Sprite_1.png",
+      "source_path": "assets/motion/idle2/Sprite_1.png",
+      "sha256": "2c527308e3db5b2de32e6659aa0f7af27b90dcf9e701be683484807ca2bce466"
+    },
+    {
+      "path": "assets/reference/assets/motion/idle2/Sprite_2.png",
+      "source_path": "assets/motion/idle2/Sprite_2.png",
+      "sha256": "bc9fc4aa7bead91bc2fd8bfcd831ec2eaac66bf425734ca5df7e79a529473d2f"
+    },
+    {
+      "path": "assets/reference/assets/motion/idle2/Sprite_3.png",
+      "source_path": "assets/motion/idle2/Sprite_3.png",
+      "sha256": "e736576a2ec56cbc2514831b42b35a92bd9a0317f63db49ee9dc38da5fd8b965"
+    },
+    {
+      "path": "assets/reference/assets/motion/idle2/Sprite_4.png",
+      "source_path": "assets/motion/idle2/Sprite_4.png",
+      "sha256": "f6c2f085af04ce4d30eaea614b21a02f820848a8943b7cdbcd5e3a95a84b266c"
+    },
+    {
+      "path": "assets/reference/assets/motion/run2/Sprite_1.png",
+      "source_path": "assets/motion/run2/Sprite_1.png",
+      "sha256": "e73962c646c92f5845bd4d0bb99f53e38f90ade41b9dfbc39b259d8f7b6d27b3"
+    },
+    {
+      "path": "assets/reference/assets/motion/run2/Sprite_2.png",
+      "source_path": "assets/motion/run2/Sprite_2.png",
+      "sha256": "2ca371686aeb5ac2502c43a93003dacf6ab179249ab975fa95a79d120d63ffba"
+    },
+    {
+      "path": "assets/reference/assets/motion/run2/Sprite_3.png",
+      "source_path": "assets/motion/run2/Sprite_3.png",
+      "sha256": "fdd2dd3d7ab50a17d342f8b7529166c62a866e4d9a7c0e8cc2c4a45f6afe2559"
+    },
+    {
+      "path": "assets/reference/assets/motion/run2/Sprite_4.png",
+      "source_path": "assets/motion/run2/Sprite_4.png",
+      "sha256": "12935747160afb6f0dd030e8e3d9fbd4884109b8526944ddcf32121e74dc8c1f"
+    },
+    {
+      "path": "assets/reference/assets/motion/run2/Sprite_5.png",
+      "source_path": "assets/motion/run2/Sprite_5.png",
+      "sha256": "b3b01703772eca74eba0527c7496da839d0584bd9e43094af4dfb2c26d0c4528"
+    },
+    {
+      "path": "assets/reference/assets/motion/run2/Sprite_6.png",
+      "source_path": "assets/motion/run2/Sprite_6.png",
+      "sha256": "9b1d6b08b2aa2999a182156a2a9c3a42831e79390a399868116f92c7d0eeb8a3"
+    },
+    {
+      "path": "assets/reference/assets/motion/run2/Sprite_7.png",
+      "source_path": "assets/motion/run2/Sprite_7.png",
+      "sha256": "a6e29ec16f905d4ede398e0408b802dcc74c5ddf3db0a84675e6dedf7b1461b6"
+    },
+    {
+      "path": "assets/reference/assets/motion/run2/Sprite_8.png",
+      "source_path": "assets/motion/run2/Sprite_8.png",
+      "sha256": "c82ad0930cc4d3f5e574662b2be9ee3e535d5d18368312487f5081bc1f9d460e"
+    },
+    {
+      "path": "assets/reference/assets/motion/attack/04/Sprite_1.png",
+      "source_path": "assets/motion/attack/04/Sprite_1.png",
+      "sha256": "6cd0bb37a61998db07038397d7952ed91352b4fec5921857b25a91392558cdb2"
+    },
+    {
+      "path": "assets/reference/assets/motion/attack/04/Sprite_2.png",
+      "source_path": "assets/motion/attack/04/Sprite_2.png",
+      "sha256": "cbc0e87b3594ae7288159a9131e953eaa76f0ce1c6a7a24126e595be9543a320"
+    },
+    {
+      "path": "assets/reference/assets/motion/attack/04/Sprite_3.png",
+      "source_path": "assets/motion/attack/04/Sprite_3.png",
+      "sha256": "b8eb1d4b05f400bac085b5605c4a7dbdb683ed7edc6cfd426d0f66cfd12d8b4c"
+    },
+    {
+      "path": "assets/reference/assets/motion/attack/04/Sprite_4.png",
+      "source_path": "assets/motion/attack/04/Sprite_4.png",
+      "sha256": "fb0cbf99fa779a01105f16257681f918dcc400a2ab8ea0e57a2c65ff22761667"
+    },
+    {
+      "path": "assets/reference/assets/motion/attack/04/Sprite_5.png",
+      "source_path": "assets/motion/attack/04/Sprite_5.png",
+      "sha256": "2702651cb6dcc8934b423449d16d8241711f7a63e8fcd082df57e12e6d6729ab"
+    },
+    {
+      "path": "assets/reference/assets/motion/attack/04/Sprite_6.png",
+      "source_path": "assets/motion/attack/04/Sprite_6.png",
+      "sha256": "b1fcf9c4e68042a5deb88f40c61a7fca0f813cf8716fce043f023fbc9c5c852f"
+    },
+    {
+      "path": "assets/reference/assets/motion/attack/04/Sprite_7.png",
+      "source_path": "assets/motion/attack/04/Sprite_7.png",
+      "sha256": "248d4d737f6808f90d819ee6ae5c60ce10dcf337c8f94541671612734e03ac0a"
+    },
+    {
+      "path": "assets/reference/assets/motion/attack/04/Sprite_8.png",
+      "source_path": "assets/motion/attack/04/Sprite_8.png",
+      "sha256": "8f6d7d566c38f9aa60a042a567822daf09a3530924edecf4f22468877d31099a"
+    },
+    {
+      "path": "assets/reference/assets/motion/attack/04/Sprite_9.png",
+      "source_path": "assets/motion/attack/04/Sprite_9.png",
+      "sha256": "0cb55775eaf562a1a650a7311caaba75bf0c0a43d78a7629a35135f4a414f6d9"
+    },
+    {
+      "path": "assets/reference/assets/motion/attack/04/Sprite_10.png",
+      "source_path": "assets/motion/attack/04/Sprite_10.png",
+      "sha256": "e03a0dbedc944004de6033d6e8466cec43764d4d89e751256726ce9f5f811612"
+    },
+    {
+      "path": "assets/reference/assets/motion/attack/04/Sprite_11.png",
+      "source_path": "assets/motion/attack/04/Sprite_11.png",
+      "sha256": "f7571c99af4dbcde2fe2e4730bb03ea9c419bebd97d2828ed5ab457f72f92388"
+    },
+    {
+      "path": "assets/reference/assets/motion/attack/04/Sprite_12.png",
+      "source_path": "assets/motion/attack/04/Sprite_12.png",
+      "sha256": "098ab2a86188b6747c71831255d1c2db09f5ada8baba124466e96ef6503ce634"
+    },
+    {
+      "path": "assets/reference/assets/motion/attack/04/Sprite_13.png",
+      "source_path": "assets/motion/attack/04/Sprite_13.png",
+      "sha256": "9a60a0b2b04f4b2e0b6b4bb3d0487d8ddebf0812894738efc7877ebb72f72001"
+    },
+    {
+      "path": "assets/reference/assets/motion/attack/04/Sprite_14.png",
+      "source_path": "assets/motion/attack/04/Sprite_14.png",
+      "sha256": "9f26ea211e24f14884626706d483fc7d72442c2684a9c32c582e9a7696d29a78"
+    },
+    {
+      "path": "assets/reference/assets/motion/jump/Sprite_1.png",
+      "source_path": "assets/motion/jump/Sprite_1.png",
+      "sha256": "c6b31e3bc7d0d2fd5e169b7fce912cf6ab77559778cb03e2b77fabbec616d94d"
+    },
+    {
+      "path": "assets/reference/assets/motion/climb/Sprite_1.png",
+      "source_path": "assets/motion/climb/Sprite_1.png",
+      "sha256": "d776f11e4277bc63b3f247c8647a6e09c1a6edee548510c187c39793a9b3d5d6"
+    },
+    {
+      "path": "assets/reference/assets/motion/climb/Sprite_2.png",
+      "source_path": "assets/motion/climb/Sprite_2.png",
+      "sha256": "000b9f7f31bb1830a45eb553820dbe44286187e900f3ec9042f9aa2392a5ac29"
+    },
+    {
+      "path": "assets/reference/assets/motion/掉落/Sprite_1.png",
+      "source_path": "assets/motion/掉落/Sprite_1.png",
+      "sha256": "27deec54fb9a8ad819126c91aaaf9d460a321346b4a6e6b7f05907c3e434cd2b"
+    },
+    {
+      "path": "assets/reference/assets/motion/die/Sprite_1.png",
+      "source_path": "assets/motion/die/Sprite_1.png",
+      "sha256": "bc89de860778e05ba0541a6a71160e9025352ba509f0378b9ee7605166237871"
+    },
+    {
+      "path": "assets/reference/assets/motion/die/Sprite_2.png",
+      "source_path": "assets/motion/die/Sprite_2.png",
+      "sha256": "88c9ea64f99d624de4999e4f34e257a4dff9d1b65a7e8b6d4f1ecfead039759a"
+    },
+    {
+      "path": "assets/reference/assets/motion/die/Sprite_3.png",
+      "source_path": "assets/motion/die/Sprite_3.png",
+      "sha256": "b8e2dcf7daf9a8e56d28c581932ac3589425cc42ad2d9168b93128fb9f46fc5c"
+    },
+    {
+      "path": "assets/reference/assets/motion/die/Sprite_4.png",
+      "source_path": "assets/motion/die/Sprite_4.png",
+      "sha256": "065da870ce86c6b87a36724538e08dd5fa4e82bbbb8c491c563abe5dad7cf0aa"
+    },
+    {
+      "path": "assets/reference/assets/motion/die/Sprite_5.png",
+      "source_path": "assets/motion/die/Sprite_5.png",
+      "sha256": "51329a916db4444576db3ab28c775f61560def60d293fba8bd1ee89700d22600"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101345-1.png",
+      "source_path": "Monster_ui/竹叶青/101345-1.png",
+      "sha256": "e799517449804b9fcd3beda96d23fb8dbdfca936eb14cf02a4c81139f2bced48"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101345-2.png",
+      "source_path": "Monster_ui/竹叶青/101345-2.png",
+      "sha256": "4ba0e13d90f1f7782742147feacf308fbc14f8eb784abc25a167b6df6283a678"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101345-3.png",
+      "source_path": "Monster_ui/竹叶青/101345-3.png",
+      "sha256": "0952d188ab886da536d71a145e7766aeaf206f1c51dfe27e32a4cf2d1420a3f0"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101345-4.png",
+      "source_path": "Monster_ui/竹叶青/101345-4.png",
+      "sha256": "0b3673aabeca71bd3cfa6974b257c4b32965038fb871050c1c7ea6c9f29fe026"
+    },
+    {
+      "path": "assets/reference/Monster_ui/小红猪/28751-1.png",
+      "source_path": "Monster_ui/小红猪/28751-1.png",
+      "sha256": "66b02ed0e4e6195a23bb04c52af3d5356fc409877ee8ea24eaeaf478156bad5f"
+    },
+    {
+      "path": "assets/reference/Monster_ui/小红猪/28751-2.png",
+      "source_path": "Monster_ui/小红猪/28751-2.png",
+      "sha256": "4e7e2dc35985c4dcceca72ba65466c1ee74fd323dbe610792d66b0252f9d3737"
+    },
+    {
+      "path": "assets/reference/Monster_ui/小红猪/28751-3.png",
+      "source_path": "Monster_ui/小红猪/28751-3.png",
+      "sha256": "d69059f9663a5334e1e3286a16f4d20a9dc2c15c038395183dfd99f68858d444"
+    },
+    {
+      "path": "assets/reference/Monster_ui/小红猪/28751-4.png",
+      "source_path": "Monster_ui/小红猪/28751-4.png",
+      "sha256": "10e0c9d29c12c5f4dde6d4511337ca60186b5c1d59a76cebcc079e6ab9a4dafb"
+    },
+    {
+      "path": "assets/reference/Monster_ui/小红猪/28752-1.png",
+      "source_path": "Monster_ui/小红猪/28752-1.png",
+      "sha256": "15fcd098e0c1331ed09ab7ac74c50628a8b8bd746db276444ef6e113494a7d5d"
+    },
+    {
+      "path": "assets/reference/Monster_ui/小红猪/28752-2.png",
+      "source_path": "Monster_ui/小红猪/28752-2.png",
+      "sha256": "cab005feeec4acb788ee325477e957c6a4ef2f770623a1e265187ab95d376921"
+    },
+    {
+      "path": "assets/reference/Monster_ui/小红猪/28752-3.png",
+      "source_path": "Monster_ui/小红猪/28752-3.png",
+      "sha256": "0b00c1dcba7975b9085952436db97b7d29db2561ef16e45b8ecaa86af67a83e5"
+    },
+    {
+      "path": "assets/reference/Monster_ui/小红猪/28752-4.png",
+      "source_path": "Monster_ui/小红猪/28752-4.png",
+      "sha256": "72e469e1aeef5f993d5be3b047540926649c8c439b81708592d2495e2dae8b62"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_1.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_1.png",
+      "sha256": "544d66cebe5779d630b9eaa97c00673374a3acee17a68c7f7f7d7de84f9ca4e6"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_10.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_10.png",
+      "sha256": "8388fe637803ef0e03c0a06d0b3f82311817a98df1979ee41659f9eda4c39d9b"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_11.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_11.png",
+      "sha256": "4afd4662443d44c560f441066a333687a340ce51afdf734f7ade0491b95d2029"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_12.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_12.png",
+      "sha256": "0a191ff74ce449d4f8e308e1b0fdd71ca8a4cf7efb49d64058b4ab68b8843c86"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_13.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_13.png",
+      "sha256": "612a8233b3772188cd44a8e22ac1aabdbe16aac93b7a5c620162919c6d50ea96"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_14.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_14.png",
+      "sha256": "3c3b43dfe039a24074bdd1a51818c1dafd4540ba42a54024183528c5cb7bc1dd"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_15.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_15.png",
+      "sha256": "f5eb440b181c791a42d9ede2a440f892399895aace58847992dbc58af3d7a84b"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_16.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_16.png",
+      "sha256": "39b643244e357e7266fa773919e74928476dd605b6de481e4cb556c61b898697"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/闲置/53330-1.png",
+      "source_path": "Monster_ui/dengmao/闲置/53330-1.png",
+      "sha256": "9c6b53b224a32cd0fb7480cb8cfa58bfe7b63c276ec617c0bd2f6c42b233c651"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/闲置/53330-2.png",
+      "source_path": "Monster_ui/dengmao/闲置/53330-2.png",
+      "sha256": "f0af161100ae5382438065963db257fd8859200c5f609a9c100639a57c624b41"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/闲置/53330-3.png",
+      "source_path": "Monster_ui/dengmao/闲置/53330-3.png",
+      "sha256": "b0f43212e87cd8b7073f4738485fb2ec1de119340f9b461f277ec7bda8ca76aa"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/闲置/53330-4.png",
+      "source_path": "Monster_ui/dengmao/闲置/53330-4.png",
+      "sha256": "ef4f185bf7c724c87105269388f18a95fb4d4de7348c0a6ab4c4385e71bedff6"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/闲置/53331-1.png",
+      "source_path": "Monster_ui/dengmao/闲置/53331-1.png",
+      "sha256": "c823ca680a212a6b786d2d35c0c6863f86dbbee5a59bd9d18edfbafba5872ecf"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/闲置/53331-2.png",
+      "source_path": "Monster_ui/dengmao/闲置/53331-2.png",
+      "sha256": "cdc790940388fc59ed1ba506edd3a9dcf29343cf6e10874e7f89e7d9dff41627"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/闲置/53331-3.png",
+      "source_path": "Monster_ui/dengmao/闲置/53331-3.png",
+      "sha256": "2839e569e78fb49e280237f9f5b7ce4d74dd9d92ecfd464294686445778539c7"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/闲置/53331-4.png",
+      "source_path": "Monster_ui/dengmao/闲置/53331-4.png",
+      "sha256": "c2bc9376ef9bec3cf8c3af366416dafa15abd6a1fba6a06a14d14e5ccb945fa5"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/走路/53332-1.png",
+      "source_path": "Monster_ui/dengmao/走路/53332-1.png",
+      "sha256": "0210996af3b737a76674dac5a0667dd9442e121196943bee326b908739c96645"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/走路/53332-2.png",
+      "source_path": "Monster_ui/dengmao/走路/53332-2.png",
+      "sha256": "da37497f21e428b3d6d8f72615e1868f8f01e1cfc0aff5d47998bb3ffda78920"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/走路/53332-3.png",
+      "source_path": "Monster_ui/dengmao/走路/53332-3.png",
+      "sha256": "a817c8fa37f2de1e973ceef807abac728aa47b85b9e2f8fe7046d51223cb3fe7"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/走路/53332-4.png",
+      "source_path": "Monster_ui/dengmao/走路/53332-4.png",
+      "sha256": "0119d0d7cbbcbbead2024c4b767c555360204c33128672d9e6b7fd6e62cefbaf"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/走路/53332-5.png",
+      "source_path": "Monster_ui/dengmao/走路/53332-5.png",
+      "sha256": "a5de8971bf7d65a821e195a4119530884f569a1aaef5db5c596f4e8a176770fa"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/走路/53332-6.png",
+      "source_path": "Monster_ui/dengmao/走路/53332-6.png",
+      "sha256": "e2e1d0bf8c8a64626f1316c8297f7b7fa550d4394f66027c117b2a7f2ab1ac50"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/走路/53332-7.png",
+      "source_path": "Monster_ui/dengmao/走路/53332-7.png",
+      "sha256": "f5860bc20dcf2e345f667e7c225031411d7f6976ddf1ad9531db9cec0d0a91c7"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/走路/53332-8.png",
+      "source_path": "Monster_ui/dengmao/走路/53332-8.png",
+      "sha256": "08b3920190de1c578aa897adde6b51b095cc3901b8b54ac4e3c059785080de58"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_1.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_1.png",
+      "sha256": "1052f1565a479bbafc62e71f417327c9574075314fcae5285472311673b79582"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_2.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_2.png",
+      "sha256": "f071262400f45fcdd2b2a4f08d8647731624e5ae3f51bbefc022604f0fb7fbc9"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_3.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_3.png",
+      "sha256": "2be831ee4f1056c6e072d663012c08ac66fadb32297bfba375cf1b78f69638f1"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_4.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_4.png",
+      "sha256": "b499e1b42b05dfbfb380031ba461b0ae6d90770711db854dd399bf56a4136b67"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_5.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_5.png",
+      "sha256": "1de3199bec056172457a75a0e30e567518b0e532698390ba66f563abc9660dea"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_6.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_6.png",
+      "sha256": "a16149e9a4e5a31b097a9959d9cdcf19b3bf4747c42fded419ceb8e0c35f7dd9"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_7.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_7.png",
+      "sha256": "a5786498c068cef6e170c47d78d51de99197633071144c2c7fa711a428759621"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_8.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_8.png",
+      "sha256": "db672aa7fd4a14bcd722139e1ab74537adad86414128e11662ac5013c15db8b2"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_9.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_9.png",
+      "sha256": "27cd1d3db61c55a16baff7fbc816c471e0a4163fe0addc9cdf81b6f3a69f5da9"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_10.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_10.png",
+      "sha256": "041c331d6bc7f65327976ba0a2eba65bba657d412bbf96e6f584c12e4b831b01"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_11.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_11.png",
+      "sha256": "ddcb17fb4ff7f3b3b50991ff32dc522fcf669da208639d2ec822557dfc5a5b61"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_12.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_12.png",
+      "sha256": "101704fb64e28498a6cec82086b87ffa34f013f5c88b969cc8e333e05ea4b112"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_13.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_13.png",
+      "sha256": "54c687256ccacbd1ce4a82a63ac7e2e07ab69729e7f38bada21f4c22f8e42bf6"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_14.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_14.png",
+      "sha256": "708c0ce3957e9cd68ffac900e771898a7524d9c7d2c52ef70864e2cb4cc63f7a"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_15.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_15.png",
+      "sha256": "5b5673cd30e58d83f8acf7cadc3f6890ba6fb31ca145794c0606faa41acf42a2"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/锤子砸地/Sprite_16.png",
+      "source_path": "Monster_ui/dengmao/锤子砸地/Sprite_16.png",
+      "sha256": "5aaf7326ccf30e9e010b54b0cebeb38f276c3174dc51e8fe7e75aa5fbf5351dd"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/死亡/Sprite_1.png",
+      "source_path": "Monster_ui/dengmao/死亡/Sprite_1.png",
+      "sha256": "dc85e431b2c2d6752d93b66d9a6d630a56a1b9dd0dd5e39974ebe0887f516c14"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/死亡/Sprite_2.png",
+      "source_path": "Monster_ui/dengmao/死亡/Sprite_2.png",
+      "sha256": "8abb27fb82cc4e32bdbaeaf946e98310ecd11c647c7e05c0393374268e77908f"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/死亡/Sprite_3.png",
+      "source_path": "Monster_ui/dengmao/死亡/Sprite_3.png",
+      "sha256": "2108f2ba5d56eda0f4294f8d2462123857e2c89ee8d23e07f5cb4e46406f1c28"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/死亡/Sprite_4.png",
+      "source_path": "Monster_ui/dengmao/死亡/Sprite_4.png",
+      "sha256": "dbb784e6c50df4f8ce3cc8b0c9683c717cf05ee3efa6b8224dad0be6b68e9a5a"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/死亡/Sprite_5.png",
+      "source_path": "Monster_ui/dengmao/死亡/Sprite_5.png",
+      "sha256": "4d84723b5acdc7089de7495563774dc76095fc79a012a9a670cb2e84c2ddca10"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/死亡/Sprite_6.png",
+      "source_path": "Monster_ui/dengmao/死亡/Sprite_6.png",
+      "sha256": "38822a7f132bf5d2caae67df1e8f0eadf31b6b9f15e97f71fc0b2a8aff9ecc2d"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/死亡/Sprite_7.png",
+      "source_path": "Monster_ui/dengmao/死亡/Sprite_7.png",
+      "sha256": "b31e04d59f7acc27570bb51d241ec76407bcee790606943c2d7d252abc34d388"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/死亡/Sprite_8.png",
+      "source_path": "Monster_ui/dengmao/死亡/Sprite_8.png",
+      "sha256": "89d3d39752701d320c2bc342d602121e1635d6396b03ebca40b0185ef47ccab6"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/死亡/Sprite_9.png",
+      "source_path": "Monster_ui/dengmao/死亡/Sprite_9.png",
+      "sha256": "e260803d961c22935dbeb1560300c6231b201c04835859f34d2ad9f6dc3658ef"
+    },
+    {
+      "path": "assets/reference/Monster_ui/dengmao/死亡/Sprite_10.png",
+      "source_path": "Monster_ui/dengmao/死亡/Sprite_10.png",
+      "sha256": "57459e2cf903ca24067d91dfdccc5429e539ea3029e50dfbe1ef0ed6720b2d8d"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/简雍/Sprite_1.png",
+      "source_path": "assets/map/bajun/npc/简雍/Sprite_1.png",
+      "sha256": "0c6addc3783af5f4bc83ea0c7d02a456623aa3e2725e87dec9a430f0d5640b48"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18278-1.png",
+      "source_path": "assets/map/bajun/18278-1.png",
+      "sha256": "45addfc365c87c8f8274cdfef6193f534612d40f19efdc92b02a85a9705329df"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16873-1.png",
+      "source_path": "assets/map/bajun/16873-1.png",
+      "sha256": "a8b4c73e22edbfecd5f90184aaccd08b51e4f854354fad9697e9ab8cabf679fa"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18339-1.png",
+      "source_path": "assets/map/bajun/18339-1.png",
+      "sha256": "433fedcd9002d7f96f141a93f72ae9d2d014c54b100775cca2001932f57fb338"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18341-1.png",
+      "source_path": "assets/map/bajun/18341-1.png",
+      "sha256": "e2bdbd425c6b05d21fd72c8e0bce0f67d47b0637359542a10bde83cbac313639"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16871-1.png",
+      "source_path": "assets/map/bajun/16871-1.png",
+      "sha256": "40e3307ca14163816c70d1a1c63fbacbe5c15b67fc62ee27c9eb6272c6948160"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16895-1.png",
+      "source_path": "assets/map/bajun/16895-1.png",
+      "sha256": "cab4849d663e94997b30b7a8c747b204c50361ffa34cb02ce96ae08f9d7406c4"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18326-1.png",
+      "source_path": "assets/map/bajun/18326-1.png",
+      "sha256": "a1838b458ce725a980f1c79bb5d17d1c0380c7b8cb5152726ccac9ec0b118365"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/13319-1.png",
+      "source_path": "assets/map/bajun/13319-1.png",
+      "sha256": "2041754d4f8d3fec714cab58d3c12087c030938920f87d6cad9017b544f33bf3"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18300-1.png",
+      "source_path": "assets/map/bajun/18300-1.png",
+      "sha256": "b31d682ec58881f5df7796767a304f999edcb6cac936917b5de1b0c4dd1f21a6"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18345-1.png",
+      "source_path": "assets/map/bajun/18345-1.png",
+      "sha256": "75b7454e17935ca4452936876239534bd6a9409dfd68ab09a341759ca0e275bf"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16893-1.png",
+      "source_path": "assets/map/bajun/16893-1.png",
+      "sha256": "91b1f81b2ae85ea7795969efc8af90e5a4ba6c26980436b7f958955433214e6b"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18281-1.png",
+      "source_path": "assets/map/bajun/18281-1.png",
+      "sha256": "47cfbf49a2dfd0eb4632c518734d4cd84618abaab4f64b08fe8835be04fe2858"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18324-1.png",
+      "source_path": "assets/map/bajun/18324-1.png",
+      "sha256": "bdaefb1509aa3c648f5a5bb0d673fe9a17e23b26b381b99af3c0553d6b796cb3"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18319-1.png",
+      "source_path": "assets/map/bajun/18319-1.png",
+      "sha256": "8db8cbc252a0147571e0ca7d6a764d4818ef5bd130472412190fd2440e6819cc"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/13321-1.png",
+      "source_path": "assets/map/bajun/13321-1.png",
+      "sha256": "59bd960fb181a507e2df08d409cdd719ddb581122e7eb4a144e244bb100be005"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18342-1.png",
+      "source_path": "assets/map/bajun/18342-1.png",
+      "sha256": "f3a6600db097251164e05e8708d8cf4e6488598cadbf1a28b018bed1f0a6b267"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18307-1.png",
+      "source_path": "assets/map/bajun/18307-1.png",
+      "sha256": "5e4fa428b9ff1a7f53b85b18e8207674fbdf409f70d74fed09d3cb16e549334f"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16894-1.png",
+      "source_path": "assets/map/bajun/16894-1.png",
+      "sha256": "b7926ffb8d95bd799fa7802310e405e27850043e731e9efa3e0d3887861e25ae"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18323-1.png",
+      "source_path": "assets/map/bajun/18323-1.png",
+      "sha256": "923e714ccb06d3c0aad0f47b3c2493440730d382154da4830dac957796486d33"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/14823-1.png",
+      "source_path": "assets/map/bajun/14823-1.png",
+      "sha256": "762bb958b71a5e4007dd3c1613ab4d330fbec274c9cae65e345c74bb2adca398"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18279-1.png",
+      "source_path": "assets/map/bajun/18279-1.png",
+      "sha256": "a1127739f821196b9e92beb70f47a7d628e96fa67752fda2525f786ad12cb3bf"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16896-1.png",
+      "source_path": "assets/map/bajun/16896-1.png",
+      "sha256": "a929ac9c6801bef5c93d344aaf2d0b9b5bfb8149a899a94cd1005cb7d284e523"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18340-1.png",
+      "source_path": "assets/map/bajun/18340-1.png",
+      "sha256": "275e24bac07a0a4b6b872ba0b0a6542873660eec20ff189790ef4317a98d5e50"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18338-1.png",
+      "source_path": "assets/map/bajun/18338-1.png",
+      "sha256": "fe3b593bc560f12f23f74aaa9ce51de1368be2d561c5cfcb963e31e373c26f07"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16872-1.png",
+      "source_path": "assets/map/bajun/16872-1.png",
+      "sha256": "c52c7f76aff4376dbee4d0949bce162020b411632ffb9bdc610d3209b90f9b7b"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18344-1.png",
+      "source_path": "assets/map/bajun/18344-1.png",
+      "sha256": "06f4915a43fb56f48a4fda4456529802552b55000ab15be9773c8a658e6c8ada"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18301-1.png",
+      "source_path": "assets/map/bajun/18301-1.png",
+      "sha256": "3742cc34912d007dd00581325981527ac1af281cb445a8d93dd394fd4f4113b8"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18318-1.png",
+      "source_path": "assets/map/bajun/18318-1.png",
+      "sha256": "cbd427f6c154d044fb3c2df94e88d12155590fa932881cc10be5f6506f9336ce"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18325-1.png",
+      "source_path": "assets/map/bajun/18325-1.png",
+      "sha256": "06b70e6488e823454dedeead75cdbe7733ae831c6686265f9250fdc67bf2eb44"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16892-1.png",
+      "source_path": "assets/map/bajun/16892-1.png",
+      "sha256": "7d8feb1a575e001433f635669b5e3e6ec6d8c1fa6460202b3a10729b41c8db13"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18280-1.png",
+      "source_path": "assets/map/bajun/18280-1.png",
+      "sha256": "f7d417aeeb2e21b68f51ef5db39db73fe5051522002576a24fd680969aa8fe7a"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/14907-1.png",
+      "source_path": "assets/map/bajun/14907-1.png",
+      "sha256": "eada5be144775d97107dd34706b2b2cca8b425f171c2539512a32bc00acdd567"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18327-1.png",
+      "source_path": "assets/map/bajun/18327-1.png",
+      "sha256": "e1d22780beb4f3e88fefcaf962e5cc1ccf40482cd87661695d0f6732ebcf30c0"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/14475-1.png",
+      "source_path": "assets/map/bajun/14475-1.png",
+      "sha256": "e78749cc834358b2b173139a5ad6616f234ba80f8fd20afa7c0511f0d1d9700a"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/13318-1.png",
+      "source_path": "assets/map/bajun/13318-1.png",
+      "sha256": "b3dc45665766070d79be1b71ab31a4bf5ad59d82da017faa9b176519da737f3c"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18346-1.png",
+      "source_path": "assets/map/bajun/18346-1.png",
+      "sha256": "7e44567c92dad2b3f42e37667900fd864847d363d03f41294d47028cd1b77c80"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/13314-1.png",
+      "source_path": "assets/map/bajun/13314-1.png",
+      "sha256": "1ffbf29098cdc889eb0025fc0b9c8977521ac1a7b3a1299c01f7662e0f9c08ae"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16878-1.png",
+      "source_path": "assets/map/bajun/16878-1.png",
+      "sha256": "1b1654c4f837069a31c9891c54de484c77ab4665727f187ea9005d3e253d3d15"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18316-1.png",
+      "source_path": "assets/map/bajun/18316-1.png",
+      "sha256": "8a43101f241ee0d43a4bc149ed3c941f6604d8bef816735bb4eb2fd9b543bb10"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18273-1.png",
+      "source_path": "assets/map/bajun/18273-1.png",
+      "sha256": "10006c364c53cc7517ea1e973aeee725e534c484a14fd2bf07cb09ad7237dfb5"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18329-1.png",
+      "source_path": "assets/map/bajun/18329-1.png",
+      "sha256": "927d5e4272a09ca7f70d334dc55e286d0236a0f1a90204dcedaa177eef27577b"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18271-1.png",
+      "source_path": "assets/map/bajun/18271-1.png",
+      "sha256": "05a42c4db22a180e35657c965395ab477b5faed8c2c5894362cdfb3d54d7bd9c"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16863-1.png",
+      "source_path": "assets/map/bajun/16863-1.png",
+      "sha256": "7a8004b6edca70d94be1add2f1d28e47f112047ac995c06cf66c133534b2480c"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18268-1.png",
+      "source_path": "assets/map/bajun/18268-1.png",
+      "sha256": "089038144af5ff0e9b3b0bbeabb78b65374c9dc241be2a12610a3941a3cded65"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18330-1.png",
+      "source_path": "assets/map/bajun/18330-1.png",
+      "sha256": "4e99ef7e29fd7d28e126662e456f21b456c4865e2475b497db05c4fc2b5b6599"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/13316-1.png",
+      "source_path": "assets/map/bajun/13316-1.png",
+      "sha256": "e18f7bbbcdee62e1b611d243734897596046b781dd6c5f054a21cdf7c493ff38"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18334-1.png",
+      "source_path": "assets/map/bajun/18334-1.png",
+      "sha256": "06aad54b5a442deccfa39b3a4c2da2986d6b666aebb851b4599611d0c0d4a28c"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16883-1.png",
+      "source_path": "assets/map/bajun/16883-1.png",
+      "sha256": "56e86429782c109a62de5f364a29b73e926afdb46c07a94aa0c7ba5cf90c9557"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/13312-1.png",
+      "source_path": "assets/map/bajun/13312-1.png",
+      "sha256": "6c20526215023575b204f30c355ba14b8a4836d3431a8461caad35117a6db353"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16867-1.png",
+      "source_path": "assets/map/bajun/16867-1.png",
+      "sha256": "e74e174b8f8d73629729004540df6894adc9c64395c112a4e01439f32ddf4982"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18275-1.png",
+      "source_path": "assets/map/bajun/18275-1.png",
+      "sha256": "55d46c5ac180b9e8a8ab054e8a11adcd8998c57f8a511b2f2e0283ff4e4d80f9"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18277-1.png",
+      "source_path": "assets/map/bajun/18277-1.png",
+      "sha256": "be55fd48644b77a2d515fc4f13a2ea5da498bdfdb87a7e334793a77638d656f6"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16865-1.png",
+      "source_path": "assets/map/bajun/16865-1.png",
+      "sha256": "07c7115ec698029280b4c453042a84a0f464d1886c1a11fa7a8d9403f1569bcf"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18336-1.png",
+      "source_path": "assets/map/bajun/18336-1.png",
+      "sha256": "e7bd2f4612e432686d2576c6f782fe738e21324dfd72f12fc377acfa93b8cbee"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16881-1.png",
+      "source_path": "assets/map/bajun/16881-1.png",
+      "sha256": "8a6ead01d65a8f77a9d1e56fbf581979bf2aba58e811fd7a87e428448982aa1d"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18293-1.png",
+      "source_path": "assets/map/bajun/18293-1.png",
+      "sha256": "dd047e8eb7dd2e87008dfaf4cc1a31ce39a61219f15932278510010d69e0bc27"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18350-1.png",
+      "source_path": "assets/map/bajun/18350-1.png",
+      "sha256": "991c05b9ebe1d40d1f841994409d660960914143f5b24049281a05acf85a8bd6"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/9865-2.png",
+      "source_path": "assets/map/bajun/9865-2.png",
+      "sha256": "d7edd15f7eccb065f028fd05967f25abc679206b106d4cb9f78a7b96d53abc3e"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18270-1.png",
+      "source_path": "assets/map/bajun/18270-1.png",
+      "sha256": "39a7c4fd7b8b0f54b1cf46f340e3da89879435de5c0fcc969669ebf4ee227e65"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16862-1.png",
+      "source_path": "assets/map/bajun/16862-1.png",
+      "sha256": "888dca8a75f85ad5745ea9f227634021f21110c86d86212878ac5254560f8a61"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18328-1.png",
+      "source_path": "assets/map/bajun/18328-1.png",
+      "sha256": "eb513b07dcb4a54d5332da12d85f7e7d9e53d03a7c1dc573373d8390c6aedcc3"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/13317-1.png",
+      "source_path": "assets/map/bajun/13317-1.png",
+      "sha256": "3c3af467727d2c9c9d1a074f8416ea75ab4211c2b653edeb6137f9a20ae10443"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18331-1.png",
+      "source_path": "assets/map/bajun/18331-1.png",
+      "sha256": "ddf53bb5ae0a9cac5eb5a3e3d04ea08675fd76007f0b54a2b708d1f1eb024a74"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18269-1.png",
+      "source_path": "assets/map/bajun/18269-1.png",
+      "sha256": "04cd751587bde3dca40b0e487495db5bce067fdc6a268369b012b2268aeb5cda"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/9865-3.png",
+      "source_path": "assets/map/bajun/9865-3.png",
+      "sha256": "acb3d593a60ea981d209025f26541bdfa05498f71d207b0d00e2fd4cc09eee9d"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/13328-1.png",
+      "source_path": "assets/map/bajun/13328-1.png",
+      "sha256": "fcccba858c3ecab054cefbadb2c4d0a6687bd4b600798b3ef1b98be0e276884c"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/9865-1.png",
+      "source_path": "assets/map/bajun/9865-1.png",
+      "sha256": "37636c98a8950ec512eb7a47d753854cb23e561a212fbf2e55ca2477c62ca323"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16879-1.png",
+      "source_path": "assets/map/bajun/16879-1.png",
+      "sha256": "424c594a40d18f69db7568a6ed538e06afd66d57810acba9dbcbb1ed5961c17a"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/8985-1.png",
+      "source_path": "assets/map/bajun/8985-1.png",
+      "sha256": "9fdbf2cbe53106dcce6fb7a32396a23d11b80855ac001875f34d4fefadfb7ede"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/14478-1.png",
+      "source_path": "assets/map/bajun/14478-1.png",
+      "sha256": "021f0f9b26e150eb4ff083e6c190c22504229bb0d1c73e4d408256fe5af0f0c8"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18272-1.png",
+      "source_path": "assets/map/bajun/18272-1.png",
+      "sha256": "22c9050d5469c186a3e2c9f7365e6cbc4fbc5e252c8afb997268d8283e3eceaa"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18317-1.png",
+      "source_path": "assets/map/bajun/18317-1.png",
+      "sha256": "e0d098eeb5e48b5986cc3ec71edef563dff8f10bf21a28e5b76a446ce663c950"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/9865-4.png",
+      "source_path": "assets/map/bajun/9865-4.png",
+      "sha256": "6652cb477b993d6892de8c7defb567c3f076a83bebc1e2854e9aef45a1c03e67"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18276-1.png",
+      "source_path": "assets/map/bajun/18276-1.png",
+      "sha256": "4d98798662fcf3ed7024afb83addad713e478f5bee936dc6fef05b0b0761b8e8"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16864-1.png",
+      "source_path": "assets/map/bajun/16864-1.png",
+      "sha256": "ee0088fb0c92f9b5377717f556d62bd322de1a2c8c7e5c10792db175ee5d89d8"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16880-1.png",
+      "source_path": "assets/map/bajun/16880-1.png",
+      "sha256": "e86617e26365df0eeaa2d327ae04bf334d391dd8a47a579867083739e0898772"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18337-1.png",
+      "source_path": "assets/map/bajun/18337-1.png",
+      "sha256": "b1bce8b131a7c3798e350bfd225efa83c485030e8ae054c89539dc842590fafb"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/13311-1.png",
+      "source_path": "assets/map/bajun/13311-1.png",
+      "sha256": "8fc4e2c84e027aa97134bf94b0faa5b7977aa00cb81d16da987b04bc891bd86f"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/9865-5.png",
+      "source_path": "assets/map/bajun/9865-5.png",
+      "sha256": "4b6b4237aefae805520586e4a3189dd3b31d770eb1b384563d7a2c0c18fa776c"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18308-1.png",
+      "source_path": "assets/map/bajun/18308-1.png",
+      "sha256": "03eba54ba3c29b1eedc6fe9456edbb5705dc176c78e57b4e3a2238c84e1743f4"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/13313-1.png",
+      "source_path": "assets/map/bajun/13313-1.png",
+      "sha256": "8bd5b56d44ac96f434c42b81035c9a578ccbd1211f1f0c1c90401930e55812b2"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16882-1.png",
+      "source_path": "assets/map/bajun/16882-1.png",
+      "sha256": "042d601d1c4bc3611c1c1b88897f78aac8d974cd83ab507201bc782701bc2210"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18335-1.png",
+      "source_path": "assets/map/bajun/18335-1.png",
+      "sha256": "87e295d33c2d9d7f1282b5233e3216b46dce86a6d3034f95e64852ac45fbb44d"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/16866-1.png",
+      "source_path": "assets/map/bajun/16866-1.png",
+      "sha256": "1fa924b78dcb6f10e82081b1e63945092bc6de5502f12596a829bc2259d3ae18"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/18274-1.png",
+      "source_path": "assets/map/bajun/18274-1.png",
+      "sha256": "61bc1be1cd850ca87ab4f654c11b0afbbd33bef7e3d06cd6b3911e1e487f9e31"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-3.png",
+      "source_path": "assets/map/jianglinxi/9889-3.png",
+      "sha256": "bfcd33a9b0813afe8c537023288dbaa327afe89a3a8add5f6e9ea99ffe572938"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/8996-1.png",
+      "source_path": "assets/map/jianglinxi/8996-1.png",
+      "sha256": "73a1d131126d1168bfc450f7468d38cbcb2cdcbbb277a43127e45099aa61e80c"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/18358-1.png",
+      "source_path": "assets/map/jianglinxi/18358-1.png",
+      "sha256": "2fd15d6057c86b9bd426bacb2c0b35e5d6076479f20416a88fdc29756d489ed7"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16645-1.png",
+      "source_path": "assets/map/jianglinxi/16645-1.png",
+      "sha256": "9992ca7bffd97bc1fb3caeb23512e9baeb20e0fa7d825eeafe09419770cf27df"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-2.png",
+      "source_path": "assets/map/jianglinxi/9889-2.png",
+      "sha256": "52917ace554e04bf0e830cb9309c66f94532987fed58d985f5325e169cc4b491"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-1.png",
+      "source_path": "assets/map/jianglinxi/9889-1.png",
+      "sha256": "3c243e69961436951918f6d3c12b38570eaa7336d2385a64d2b9081cfa0e2b3d"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-5.png",
+      "source_path": "assets/map/jianglinxi/9889-5.png",
+      "sha256": "3c243e69961436951918f6d3c12b38570eaa7336d2385a64d2b9081cfa0e2b3d"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16891-1.png",
+      "source_path": "assets/map/jianglinxi/16891-1.png",
+      "sha256": "ae4774178be9c586867e5497427874e77e95eb2113496df7c72f2d28448aaf84"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16643-1.png",
+      "source_path": "assets/map/jianglinxi/16643-1.png",
+      "sha256": "3c8e3dac96663941e1e4e7b792d29475055c63c2002abac75363fb88abf46fa2"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-4.png",
+      "source_path": "assets/map/jianglinxi/9889-4.png",
+      "sha256": "e24dd0bc163ce7404f73e9e589342f98fffad21d8a1e857ba9478c9f54cee640"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16888-1.png",
+      "source_path": "assets/map/jianglinxi/16888-1.png",
+      "sha256": "770e1ef414c517f84bef68bdc23b15f3131db4e7f6f2bc454615a963035b3ae9"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/19199-1.png",
+      "source_path": "assets/map/jianglinxi/19199-1.png",
+      "sha256": "3c6e26179fec9b002ef994800b2cde416ce221ba46607e475de90278e5ef5aaf"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-6.png",
+      "source_path": "assets/map/jianglinxi/9889-6.png",
+      "sha256": "52917ace554e04bf0e830cb9309c66f94532987fed58d985f5325e169cc4b491"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16639-1.png",
+      "source_path": "assets/map/jianglinxi/16639-1.png",
+      "sha256": "fe0788a80edb2286d219ea11c1f06fcaf114c9e405bd8adee26ca0fff1ba6349"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-7.png",
+      "source_path": "assets/map/jianglinxi/9889-7.png",
+      "sha256": "bfcd33a9b0813afe8c537023288dbaa327afe89a3a8add5f6e9ea99ffe572938"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/8997-1.png",
+      "source_path": "assets/map/jianglinxi/8997-1.png",
+      "sha256": "d1bd74d6ad7ce696894d30069142a274eaf7c587fc22dca9451564a9616bd865"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/7538-8.png",
+      "source_path": "assets/map/jianglinxi/7538-8.png",
+      "sha256": "3489b598ddff9884ba9005097e104c8cc0694008aab3d0f4673e7c0fba58a639"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/10460-1.png",
+      "source_path": "assets/map/jianglinxi/10460-1.png",
+      "sha256": "6fee642be926b4aff33f808fdd170f0dfb71cc5d93ceeb27ad7d2ff81e987879"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/7538-9.png",
+      "source_path": "assets/map/jianglinxi/7538-9.png",
+      "sha256": "2d2f6e4db9ac418eb15a80af0dc9b2be548fe0e7f38f09fd744bdacb760affa6"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16644-1.png",
+      "source_path": "assets/map/jianglinxi/16644-1.png",
+      "sha256": "167e87d51c72242db0e49ac63b86ff868e2ba5a6be3d20831f083b6191e4be0d"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16638-1.png",
+      "source_path": "assets/map/jianglinxi/16638-1.png",
+      "sha256": "c68b1cc4d885fc0494fc200b86f653d3b129bf3f09ebd7a12c62a8ee1521664a"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/10459-1.png",
+      "source_path": "assets/map/jianglinxi/10459-1.png",
+      "sha256": "b2f0accbf1506105c1d5401f3c93921f927f3baf683f773da492bf25aad54f62"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16890-1.png",
+      "source_path": "assets/map/jianglinxi/16890-1.png",
+      "sha256": "81445f89bd6036e501a24becb17084f2296c0cb81fe20e56c8b457df05a982c7"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16889-1.png",
+      "source_path": "assets/map/jianglinxi/16889-1.png",
+      "sha256": "07fec21b1f18d078d5881bbb8b1a01aa9d9d56f49204ef91e59015289a92861d"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16885-1.png",
+      "source_path": "assets/map/jianglinxi/16885-1.png",
+      "sha256": "4eeacce055ac022ce4a681058647b14d16e5e0749f6ef67a0d0ed690352432fe"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/7538-2.png",
+      "source_path": "assets/map/jianglinxi/7538-2.png",
+      "sha256": "785224165b47eae0aa6d5e266b8b52ca563895927908221cb566eca7bd469921"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/7538-3.png",
+      "source_path": "assets/map/jianglinxi/7538-3.png",
+      "sha256": "9d98ea30af0a5fc1d632a0ea569d188348ef49d1c03d89f298da37554c7dcb9f"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/7538-12.png",
+      "source_path": "assets/map/jianglinxi/7538-12.png",
+      "sha256": "76c89aa20d8552f4f57c7ea1d4bd55f1692b7066457a7c4a30dfcc519a772f92"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/7538-10.png",
+      "source_path": "assets/map/jianglinxi/7538-10.png",
+      "sha256": "9b365345a3acad6b4089efa7454ac575d828a757ba813dbffb911e6e0bfd5821"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/7538-1.png",
+      "source_path": "assets/map/jianglinxi/7538-1.png",
+      "sha256": "e036c7cb87ffca8ca43135236e18cda285006a287c88afd0d7a610574aa41714"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16887-1.png",
+      "source_path": "assets/map/jianglinxi/16887-1.png",
+      "sha256": "1bf2fda8db0a03f15078164e13c3d66984a5ce30bf132ea12df219d5cd27726f"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/7538-11.png",
+      "source_path": "assets/map/jianglinxi/7538-11.png",
+      "sha256": "445b1358b8091c4f114bc698ceaa26a2f37ff55b0203cdee9c720f94ae16c3de"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16648-1.png",
+      "source_path": "assets/map/jianglinxi/16648-1.png",
+      "sha256": "bad0f92a84b0bcac1e4ab46db878e7d66bdb0bc2582bf7b328e207ca39aab4bd"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/7538-4.png",
+      "source_path": "assets/map/jianglinxi/7538-4.png",
+      "sha256": "c1a3ef905774a65fb8c1fae7f07886e88a1f2782b09df7101d5522e1f9c087a3"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/7538-5.png",
+      "source_path": "assets/map/jianglinxi/7538-5.png",
+      "sha256": "09fd6040178ada21dd9c562b561fe21ad3b2dca32fb6d756fdef5c7faeff8cad"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16902-1.png",
+      "source_path": "assets/map/jianglinxi/16902-1.png",
+      "sha256": "3be3f6ba3b08f6790d75bad6bf090d7ea76adffb75da6d9448f1f6443f058784"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/18355-1.png",
+      "source_path": "assets/map/jianglinxi/18355-1.png",
+      "sha256": "55ee8d12487cae2dacc7ab3b970a43d5f3584fb59a99ec22f7a46bd0b9d4611a"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16900-1.png",
+      "source_path": "assets/map/jianglinxi/16900-1.png",
+      "sha256": "6b9d8fa8c916c9a3e0152d9e99d212fa1d831261d9e1c5b80d3c086c32801346"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/7538-7.png",
+      "source_path": "assets/map/jianglinxi/7538-7.png",
+      "sha256": "7b033aa95e9744d1aedf45c3f111aa63776bf249e82ad7fab2cdc885cb75744b"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/7538-6.png",
+      "source_path": "assets/map/jianglinxi/7538-6.png",
+      "sha256": "a90370be1e6389527355789587009298403e8e735ebe2277bc4c043403634ecc"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-13.png",
+      "source_path": "assets/map/jianglinxi/9889-13.png",
+      "sha256": "935c53ac1aeeeb3d816fbf2d99e41dcfe338da5831f12f94a6291fe822040116"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-12.png",
+      "source_path": "assets/map/jianglinxi/9889-12.png",
+      "sha256": "d463b8f50e632daad9b191d912f140608f47220c80f37034c9c74623acd735fb"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/8709-1.png",
+      "source_path": "assets/map/jianglinxi/8709-1.png",
+      "sha256": "d3e1f137839668e641c9a0db71ef660421ece103ba42d0fcda652b52fee567b6"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16886-1.png",
+      "source_path": "assets/map/jianglinxi/16886-1.png",
+      "sha256": "c008c347b360c2549909413f045310bb75a93a4cd008bff03bee336b8707c746"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-9.png",
+      "source_path": "assets/map/jianglinxi/9889-9.png",
+      "sha256": "9b31c6b5934361ca6a6117a8b60a92ad5a31bf35cfeff8d07d88dc5eb593df99"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16884-1.png",
+      "source_path": "assets/map/jianglinxi/16884-1.png",
+      "sha256": "4b763153d178d15b0a1cdbd1d2e31912cf46824f7a5854b8f0a5b19da6785bf6"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16637-1.png",
+      "source_path": "assets/map/jianglinxi/16637-1.png",
+      "sha256": "1e8562789307ffe56a01383621da87a2487cfdede46adfbc4767c6f1a38b825c"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-10.png",
+      "source_path": "assets/map/jianglinxi/9889-10.png",
+      "sha256": "ad061a902de96579976e884e6fa8b4825808bff049332c2eb23f51d3aeaf624e"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-11.png",
+      "source_path": "assets/map/jianglinxi/9889-11.png",
+      "sha256": "9594ab66590e1288b80adcc681150c25c954b5e83bd32941e14e9085bb53857b"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/14817-1.png",
+      "source_path": "assets/map/jianglinxi/14817-1.png",
+      "sha256": "3bd1ea1cca1703e5067a4b3ded5439d11a82ef2c5214b707c65da1d4002b87ba"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-8.png",
+      "source_path": "assets/map/jianglinxi/9889-8.png",
+      "sha256": "e24dd0bc163ce7404f73e9e589342f98fffad21d8a1e857ba9478c9f54cee640"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-15.png",
+      "source_path": "assets/map/jianglinxi/9889-15.png",
+      "sha256": "9fa1d3608601beceb8c84e1fe32a713cb419c3406a69bae8cf1f04f3f78bfd7b"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/16901-1.png",
+      "source_path": "assets/map/jianglinxi/16901-1.png",
+      "sha256": "59cbaa2cad36c1d169b1a0b016e218fc0baaeca747a3f84a264bb1b738d5e96f"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-14.png",
+      "source_path": "assets/map/jianglinxi/9889-14.png",
+      "sha256": "695fd5cb77f01866f6fdd24d571df0100d9ebd9d435421ddbbcea29db3c26b38"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-16.png",
+      "source_path": "assets/map/jianglinxi/9889-16.png",
+      "sha256": "883c5cad56b0330bfb8ca076bc1b833bdd5a11a8e1a27f558c4e5deb79fd2746"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/9889-17.png",
+      "source_path": "assets/map/jianglinxi/9889-17.png",
+      "sha256": "4605689a57623fd035fdf1973014e4fd3ac3ab446548a155d97351a0e67866e1"
+    },
+    {
+      "path": "assets/reference/assets/map/jianglinxi/19175-1.png",
+      "source_path": "assets/map/jianglinxi/19175-1.png",
+      "sha256": "a3996fcdf8afde36c14048ee9a5839c46bfa3914aef2704f132a207a9538b533"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18654-1.png",
+      "source_path": "assets/map/15fb/18654-1.png",
+      "sha256": "789dfa85c8999d7307820c666448ea5b679a13a7171d46b99b0c725ed792829f"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15063-1.png",
+      "source_path": "assets/map/15fb/15063-1.png",
+      "sha256": "f223aaf183d91705fcdbfa353a121ae2a5828dc954a4fe107230f9928145d6cf"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/12202-1.png",
+      "source_path": "assets/map/15fb/12202-1.png",
+      "sha256": "778ddb30ad694a4f024db70365f282fb5afeb168a31cad4bb3e86f393743656f"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15078-1.png",
+      "source_path": "assets/map/15fb/15078-1.png",
+      "sha256": "ee0b3a5ab21009ae7ceaa4c7a35b3f7b9e12d0c012584aa8de7ee4d9a90566fc"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15061-1.png",
+      "source_path": "assets/map/15fb/15061-1.png",
+      "sha256": "fec3224d288307c805e4c2a9f9e64724e17ba341e446ee94159036e1b25a833d"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/10642-1.png",
+      "source_path": "assets/map/15fb/10642-1.png",
+      "sha256": "7683bb57d2c6f4bed803aefb58e38a80d56f12e124bf26216e95cd12a50eb012"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15065-1.png",
+      "source_path": "assets/map/15fb/15065-1.png",
+      "sha256": "9925ff86fefb812d93ca4b6b1162e799d5daca8c64492fc00d72e37d4b56865c"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18652-1.png",
+      "source_path": "assets/map/15fb/18652-1.png",
+      "sha256": "faa309fbd939625d6ca8d2a597cc18c36396cebd52fef41f14607ead1a14114f"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15041-1.png",
+      "source_path": "assets/map/15fb/15041-1.png",
+      "sha256": "1398dc2add63478987b2b1c7aaa9cf9b619e2d8ab5b80f0de4840b780245cfc0"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18649-1.png",
+      "source_path": "assets/map/15fb/18649-1.png",
+      "sha256": "4690975070e3612751231ddea1fb3b142836b3a7f43400e6478233c681ccfe08"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18650-1.png",
+      "source_path": "assets/map/15fb/18650-1.png",
+      "sha256": "4c16a3273bfb75905a01a1cce7b4dce83c4d945fc87e0e81904383355b2260ff"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15067-1.png",
+      "source_path": "assets/map/15fb/15067-1.png",
+      "sha256": "043c80b4431e71165a3b6b74e7b61a71987cb3097c035f822d2caa3f77946312"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15079-1.png",
+      "source_path": "assets/map/15fb/15079-1.png",
+      "sha256": "8dabaaa30f77d1cc9d2b9a54e1ea1e6b8d24af550301a89def6c1514a3e1050b"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15060-1.png",
+      "source_path": "assets/map/15fb/15060-1.png",
+      "sha256": "fdf75154c18529804debb305e5d63bfb9fbf0b3fbe72708fe8b77c749c6e63cd"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/10641-1.png",
+      "source_path": "assets/map/15fb/10641-1.png",
+      "sha256": "18bbd6b99eff72a24ce641152c9d4ff61ce3fb4cad91a1bde50750744bd64cd5"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15062-1.png",
+      "source_path": "assets/map/15fb/15062-1.png",
+      "sha256": "f8f08154f8b45dc357b09344a37088c43e9f80b87dcfe26cbd3729ee3c4150fe"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18648-1.png",
+      "source_path": "assets/map/15fb/18648-1.png",
+      "sha256": "99480fe397b2e9e45b80e722b3b92793746c1bcdc338a5f3a482b0a50488f599"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15066-1.png",
+      "source_path": "assets/map/15fb/15066-1.png",
+      "sha256": "ba123060fbaeb13b3fd0c958226a0b582259f91f4dbdf325e07c3c156e04627a"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/11389-1.png",
+      "source_path": "assets/map/15fb/11389-1.png",
+      "sha256": "592966221d872683ffc38e18956ecfafb2682e71869de1c0c317400e1fe8bd24"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18651-1.png",
+      "source_path": "assets/map/15fb/18651-1.png",
+      "sha256": "a8d5ce48811a7de5bc04462a665cbe6397f73d3cf3a1a5a4a27e5438bb5638ce"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18653-1.png",
+      "source_path": "assets/map/15fb/18653-1.png",
+      "sha256": "5123f61c1c600e117fe1c2e20258c6e36363a15ecc933bbf3863c7d2297c1d60"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15064-1.png",
+      "source_path": "assets/map/15fb/15064-1.png",
+      "sha256": "0f15991f3e3b5ca8c226c54a1e5c2f3ff092528d7252b8e0d66767ded22be860"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15071-1.png",
+      "source_path": "assets/map/15fb/15071-1.png",
+      "sha256": "0289f171944b7765e2dd485aca94f664cfc04618b281049f77ebafc6e424d279"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18646-1.png",
+      "source_path": "assets/map/15fb/18646-1.png",
+      "sha256": "c542aa75b3025403e0136c4dc51d9392390b839b4279251a86a73c49dca464e1"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15068-1.png",
+      "source_path": "assets/map/15fb/15068-1.png",
+      "sha256": "de5efaff9c4059883930fe11ce96671aac4239f2bbd3d398c080bc0c8404aaf3"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18644-1.png",
+      "source_path": "assets/map/15fb/18644-1.png",
+      "sha256": "a190b436e3af82b4af6a728f181181b217a3a08d451b0184f8e65195f1654912"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18684-1.png",
+      "source_path": "assets/map/15fb/18684-1.png",
+      "sha256": "ea8c38c157ad6c072689960ff79aa51a52f032b520e64d935ecbce4f3caadead"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15073-1.png",
+      "source_path": "assets/map/15fb/15073-1.png",
+      "sha256": "ae2d7175333a3d54763cef70f490e4e1ceddd3bc3e8996f3586ce243d5e91d92"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15077-1.png",
+      "source_path": "assets/map/15fb/15077-1.png",
+      "sha256": "d3826d27b8730723e068a7494e52fcac0b5d7a2e9df660aab32d1c224ff12704"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18664-1.png",
+      "source_path": "assets/map/15fb/18664-1.png",
+      "sha256": "f6caad779a3b20782ca1b059c748630e662487cb22d8f27a552335d836689eb7"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18666-1.png",
+      "source_path": "assets/map/15fb/18666-1.png",
+      "sha256": "b298a5befccdc761a728b523875bcadfe13d20c9c34b5e2ba00eff2eeac14f07"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15075-1.png",
+      "source_path": "assets/map/15fb/15075-1.png",
+      "sha256": "00215fed4dd2bd4662b330d63eb63d66216968a6df9e349f1c49e78b65fd2c16"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18682-1.png",
+      "source_path": "assets/map/15fb/18682-1.png",
+      "sha256": "02e634de527a7d07ec551f410836d1440629e43814e27eb123d0c18a9d03225f"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/14935-1.png",
+      "source_path": "assets/map/15fb/14935-1.png",
+      "sha256": "58fd88c0269ae0a88632eab05009be9604e70617facad06ab03987cd11ae972e"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15072-1.png",
+      "source_path": "assets/map/15fb/15072-1.png",
+      "sha256": "41621fd48aae6364f70f6526473fea01c02ceeb63c9d984205fd4c92f1166d6f"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18645-1.png",
+      "source_path": "assets/map/15fb/18645-1.png",
+      "sha256": "0069a8286359d3280a0bec476b7155981f844d866c5e09b1f43cdd997ef954c4"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18647-1.png",
+      "source_path": "assets/map/15fb/18647-1.png",
+      "sha256": "037abddbf00dae82afa948ec96a3ad34a38c4291e9beaa712aa9c34fb5e19055"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15070-1.png",
+      "source_path": "assets/map/15fb/15070-1.png",
+      "sha256": "dfd608837b38bf9994bbe280f3aeca348e6e26466de6d638635b79ec6888da85"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15069-1.png",
+      "source_path": "assets/map/15fb/15069-1.png",
+      "sha256": "cf26ff63d8dbce0c9774f7c901802881904b1aedd90e25a6668d1370f29ebdf7"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18663-1.png",
+      "source_path": "assets/map/15fb/18663-1.png",
+      "sha256": "41ea6ff11388fbbb7c7040371b7772dd459b452139f641b326c7ae0f0f1428a2"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/14271-1.png",
+      "source_path": "assets/map/15fb/14271-1.png",
+      "sha256": "4f4a2d34a8716c35c11bfc1df9feecc94763fa6d49272f07b2d17cfb15add44e"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15074-1.png",
+      "source_path": "assets/map/15fb/15074-1.png",
+      "sha256": "d505c8ddcd7ee4b7579a8324ba93341afed7f20eb78ba1e6e1a8a5fcd6ffb2db"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18683-1.png",
+      "source_path": "assets/map/15fb/18683-1.png",
+      "sha256": "c78d96853035f056ee7efaab1afddbd90c5d54f97b1ea920c02b6d4fd0934460"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18681-1.png",
+      "source_path": "assets/map/15fb/18681-1.png",
+      "sha256": "2250ef2419bbadfb2c2d2ddb3b7d68ae92674b536be714fbe9273bed1f199f37"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/15076-1.png",
+      "source_path": "assets/map/15fb/15076-1.png",
+      "sha256": "da44bb5e1caeb0e0ab280110599530dc996c44d573eb77839880e302fd6798c1"
+    },
+    {
+      "path": "assets/reference/assets/map/15fb/18665-1.png",
+      "source_path": "assets/map/15fb/18665-1.png",
+      "sha256": "da5ab300ee8f721df8a0c445ba0b2f38569ff6d69055c15af16e5afd27320541"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19179-1.png",
+      "source_path": "assets/map/tree_and_flower/19179-1.png",
+      "sha256": "fd3ed92caae7ca420d3771a6610c785496598b65caa6634fe2364f4c7393d965"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19285-1.png",
+      "source_path": "assets/map/tree_and_flower/19285-1.png",
+      "sha256": "952883942574ae89a07ec404bccbbd259b7256accbeb04fd01f0a486e4b941d0"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19278-1.png",
+      "source_path": "assets/map/tree_and_flower/19278-1.png",
+      "sha256": "b027f3f1a6c75e63dddf6fa4935aae0d8be6d6a64691132008fb52b64d96d264"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19184-1.png",
+      "source_path": "assets/map/tree_and_flower/19184-1.png",
+      "sha256": "aa29f5cd1574373440cfe55776eb49f40ba0b3463daa0b016dc6a65be4abe6b9"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19245-1.png",
+      "source_path": "assets/map/tree_and_flower/19245-1.png",
+      "sha256": "2c92f8585e7f38d0d28724d465f412cecc02bf77abc830ae67f2f8c1a3590619"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19200-1.png",
+      "source_path": "assets/map/tree_and_flower/19200-1.png",
+      "sha256": "72e434c675993018d605abbbae5aa759c30c3909b9c752cf3354ec388b98e65b"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19160-1.png",
+      "source_path": "assets/map/tree_and_flower/19160-1.png",
+      "sha256": "379d25e730e9df791b5c01b998883ca081acfb47f756a7cd8661a211625bc03a"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19261-1.png",
+      "source_path": "assets/map/tree_and_flower/19261-1.png",
+      "sha256": "1f59ea799fe5ad48a0c000d4021b875d55e0e1fb8fbb01cd912ce2ed8279d4f3"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19224-1.png",
+      "source_path": "assets/map/tree_and_flower/19224-1.png",
+      "sha256": "6e42ba4765306be26f8da27ccf67d3d7f7fab2be2e9fff6da1e21dacf7366bc4"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19304-1.png",
+      "source_path": "assets/map/tree_and_flower/19304-1.png",
+      "sha256": "06110f44424d317f1dee61d92fa9eaa1b6801e940c959309fa5e951e1cfbf194"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19219-1.png",
+      "source_path": "assets/map/tree_and_flower/19219-1.png",
+      "sha256": "7810e22b099bf08ad16251f43f3143bb8a88c4853e87c3582dae46dcbc668ed2"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19306-1.png",
+      "source_path": "assets/map/tree_and_flower/19306-1.png",
+      "sha256": "3f7e77d84d307bac5b7a8e965dd8c0b111f55dd56885e69887ada55b889ea2ab"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19263-1.png",
+      "source_path": "assets/map/tree_and_flower/19263-1.png",
+      "sha256": "6407ebaac445f19e93c178dad5a762cbff93a6e2cf09ab8218cae6b093b20f38"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19226-1.png",
+      "source_path": "assets/map/tree_and_flower/19226-1.png",
+      "sha256": "94918c8918108e83d2d431e53734ea23cbe2e1343272cd64c0db306e39364d6f"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19162-1.png",
+      "source_path": "assets/map/tree_and_flower/19162-1.png",
+      "sha256": "3c2dbaa89b0b5b945ba8c227c46b8e743a9e1899ffe19572be644387c1c552f3"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19146-1.png",
+      "source_path": "assets/map/tree_and_flower/19146-1.png",
+      "sha256": "ae4a45cde51e2474ec31cc007f46aac00381aa6e9ccaa0646754456e680a2082"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19247-1.png",
+      "source_path": "assets/map/tree_and_flower/19247-1.png",
+      "sha256": "66926c6299c5fc6849a28f6368dd82fccef9252d7eee23954f1825056244ebe3"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19202-1.png",
+      "source_path": "assets/map/tree_and_flower/19202-1.png",
+      "sha256": "20aff8c0dce82437bea74541e3afa400ca6b17ac3d79dcf704a9d333538a0553"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19186-1.png",
+      "source_path": "assets/map/tree_and_flower/19186-1.png",
+      "sha256": "e8f188c931a81fcac25615d43ffe042beb0ef587dc28c645b24e283f7ddebff4"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19287-1.png",
+      "source_path": "assets/map/tree_and_flower/19287-1.png",
+      "sha256": "a4b7e71bfa1d8b45e5bec38037f7903404879014e73b4c77032306769c03498c"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19243-1.png",
+      "source_path": "assets/map/tree_and_flower/19243-1.png",
+      "sha256": "103573300aa9617bdc1d5a5268b897c9e3f8a223b4e3bcfa8feb5ef507ec45ac"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19206-1.png",
+      "source_path": "assets/map/tree_and_flower/19206-1.png",
+      "sha256": "9c7d7e8a93ac9b10818925931c15dfd9b6bcfea40f22683aa8c3b85b27286482"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19283-1.png",
+      "source_path": "assets/map/tree_and_flower/19283-1.png",
+      "sha256": "88a15721173c5678d608b212e9722c073cd8b582930f6f1f2ae1f2a89def5034"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19182-1.png",
+      "source_path": "assets/map/tree_and_flower/19182-1.png",
+      "sha256": "9943425d9911b34c6c0d05765afe30ece361ce36cf2a74cbc60ab5510e3d88f4"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19302-1.png",
+      "source_path": "assets/map/tree_and_flower/19302-1.png",
+      "sha256": "87b48a4bc757e00cf4e3617de4b31d2d6af3bd38b7ebcdbb6249689378ce8fd2"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19166-1.png",
+      "source_path": "assets/map/tree_and_flower/19166-1.png",
+      "sha256": "899470365744a73f0829d8cf3f0da526d4c3252504acf4cda0b1ba646952ee5f"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19267-1.png",
+      "source_path": "assets/map/tree_and_flower/19267-1.png",
+      "sha256": "e0ca0df899993bde85644d1c9c78f509a914518e166853c5c5d0d22b717c0a52"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19222-1.png",
+      "source_path": "assets/map/tree_and_flower/19222-1.png",
+      "sha256": "2e8ec11bbc4b7e923ffdbbdefc4923fb806119ebbcf93300cb1b8361040bebc9"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19199-1.png",
+      "source_path": "assets/map/tree_and_flower/19199-1.png",
+      "sha256": "3c6e26179fec9b002ef994800b2cde416ce221ba46607e475de90278e5ef5aaf"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19265-1.png",
+      "source_path": "assets/map/tree_and_flower/19265-1.png",
+      "sha256": "dc9b4fe1c70540c6022a833fdea53434a2093a4aeca9a6605981183f33b4119d"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19220-1.png",
+      "source_path": "assets/map/tree_and_flower/19220-1.png",
+      "sha256": "9abbfe211b4a9a416578db8c59cca4028bc23a72e6abf121845a047794f066e4"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19298-1.png",
+      "source_path": "assets/map/tree_and_flower/19298-1.png",
+      "sha256": "60d92e4f551d2945efd09e5c368b3d1babe2026c734d3f94304f526371a139f4"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19164-1.png",
+      "source_path": "assets/map/tree_and_flower/19164-1.png",
+      "sha256": "5a073487b2753219cbc647753a245403391b98d49daec0540374f1115717d4bd"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19159-1.png",
+      "source_path": "assets/map/tree_and_flower/19159-1.png",
+      "sha256": "1107668feab4f5694e1f7c92d6a514a763fd8f589665ae3b9f2a56098bfc9219"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19258-1.png",
+      "source_path": "assets/map/tree_and_flower/19258-1.png",
+      "sha256": "701b18cf758670e19dd06b417abda8bb781eea848889638c9e6bb57cd531fee9"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19300-1.png",
+      "source_path": "assets/map/tree_and_flower/19300-1.png",
+      "sha256": "161beefa2d55224b92601b180f43dacf48a59dc5041d5d7d7568201f3bf7567e"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19239-1.png",
+      "source_path": "assets/map/tree_and_flower/19239-1.png",
+      "sha256": "88d2e52d57e3cf623ff8a5d25f10a1cc753b363d4f68cb7f8ab5c8fec11df7dd"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19180-1.png",
+      "source_path": "assets/map/tree_and_flower/19180-1.png",
+      "sha256": "65e228a670a1d4eff0b183e194e6cbbd51bf605eefad4a0e0730374794a9bef9"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19281-1.png",
+      "source_path": "assets/map/tree_and_flower/19281-1.png",
+      "sha256": "383c7559511a21a3ffdf24f5bec354d72ff97f04c49e249a1fa78b221b06c67a"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19241-1.png",
+      "source_path": "assets/map/tree_and_flower/19241-1.png",
+      "sha256": "40db243977fcb6b1fed66e5a40a9b67b680ee06df24e4aaf70b4f31dc1c39e0b"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19204-1.png",
+      "source_path": "assets/map/tree_and_flower/19204-1.png",
+      "sha256": "6fe235aa04a922a3d20f7e9f2fee22be812e4e4d985250599790363b77b06342"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19227-1.png",
+      "source_path": "assets/map/tree_and_flower/19227-1.png",
+      "sha256": "559e1abc165b82740f7d6c8f3b16a92b4d0fc322d478aa160f0a3dcf50a5add8"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19262-1.png",
+      "source_path": "assets/map/tree_and_flower/19262-1.png",
+      "sha256": "f5ec905224368a2c3ae329e9c2fa8213352b7cab72dd3575d3e4fad689de3692"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19163-1.png",
+      "source_path": "assets/map/tree_and_flower/19163-1.png",
+      "sha256": "6cb776257c6402cc97dc42357cfa9834f8eae34235acf75b61774a65213a379a"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19307-1.png",
+      "source_path": "assets/map/tree_and_flower/19307-1.png",
+      "sha256": "ee9f49d062a561efd05da7cde417d927bb42c03826e2c9220e61b90001d5de3d"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19187-1.png",
+      "source_path": "assets/map/tree_and_flower/19187-1.png",
+      "sha256": "ffdc66db74fcef1f463d6500e4128ab486cf2f27cba39cc7e1392d33f799bc31"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19286-1.png",
+      "source_path": "assets/map/tree_and_flower/19286-1.png",
+      "sha256": "fa1ef7cdc629bd4754ee0e068581eefbfe12d61ecdbf02e980895602b977fa70"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19147-1.png",
+      "source_path": "assets/map/tree_and_flower/19147-1.png",
+      "sha256": "20e7bd363ed8b45cf9383550c06e61acc6ab2b899a93dd8adc64d065565ae941"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19203-1.png",
+      "source_path": "assets/map/tree_and_flower/19203-1.png",
+      "sha256": "012bd526c1fe1d100803ed4ab2d9a4cb67040b3dffee8f2bed41377ad2dafac1"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19246-1.png",
+      "source_path": "assets/map/tree_and_flower/19246-1.png",
+      "sha256": "dc9dd3a18d3529a568b04c80f0c7d801d9657d1d451fdb0daf72f2114f1374de"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19201-1.png",
+      "source_path": "assets/map/tree_and_flower/19201-1.png",
+      "sha256": "8c4690aae037ba4613066372481b97664cc70687f38b432573bb965172f5e0c6"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19244-1.png",
+      "source_path": "assets/map/tree_and_flower/19244-1.png",
+      "sha256": "8672d740611ae97dba782322b95a909a22884f562e1d94b9dc066f2c7f6430dd"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19145-1.png",
+      "source_path": "assets/map/tree_and_flower/19145-1.png",
+      "sha256": "75b0f7e887e003331f12768f1c361570cdcb93dc38055711487ebeb8528aa95f"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19178-1.png",
+      "source_path": "assets/map/tree_and_flower/19178-1.png",
+      "sha256": "d8b65dee43ca5555a451af724e245a4c9a08e16a4e0e69373a7465e95c187796"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19284-1.png",
+      "source_path": "assets/map/tree_and_flower/19284-1.png",
+      "sha256": "6d74b0bf8b1a2da6fe50e2d0aeee9fa12df849ca6404c797779953afe8dbd463"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19279-1.png",
+      "source_path": "assets/map/tree_and_flower/19279-1.png",
+      "sha256": "e6cbf5c910c65541c8248864de1dc3e838a80ebb383074c61f35df07e10cbe21"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19185-1.png",
+      "source_path": "assets/map/tree_and_flower/19185-1.png",
+      "sha256": "2eed321ccf0569ce3cdd6be883b81c8f34c8db8dd053b6c18a17901361fa16ea"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19218-1.png",
+      "source_path": "assets/map/tree_and_flower/19218-1.png",
+      "sha256": "6355b6783df5ee2c7cf69faba468a33f99a21655652cf2546cd3d6b42580eb14"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19305-1.png",
+      "source_path": "assets/map/tree_and_flower/19305-1.png",
+      "sha256": "156a05dc8758b8faa8d4f32632b7e696803302a60cad557bf1b9661078f8bef1"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19161-1.png",
+      "source_path": "assets/map/tree_and_flower/19161-1.png",
+      "sha256": "b730d1d25f6593e4ef49b9bf08bf13dff89261b4e0bfa3e8052dff078734778a"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19225-1.png",
+      "source_path": "assets/map/tree_and_flower/19225-1.png",
+      "sha256": "ff5407545f47fee7e8f07ddc8b03a7069cabe3cd72f00b08568aff0c8ff7deb8"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19260-1.png",
+      "source_path": "assets/map/tree_and_flower/19260-1.png",
+      "sha256": "ffe944beb75454ce0034677876f62439d8c268bd1f5075a90390af893233ff19"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19301-1.png",
+      "source_path": "assets/map/tree_and_flower/19301-1.png",
+      "sha256": "fe7263b81ce5728e6f28e1c42823b75c40a730ca48dfb215435a860be215c2af"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19158-1.png",
+      "source_path": "assets/map/tree_and_flower/19158-1.png",
+      "sha256": "dd830aa9084a44993d3c7c1617bb4b4465d4b21525336a02676a2a90b223a8a2"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19259-1.png",
+      "source_path": "assets/map/tree_and_flower/19259-1.png",
+      "sha256": "99af9a83a9f052e4d000a8179d012c57f09b487b0a2e07e3021400148d8770a2"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19198-1.png",
+      "source_path": "assets/map/tree_and_flower/19198-1.png",
+      "sha256": "ad34748d05bb752f7c4d929aaac2c7ec5bd8aad439d955443a3eab552091eb76"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19221-1.png",
+      "source_path": "assets/map/tree_and_flower/19221-1.png",
+      "sha256": "0ca9285ae21d06a6217c303cf6f6f4e1c52fb5c806e741db72cb5f2183c8f5de"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19264-1.png",
+      "source_path": "assets/map/tree_and_flower/19264-1.png",
+      "sha256": "a7d0b4742ea2fbca0d13c0453314bd3f635fea807c5aaf52c51f3f866bd9cb8c"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19299-1.png",
+      "source_path": "assets/map/tree_and_flower/19299-1.png",
+      "sha256": "42fd6c7b6570baf668bdc36bd703553a73a300a9d5ffcf9db7ebae5ec16bcf4d"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19165-1.png",
+      "source_path": "assets/map/tree_and_flower/19165-1.png",
+      "sha256": "09f286a2c2634ab3134ab1d480c16f79cc86a5bfda656cf22e0b99440fa07919"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19205-1.png",
+      "source_path": "assets/map/tree_and_flower/19205-1.png",
+      "sha256": "2723f0271a23ca28b3e9b3012043bc566efbe243de0e0e4c2e448b5d9d5dfb58"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19240-1.png",
+      "source_path": "assets/map/tree_and_flower/19240-1.png",
+      "sha256": "52cebf4afb66f2f9a093c4c3d37717a599fd1ddd0df8377f3f9ed2fd71433c42"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19238-1.png",
+      "source_path": "assets/map/tree_and_flower/19238-1.png",
+      "sha256": "3502d97c0b6e97ab74d1fe50a61e90a1bbacc4912535c3c9e2462d808f3d5c67"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19181-1.png",
+      "source_path": "assets/map/tree_and_flower/19181-1.png",
+      "sha256": "3cb17049c8c06987eed8279ced9701917e3f23ab68e47dd91fcf9dbbde388d01"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19280-1.png",
+      "source_path": "assets/map/tree_and_flower/19280-1.png",
+      "sha256": "4f6b219e46c3a209114dee31e4f05ae1f225fe7ffb23bbe4eea4741a8624bc23"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19282-1.png",
+      "source_path": "assets/map/tree_and_flower/19282-1.png",
+      "sha256": "b198e92b177ce7fb2bfa70a416c5d184519741d73c1527e2823244d5b205abc0"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19183-1.png",
+      "source_path": "assets/map/tree_and_flower/19183-1.png",
+      "sha256": "70b64df75cab90b9300fd4fccf03eb4c6a0c76fdd619996434153330fb053bd2"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19207-1.png",
+      "source_path": "assets/map/tree_and_flower/19207-1.png",
+      "sha256": "315432c5a1328b296a384c3d302a77d034849a3d84f85871bb421bb186155dea"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19242-1.png",
+      "source_path": "assets/map/tree_and_flower/19242-1.png",
+      "sha256": "6f4269625f0ba18b553f9f6385196199af0ed056160241570c1e7b7774f5777d"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19167-1.png",
+      "source_path": "assets/map/tree_and_flower/19167-1.png",
+      "sha256": "dd2d55c1ac02d589d297056c911c4eb4e58820c3d08ecd1b7e63853b16dc3bcc"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19223-1.png",
+      "source_path": "assets/map/tree_and_flower/19223-1.png",
+      "sha256": "67c4b413167e1bb49891f2f35f318a5cca7dff9d90d4f55bf1b2ef2e3b3ae908"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19266-1.png",
+      "source_path": "assets/map/tree_and_flower/19266-1.png",
+      "sha256": "c957f58363e33da829ad2b54b226ef106f4c2f9478d252270a6f7838191184ee"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19303-1.png",
+      "source_path": "assets/map/tree_and_flower/19303-1.png",
+      "sha256": "8e579ebf6fb6b88db3b0ca36b8e7cc7205b43bb6ed810daebef7265a3b0559b9"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19257-1.png",
+      "source_path": "assets/map/tree_and_flower/19257-1.png",
+      "sha256": "7c200af05fb966f4068c888c553c2a09597ecd581084b5be5efa95cf687817dd"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19212-1.png",
+      "source_path": "assets/map/tree_and_flower/19212-1.png",
+      "sha256": "aa9c12184ddd5ff3d254e85776eb18034b0701d376734e592c5113bcb689882a"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19156-1.png",
+      "source_path": "assets/map/tree_and_flower/19156-1.png",
+      "sha256": "8902813915f2b691a5b2c7c873a90ff0337ea97dc7fd815cd6012dcea653f4ff"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19297-1.png",
+      "source_path": "assets/map/tree_and_flower/19297-1.png",
+      "sha256": "2e04bbed083ff30b159000f8fd0b3fc87b6e7f3c80aef359f2c68cfc9d9ec23a"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19196-1.png",
+      "source_path": "assets/map/tree_and_flower/19196-1.png",
+      "sha256": "9635134c1dcc0e8cc80cfb3f1a8382e97684f72922036c4c35f3f76fbb738ee3"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19172-1.png",
+      "source_path": "assets/map/tree_and_flower/19172-1.png",
+      "sha256": "ef2f977502f437a47cb2214a1eeca224e751af62d27f6e3fa2b7aea05be4da8b"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19273-1.png",
+      "source_path": "assets/map/tree_and_flower/19273-1.png",
+      "sha256": "13ef4a75284a7a9d8605b21c1d041fa59ded46e54abe8b179ee375a83e66c08b"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19236-1.png",
+      "source_path": "assets/map/tree_and_flower/19236-1.png",
+      "sha256": "4a2ced66e95c0a4a7167dd9368bc2eb7e92ce80cd8cfeeb484c5c78a90e104a3"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19271-1.png",
+      "source_path": "assets/map/tree_and_flower/19271-1.png",
+      "sha256": "fa4288c91eb2d67f1f45f238491707b8191fba20e4ac07eafdfbd3d6ed3ef209"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19234-1.png",
+      "source_path": "assets/map/tree_and_flower/19234-1.png",
+      "sha256": "5b37e3a1b81ff14dd2f00a3d2ca3499d0ca143df3019f1de858c1489ba8d1e9f"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19170-1.png",
+      "source_path": "assets/map/tree_and_flower/19170-1.png",
+      "sha256": "aed702287a62730472932d501e72902fe914e41fdd11ef55f405fd609694a5bb"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19209-1.png",
+      "source_path": "assets/map/tree_and_flower/19209-1.png",
+      "sha256": "6a9f56513c2f55ee4fb61e77300f8d8f851429a63f1779538c93f40ad74b4486"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19268-1.png",
+      "source_path": "assets/map/tree_and_flower/19268-1.png",
+      "sha256": "dd45a30656aa79ddfef89a54b04e54186e16ef64e7af4ba211942e82f30ae49f"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19194-1.png",
+      "source_path": "assets/map/tree_and_flower/19194-1.png",
+      "sha256": "d2c213dd2b2261a2fa3e5b68c1614e9d63fc8da9852ed51033b0645d79451cff"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19169-1.png",
+      "source_path": "assets/map/tree_and_flower/19169-1.png",
+      "sha256": "3f33987b1333eb373f4cdd9807112fc4fe38358f0ad4343b8fbeedaf5d197aee"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19295-1.png",
+      "source_path": "assets/map/tree_and_flower/19295-1.png",
+      "sha256": "feca1b662bce5a334351839f55e23736f00ea98d591e000a4293e4919a3decfb"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19154-1.png",
+      "source_path": "assets/map/tree_and_flower/19154-1.png",
+      "sha256": "720f9f91be352a0846ed3cb662e24a695c224f32b64900fd5bda04d28540c057"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19255-1.png",
+      "source_path": "assets/map/tree_and_flower/19255-1.png",
+      "sha256": "dc1f3b3a0e318e62a4805bc8019c0a2f775577da2ae0921c2703009c80d3e81c"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19210-1.png",
+      "source_path": "assets/map/tree_and_flower/19210-1.png",
+      "sha256": "31ceab1bc2df01ac206281fc882489ebe92b6710efa4b04aab4732660d902361"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19291-1.png",
+      "source_path": "assets/map/tree_and_flower/19291-1.png",
+      "sha256": "286a84a8e736965eb81786e9594cc4d7dc92978ab1ff5e3e6e452094921ada1d"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19229-1.png",
+      "source_path": "assets/map/tree_and_flower/19229-1.png",
+      "sha256": "a0687023fe4f239ff945758b28920ed6649bc4969f1bd9637e0d11288893429e"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19190-1.png",
+      "source_path": "assets/map/tree_and_flower/19190-1.png",
+      "sha256": "a3a79b31ed8ab9262b68926f1a7902f5ac1fe8ff43dc87f508a39b5803ea1292"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19251-1.png",
+      "source_path": "assets/map/tree_and_flower/19251-1.png",
+      "sha256": "15a962e9ce14bb6e66b504945fc06e07bd8a2072d082a9eebb3c4168d2ccfc95"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19214-1.png",
+      "source_path": "assets/map/tree_and_flower/19214-1.png",
+      "sha256": "eb0c56009065dd2907ee838e34ad4de97fa274f8965c97a5ae4e8ab7eabf4cfe"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19150-1.png",
+      "source_path": "assets/map/tree_and_flower/19150-1.png",
+      "sha256": "686c372354ad6855db872a033b790c0f632fa9ffdec7d7a785f5f64bd60b2145"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19288-1.png",
+      "source_path": "assets/map/tree_and_flower/19288-1.png",
+      "sha256": "cd118580847b16755cc3770452c396b8d2d39ed6c2723effd3d0bea8b06278c4"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19174-1.png",
+      "source_path": "assets/map/tree_and_flower/19174-1.png",
+      "sha256": "97c972179514a94d8f15a382532c3eb7c2c1adc368cd5dba981cad07032c9417"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19189-1.png",
+      "source_path": "assets/map/tree_and_flower/19189-1.png",
+      "sha256": "ea50aac91bdbfc6934878ef2de5aa7639afe0dd47ffba44842a1d0325189e370"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19275-1.png",
+      "source_path": "assets/map/tree_and_flower/19275-1.png",
+      "sha256": "bc01118b2c9914ff6292de96f1890725d8380369a2e66c9e52f92bb33b14f480"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19230-1.png",
+      "source_path": "assets/map/tree_and_flower/19230-1.png",
+      "sha256": "c6e7d14a3bcf4d41039bcfa664f96ca4b39cd3aea2b109eb0cf140e0d1d654ce"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19248-1.png",
+      "source_path": "assets/map/tree_and_flower/19248-1.png",
+      "sha256": "660518bc8023de1796af8f1e8c92acb33c2b05bbc129907d2aba817699dd4859"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19149-1.png",
+      "source_path": "assets/map/tree_and_flower/19149-1.png",
+      "sha256": "0f3dcf99a95b989eb22d85e92e5c05eaac4f6b718f605a582385008750606a91"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19277-1.png",
+      "source_path": "assets/map/tree_and_flower/19277-1.png",
+      "sha256": "b351e48b3539a558ae230e2935daae149a716380a6edb6dd7e34aa1025274468"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19232-1.png",
+      "source_path": "assets/map/tree_and_flower/19232-1.png",
+      "sha256": "17139cd34e0cc1ed83e99cb362d554dab56c6f2a5d1daf2e192d8109af46b532"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19176-1.png",
+      "source_path": "assets/map/tree_and_flower/19176-1.png",
+      "sha256": "79586dba7ded29d71902e70b113f66bf9142f0da5c53c3f9649aa33059a69cc2"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19152-1.png",
+      "source_path": "assets/map/tree_and_flower/19152-1.png",
+      "sha256": "fc124b449b677f0bca604b679a624c2fa7dc43ad968447af8d977b0c7c209f25"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19253-1.png",
+      "source_path": "assets/map/tree_and_flower/19253-1.png",
+      "sha256": "fc9d36e233aee0dfe8161bc09bc56db7e8ff418a87ff1d79bbc0d4c3a4d0fc8f"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19216-1.png",
+      "source_path": "assets/map/tree_and_flower/19216-1.png",
+      "sha256": "38bfea5e0356ae4005a1acfffca47c712b78824b99b182de88ac24d81c36f1d8"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19192-1.png",
+      "source_path": "assets/map/tree_and_flower/19192-1.png",
+      "sha256": "bba9f212f3f642ab6df638cbc1e8fe8450c341428e33c84da113853f765097cb"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19293-1.png",
+      "source_path": "assets/map/tree_and_flower/19293-1.png",
+      "sha256": "7d0f42aa3f8b9990310ce7e605ae7a786ad71588998bd92a7cec02107ecfe52f"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19208-1.png",
+      "source_path": "assets/map/tree_and_flower/19208-1.png",
+      "sha256": "1f6b4099aa332c4f3a23f6f79b4c7dcbf607033d7b9c7053442824a6fcd57f48"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19235-1.png",
+      "source_path": "assets/map/tree_and_flower/19235-1.png",
+      "sha256": "17882d3f8237b46d09a9b757e9b12dc69f0c230530eaa91ba9e88aaa9303b551"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19270-1.png",
+      "source_path": "assets/map/tree_and_flower/19270-1.png",
+      "sha256": "0ade3ae99e276c8d145a9f7a206785bb9c5a5ce9c8d752effbbbf62c6bde0eec"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19171-1.png",
+      "source_path": "assets/map/tree_and_flower/19171-1.png",
+      "sha256": "43ede5f1c97eb25f915aefdd2133fe5ce916e00b9fa18ef275ddcacec458fd72"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19155-1.png",
+      "source_path": "assets/map/tree_and_flower/19155-1.png",
+      "sha256": "9e44d7b603958a872c3e3ab7e5385fdc4386ddb134f29c28b7eb584c8ca1b24a"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19211-1.png",
+      "source_path": "assets/map/tree_and_flower/19211-1.png",
+      "sha256": "66a9f9fa2edefee5cad7147ba942b4a00db6f5ef8e0e22df3f3541f86a2a947b"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19254-1.png",
+      "source_path": "assets/map/tree_and_flower/19254-1.png",
+      "sha256": "9970a1ec964dd462acf4c0258b94561058bb9f9def69853f546f4706f1e7f256"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19269-1.png",
+      "source_path": "assets/map/tree_and_flower/19269-1.png",
+      "sha256": "f9a33cd69a30faeca25aaf4adbe6ba875949fa7fa33105a1fb7dcf7b4fc09dfb"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19195-1.png",
+      "source_path": "assets/map/tree_and_flower/19195-1.png",
+      "sha256": "760a84ac8d8fa3634b9413c96f90da6670b262297047056ca6e9c81dceb4a641"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19168-1.png",
+      "source_path": "assets/map/tree_and_flower/19168-1.png",
+      "sha256": "c818c1e0007cca1aab9a2f17c2be9e37b080e7533468336a0e15bccb19cc8af0"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19294-1.png",
+      "source_path": "assets/map/tree_and_flower/19294-1.png",
+      "sha256": "2373552616a5a01dae05c3bf5397d79dc2446c572ae1847cf6f7b6060c2ca9f6"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19296-1.png",
+      "source_path": "assets/map/tree_and_flower/19296-1.png",
+      "sha256": "f590e38c5e37630b5f60c87f501a78b727c910ced88c5dd76b8ee3d92529fac2"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19197-1.png",
+      "source_path": "assets/map/tree_and_flower/19197-1.png",
+      "sha256": "e6423c0e2b963d28fdbf093e6ada811f51506fe18cf14f3c25d83cd6f7a34e29"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19213-1.png",
+      "source_path": "assets/map/tree_and_flower/19213-1.png",
+      "sha256": "44caa71f215f15137b251da69da5bb2b13a1536322316d4634bfb4304a9dd8f4"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19256-1.png",
+      "source_path": "assets/map/tree_and_flower/19256-1.png",
+      "sha256": "c2592037209636f7c202b31f2ae6f657e52e5a744be8bf53b6f5e8d6ef6c62ab"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19157-1.png",
+      "source_path": "assets/map/tree_and_flower/19157-1.png",
+      "sha256": "7db70a5568b0b195c18d26a3832339f383f19e2f8bbacd35f5a14043e7612b5f"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19173-1.png",
+      "source_path": "assets/map/tree_and_flower/19173-1.png",
+      "sha256": "3bd20ea013b4ba28a3045cfc7e5cfdc414ac4f7c6f5b9d1d90527ef71610427d"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19237-1.png",
+      "source_path": "assets/map/tree_and_flower/19237-1.png",
+      "sha256": "5eb08fea783cf871e92fc9c82f98bb58a9d3021b80444b3d5c8afc88724b90c2"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19272-1.png",
+      "source_path": "assets/map/tree_and_flower/19272-1.png",
+      "sha256": "97c8b8558738454d7acc954994b7deedabb78cee0e4901d3b075a1a4200af707"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19233-1.png",
+      "source_path": "assets/map/tree_and_flower/19233-1.png",
+      "sha256": "a7e3ae4e9672546d5af86966bce03bff756529ba45337f9878c2a556819a2473"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19276-1.png",
+      "source_path": "assets/map/tree_and_flower/19276-1.png",
+      "sha256": "1f917f73b922da6ea1c9cb2f469dbfada655034544d503e3939300cd1c5c763c"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19177-1.png",
+      "source_path": "assets/map/tree_and_flower/19177-1.png",
+      "sha256": "be51bce6c407ba3d4b177e1d54f29b410656436621ced85d5fbec6f9b096aaa7"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19193-1.png",
+      "source_path": "assets/map/tree_and_flower/19193-1.png",
+      "sha256": "b68ef56d73a7f10ee4b2190d64464e56bffbb67219101b75873191f3170737e0"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19292-1.png",
+      "source_path": "assets/map/tree_and_flower/19292-1.png",
+      "sha256": "59521934eeea589718e6a0d1612af7ba342e2cb708ebca700caa660b6f661d52"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19153-1.png",
+      "source_path": "assets/map/tree_and_flower/19153-1.png",
+      "sha256": "de1e4a1a42a649e346e6a793c7ad0df86f03ee914e6de9466c2989c397c62128"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19217-1.png",
+      "source_path": "assets/map/tree_and_flower/19217-1.png",
+      "sha256": "2aaa7b2c499796e6ab1590248fd7fef3c9d4ab266f5448166efeb136fe882117"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19252-1.png",
+      "source_path": "assets/map/tree_and_flower/19252-1.png",
+      "sha256": "ab85416d538090d82129bf1a384dfe0cd953b1bf631d499238015ee280a204a1"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19308-1.png",
+      "source_path": "assets/map/tree_and_flower/19308-1.png",
+      "sha256": "a2445443c84d57bc9de71033880a43690d5decc57a82e8f98722a0f06e13bdf3"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19215-1.png",
+      "source_path": "assets/map/tree_and_flower/19215-1.png",
+      "sha256": "2d93b756cf4c5937e4fe9a3ab2979c89740d3d2f62700ad744300bc3652062bc"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19250-1.png",
+      "source_path": "assets/map/tree_and_flower/19250-1.png",
+      "sha256": "fea8b64ef52879150fd3cadbd720c6e7484ca7fa2e6f7becab66c22b6714f011"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19151-1.png",
+      "source_path": "assets/map/tree_and_flower/19151-1.png",
+      "sha256": "bc062c9863fc81e46c4659ced09942f77519954707dab11b35099d7dd2cb2ed4"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19290-1.png",
+      "source_path": "assets/map/tree_and_flower/19290-1.png",
+      "sha256": "6cca70d5a5544bb3a336ba762ab33032ca38bc0b4c9873b9c22a7c0a3b88b2f4"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19228-1.png",
+      "source_path": "assets/map/tree_and_flower/19228-1.png",
+      "sha256": "f974cdb124281d7995772cae396d41eda91cff47bab1ef2ddc7497a08b132396"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19191-1.png",
+      "source_path": "assets/map/tree_and_flower/19191-1.png",
+      "sha256": "9663a5669c5149ad471e4ee124434f7dc8d0bc2418694b3897ef94c844774158"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19249-1.png",
+      "source_path": "assets/map/tree_and_flower/19249-1.png",
+      "sha256": "25a36c49697ec482f3623e33c222877da83ffb83a7abab1f72eb1dd5be747c2a"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19148-1.png",
+      "source_path": "assets/map/tree_and_flower/19148-1.png",
+      "sha256": "0aa3775662b9cf31e435f3a6da0303f8a9e5e68b62ed438b5019b4ec841a18ee"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19289-1.png",
+      "source_path": "assets/map/tree_and_flower/19289-1.png",
+      "sha256": "ceaaf3e8dc4a850a3d94b00de63aee33805474748241d7f327c72c8b7cb34ded"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19175-1.png",
+      "source_path": "assets/map/tree_and_flower/19175-1.png",
+      "sha256": "a3996fcdf8afde36c14048ee9a5839c46bfa3914aef2704f132a207a9538b533"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19188-1.png",
+      "source_path": "assets/map/tree_and_flower/19188-1.png",
+      "sha256": "0576e61bf6644530d1f90df1e8b3557c23cc93c2879274b3976b60e3fe396b03"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19231-1.png",
+      "source_path": "assets/map/tree_and_flower/19231-1.png",
+      "sha256": "47d6f76489011c5d6f7eb48ff3f76c585e2b31d9df98183100a07dc7582fe889"
+    },
+    {
+      "path": "assets/reference/assets/map/tree_and_flower/19274-1.png",
+      "source_path": "assets/map/tree_and_flower/19274-1.png",
+      "sha256": "393361db51bd2adaa720dcc307b196f5e291f6a9c465800b4396b53ebb3e7c72"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19768-1.png",
+      "source_path": "assets/skill_icon/js/19768-1.png",
+      "sha256": "3dc3ac1fe493a83145bd31682d54c329fb08372516afab459529240cc1037a10"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19768-2.png",
+      "source_path": "assets/skill_icon/js/19768-2.png",
+      "sha256": "733504728810dba130b46d70df59eef6739ba8dd7ec6f79fd8f0bb7484571189"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19768-3.png",
+      "source_path": "assets/skill_icon/js/19768-3.png",
+      "sha256": "3dc3ac1fe493a83145bd31682d54c329fb08372516afab459529240cc1037a10"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19768-4.png",
+      "source_path": "assets/skill_icon/js/19768-4.png",
+      "sha256": "735a0e7af2ec67954012e5dd1ea19f040e7c0af997a9b4c0da100ba5ce90ff1a"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19769-1.png",
+      "source_path": "assets/skill_icon/js/19769-1.png",
+      "sha256": "09eec7134dbe67577119c2eaa97582de1b3a43a041aa0348f2306b2f62013241"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19769-2.png",
+      "source_path": "assets/skill_icon/js/19769-2.png",
+      "sha256": "cac2035af88fe0b0605bd67b153cfc7fc225fc946ff5e5ab4174a7566e823b82"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19769-3.png",
+      "source_path": "assets/skill_icon/js/19769-3.png",
+      "sha256": "09eec7134dbe67577119c2eaa97582de1b3a43a041aa0348f2306b2f62013241"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19769-4.png",
+      "source_path": "assets/skill_icon/js/19769-4.png",
+      "sha256": "5f0ab11391c81dcc7d8bac271486ef56d7d824a2014c8fb2a5dd8a11a5ffa2a2"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19770-1.png",
+      "source_path": "assets/skill_icon/js/19770-1.png",
+      "sha256": "c519d49e56fb4080aa044a85fd5c25ddeb01a76519fa627614b26e47fc8374a5"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19770-2.png",
+      "source_path": "assets/skill_icon/js/19770-2.png",
+      "sha256": "628877ded70d370ec1623df494afb65cfce9dce50b3385babfeaae3c9b2607a2"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19770-3.png",
+      "source_path": "assets/skill_icon/js/19770-3.png",
+      "sha256": "c519d49e56fb4080aa044a85fd5c25ddeb01a76519fa627614b26e47fc8374a5"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19770-4.png",
+      "source_path": "assets/skill_icon/js/19770-4.png",
+      "sha256": "4746e7a5af779c90b7747d106768a7a289c0d8a0ca944b855469e056e6a04ab2"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19771-1.png",
+      "source_path": "assets/skill_icon/js/19771-1.png",
+      "sha256": "a1fa34f73b15fbe0b2f340ddce469c279a8234bd80938af51683cd4800c06b62"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19771-2.png",
+      "source_path": "assets/skill_icon/js/19771-2.png",
+      "sha256": "b89b63a13507e641417051c39dddc199aaa794ba89d87fdcd0c397a06cf95f04"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19771-3.png",
+      "source_path": "assets/skill_icon/js/19771-3.png",
+      "sha256": "a1fa34f73b15fbe0b2f340ddce469c279a8234bd80938af51683cd4800c06b62"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19771-4.png",
+      "source_path": "assets/skill_icon/js/19771-4.png",
+      "sha256": "556647771f868a86e9d7184c03ed4714a7293acb0c49d185701a54d7a4469514"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19772-1.png",
+      "source_path": "assets/skill_icon/js/19772-1.png",
+      "sha256": "55eaa1ffd2537d7591a047a83c5cd8039fbe0daba2bb7225f1c0b5d7929b2421"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19772-2.png",
+      "source_path": "assets/skill_icon/js/19772-2.png",
+      "sha256": "3355954d97e1fa56e41a62b8ee62ff2f144769618b501a6a05f7f11db7829b06"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19772-3.png",
+      "source_path": "assets/skill_icon/js/19772-3.png",
+      "sha256": "55eaa1ffd2537d7591a047a83c5cd8039fbe0daba2bb7225f1c0b5d7929b2421"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19772-4.png",
+      "source_path": "assets/skill_icon/js/19772-4.png",
+      "sha256": "8e7131c1f5d9f86ef447900d2c0a5536e07b5865759ae27405c81c88041ebe65"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19773-1.png",
+      "source_path": "assets/skill_icon/js/19773-1.png",
+      "sha256": "9f314215e14c1c88b1ffdfe8007435a7bb6c4ea44860d87b8714d3c7b34f96b4"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19773-2.png",
+      "source_path": "assets/skill_icon/js/19773-2.png",
+      "sha256": "7844694b759a3583f91a7638d6d9c144c9f865fdd4f0c76db790e968a0c4bd13"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19773-3.png",
+      "source_path": "assets/skill_icon/js/19773-3.png",
+      "sha256": "9f314215e14c1c88b1ffdfe8007435a7bb6c4ea44860d87b8714d3c7b34f96b4"
+    },
+    {
+      "path": "assets/reference/assets/skill_icon/js/19773-4.png",
+      "source_path": "assets/skill_icon/js/19773-4.png",
+      "sha256": "7bc5cb33acb76316c48eb10bf0fcf4ef94f61b7859a63e2a2ea14d2afb469390"
+    },
+    {
+      "path": "assets/reference/assets/font/PuHuiTi-Regular.otf",
+      "source_path": "assets/font/PuHuiTi-Regular.otf",
+      "sha256": "7a060a79b066c94068a1d133fa513eeb085ed97d243deaae83aa18f05606ab98"
+    },
+    {
+      "path": "assets/reference/MUSIC/bajun(shu).ogg",
+      "source_path": "MUSIC/bajun(shu).ogg",
+      "sha256": "6051e13b1787a505430106d264b910ce52cebaf5c3a449774312b337aeedf066"
+    },
+    {
+      "path": "assets/reference/MUSIC/js/A.wav",
+      "source_path": "MUSIC/js/A.wav",
+      "sha256": "9c75e4b21da52d3c213f1689d1fecc355454c3f64da5fc4078629c7e76de270b"
+    },
+    {
+      "path": "assets/reference/MUSIC/js/hhfl.wav",
+      "source_path": "MUSIC/js/hhfl.wav",
+      "sha256": "cec061be5f81c03203f745f3ed273074a66804128afd4156d48b008bc01b66e6"
+    },
+    {
+      "path": "assets/reference/assets/map/9009-1.png",
+      "source_path": "assets/map/9009-1.png",
+      "sha256": "8238a9aa44424d858e1d66bb4d55287d0b60807a97aea092270f9aa7ebbdfba8"
+    },
+    {
+      "path": "assets/reference/assets/map/9010-1.png",
+      "source_path": "assets/map/9010-1.png",
+      "sha256": "f61fb90833fa92d123be5f919625aef95a69fa7e846457c94b7de38d4d6c5e1c"
+    },
+    {
+      "path": "assets/reference/assets/map/9011-1.png",
+      "source_path": "assets/map/9011-1.png",
+      "sha256": "33a9be1a8856d1e16bc28004e61e0a009fc6904da98862aeb1978850a6a4c439"
+    },
+    {
+      "path": "assets/reference/assets/map/9023-1.png",
+      "source_path": "assets/map/9023-1.png",
+      "sha256": "32beb52b96d004f91b86bd3910af6981f352ad83953676b1bf96405fd469f42b"
+    },
+    {
+      "path": "assets/reference/assets/map/9024-1.png",
+      "source_path": "assets/map/9024-1.png",
+      "sha256": "7cbf7ba07b5127d2ff221a61b209bf4e666099816e1ecf848c24d44bcaf9766f"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101352-1.png",
+      "source_path": "Monster_ui/竹叶青/101352-1.png",
+      "sha256": "ab78938fe779721014d3eab8a178aa902d4a00a744d7b1d93fb674c3a9c631f5"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101353-1.png",
+      "source_path": "Monster_ui/竹叶青/101353-1.png",
+      "sha256": "b7d64a47a1ef04c42c7317963c9ba73113a9e55de798cf3dc90f5104f12e6117"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101354-1.png",
+      "source_path": "Monster_ui/竹叶青/101354-1.png",
+      "sha256": "01db7e6b8d0f22c09ff395f54fe092cc35f542c7a4ac9ec616ffe0a48ec41b78"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101354-2.png",
+      "source_path": "Monster_ui/竹叶青/101354-2.png",
+      "sha256": "b26b327d2498ddc3dee4f8ffec3e70ecb6c73dc6a567ed5621abe7fee588485a"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101354-3.png",
+      "source_path": "Monster_ui/竹叶青/101354-3.png",
+      "sha256": "27d659a81568b13f55e4ffcd477057e754154742b97f088b436ff10d133d3f9e"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101354-4.png",
+      "source_path": "Monster_ui/竹叶青/101354-4.png",
+      "sha256": "5a655f0f9c3aabefcd835250ebd30d8fe74fe2c8d8d7978e42b89513c03f202e"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101355-1.png",
+      "source_path": "Monster_ui/竹叶青/101355-1.png",
+      "sha256": "f4e2f4511c9931fb0608fddc1865ea0d140706e87bd30f746799c0bb3607176a"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101356-1.png",
+      "source_path": "Monster_ui/竹叶青/101356-1.png",
+      "sha256": "fab243037b1bc91d46a91cdf88a61502b50f0e6a781f47dbbca5bffc8f089120"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101348-1.png",
+      "source_path": "Monster_ui/竹叶青/101348-1.png",
+      "sha256": "cdcaf68354b789f74625088ce892c931956a2d197ddda1b4114b997820bceb45"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101349-1.png",
+      "source_path": "Monster_ui/竹叶青/101349-1.png",
+      "sha256": "ada984e7ab32fc1ca6994bea2f8da5586bcf789319b33ed21e0a882519b0bd55"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101349-2.png",
+      "source_path": "Monster_ui/竹叶青/101349-2.png",
+      "sha256": "f2c82adf06445bb8859cbf50c4d969ebb1b9a08c6476e584fab907276f166fa6"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101349-3.png",
+      "source_path": "Monster_ui/竹叶青/101349-3.png",
+      "sha256": "f996267cdf1bee4dcfdf1bfb69e983f1bd88549556f55df285cc9f8e8d2d8804"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101349-4.png",
+      "source_path": "Monster_ui/竹叶青/101349-4.png",
+      "sha256": "91a644d7c75f233ccc6865eaa3921777a7bbe8db72d111071d6ab8fa5271f08b"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101349-5.png",
+      "source_path": "Monster_ui/竹叶青/101349-5.png",
+      "sha256": "5090929cfc21fb4976088cef2dbc39b85f060280598b32a5a85a28f3794ccadd"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101349-6.png",
+      "source_path": "Monster_ui/竹叶青/101349-6.png",
+      "sha256": "127e0c27e649fbe643967f320b52fedb0565d13cb071c4db6233a7f1df2e749c"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101350-1.png",
+      "source_path": "Monster_ui/竹叶青/101350-1.png",
+      "sha256": "5cdaf97b46d6d4db76f1f72bd1691149bc8bcd707e91766c29dbd7dcd2732139"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101351-1.png",
+      "source_path": "Monster_ui/竹叶青/101351-1.png",
+      "sha256": "f338b969ae89122b6d6434217f63c349aea1a7ca729dc3525d0a1c8fecae2717"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101351-2.png",
+      "source_path": "Monster_ui/竹叶青/101351-2.png",
+      "sha256": "e8914636377f4859f33e7c681106e27fdf3a8ea05faddf9fef4a10000013057c"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101351-3.png",
+      "source_path": "Monster_ui/竹叶青/101351-3.png",
+      "sha256": "a2e532abd96d76302301321c7109e1705895024b7d25f367e1bc918babd81b3a"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101351-4.png",
+      "source_path": "Monster_ui/竹叶青/101351-4.png",
+      "sha256": "cdcaf68354b789f74625088ce892c931956a2d197ddda1b4114b997820bceb45"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101351-5.png",
+      "source_path": "Monster_ui/竹叶青/101351-5.png",
+      "sha256": "6e8dc611f5088c6a58f6987a0f1459a1876f493e967a597a93c998fabdc2df93"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101351-6.png",
+      "source_path": "Monster_ui/竹叶青/101351-6.png",
+      "sha256": "c280a05b77fe49598f23c25cdb9e3cfbe9c9b1e40f5a9def874c49b6a0791837"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101351-7.png",
+      "source_path": "Monster_ui/竹叶青/101351-7.png",
+      "sha256": "c85fe794213055226ecf56e29baea386736e75f3220af615994ca57bfc949007"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101347-2.png",
+      "source_path": "Monster_ui/竹叶青/101347-2.png",
+      "sha256": "64901897b6bdc00e1e713b608ed70cd6d55ad14dcdb5a07e0ab0cee2b63c13a7"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101347-3.png",
+      "source_path": "Monster_ui/竹叶青/101347-3.png",
+      "sha256": "d87de405b8368c5ad543390962404d7ccedc162a1c23e07b4663021438b8ceed"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101347-4.png",
+      "source_path": "Monster_ui/竹叶青/101347-4.png",
+      "sha256": "b268076fba2800b6eca29e4a350c4ce316c0672e7bbfd21ac07942c7860aedf1"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101347-5.png",
+      "source_path": "Monster_ui/竹叶青/101347-5.png",
+      "sha256": "d1486f9e14cdbdd4129437c4bbae2c585cf3081c2db2cbb0d3e2ec42dc252056"
+    },
+    {
+      "path": "assets/reference/Monster_ui/竹叶青/101347-6.png",
+      "source_path": "Monster_ui/竹叶青/101347-6.png",
+      "sha256": "04f47defbdd2a62b8bd74fb00014b4d34491580bc4125f37062c08a4a2e97a23"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_44.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_44.png",
+      "sha256": "bba1fd316536e2373155abf77d05a2c12f663064f5d0529de07b16f27566712d"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_45.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_45.png",
+      "sha256": "f24d1aaad3d66987c7a73006ae72ca973630a8a2180256b46c527ed07191952c"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_46.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_46.png",
+      "sha256": "98f794ccb035eb984c1143a5e80691de5a72b60b6157c4687e48b3dc0e17b2db"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_47.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_47.png",
+      "sha256": "3cf1235811a26bdaa4917fa70c76c5fe330d3d649e2ea3c61cbdc7549eacbc1a"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_48.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_48.png",
+      "sha256": "70d5606cf2e1cbcd0fac1d60d16e08de101f567799b75b149a54688766e7c883"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_49.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_49.png",
+      "sha256": "4b0be2e9b21c5347151dfe74bf41c58b5f8ac95a0421e064bf6c0446894e0cfb"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_50.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_50.png",
+      "sha256": "e3311ecaf788aae9ac7cc5dd0b00128efb2b5f5024b60181160ba55502ea3953"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_51.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_51.png",
+      "sha256": "7483836fecb968b59f69001b27c2a82e5f49c730ab3e71ce0831bf778f9d6aee"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_17.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_17.png",
+      "sha256": "d7598e881b92a03c4fa45b1c8755f0c5f1f6ccf1d250e1b332f17151382cb0bf"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_18.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_18.png",
+      "sha256": "9d635d8ce2e7643934c6ae23aa8469b857820c03738140fa78ce42f684356262"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_19.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_19.png",
+      "sha256": "8f53b1c615d3f4bdc28a56ac3927b1da3776a02ff576556858d5a90fbc538ef6"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_20.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_20.png",
+      "sha256": "7307eab0705d7ac50bad8bad31d9c7ae6c55a2f13351fcf02ad46de1b1ab9894"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_21.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_21.png",
+      "sha256": "9caa12b1f17b2811f20beee98fc3993cd7df850dc43d53600b7663b387f3e29b"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_22.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_22.png",
+      "sha256": "5233a0ef15a277f62c85a71d6565c434b0b7695731d69aa642be160e2a67bfb4"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_23.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_23.png",
+      "sha256": "d4d195ab1555352b18edea847bcd9bf60fad649540f3a8b0b9fa421918fed13b"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_24.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_24.png",
+      "sha256": "74c679209fe7e797c0fdda231679ca13dd88132a3f7b94ffc8104f1940a8c8bb"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_25.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_25.png",
+      "sha256": "831a758192bbca4a7145f4bf6b58b31bda286304cc2c3c41ea58dc50bfcc5a0e"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_26.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_26.png",
+      "sha256": "a1ac53b4b343b3ea37e2984c1257797d2772b458d869306a9b174e335abaf10b"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_27.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_27.png",
+      "sha256": "c1e26431e1cdd9b30452a874d853eba334bcba82b13b1f220c2cc3c56414ab2c"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_28.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_28.png",
+      "sha256": "f118f6fac99cfa76d10774c378ebc1edd664d19e66c43bfe6b7ffdd541100985"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_29.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_29.png",
+      "sha256": "cdae61a6ec084f809350bdce69d2f9c55b843ae2bd0fde41d4dea866d8a44169"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_2.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_2.png",
+      "sha256": "650ada7c8468b531a6aba64ee2d13d2815c0b36d0c0681961e4382b4598302a4"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_3.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_3.png",
+      "sha256": "6ae94daf39829136a8320c712a97d2db244636bbb670bd91beffb7ba8f75bc9f"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_4.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_4.png",
+      "sha256": "b1e80afbd5f91002db8ed3e0c9d01e9bacc1396a8c8dbb112781c9c7c188718f"
+    },
+    {
+      "path": "assets/reference/Monster_ui/益州斧兵/Sprite_9.png",
+      "source_path": "Monster_ui/益州斧兵/Sprite_9.png",
+      "sha256": "ed58fda397cb1c692a9688481b78f8105d45cd5c7edb4f9347220b6b8aad8b49"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_1.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_1.png",
+      "sha256": "6e5117acb7965d6ece6ab3dddcf8c2a3bf27c61e084bdc4384e3b189ce5a3afc"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_2.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_2.png",
+      "sha256": "0877e60c4e43a3d6525622c782caa7daa7fbec80ec02a956a6f23454481e1354"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_3.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_3.png",
+      "sha256": "c838430adfa6676f1312c84feacfaa4471b615b8d917d98cb554d901c620533a"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_4.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_4.png",
+      "sha256": "8aac086474893496653cf8849d9259f8bb6267632f407785cd1ca895232fe150"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_5.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_5.png",
+      "sha256": "58be320b70205ecd75650c25e871af51c74040d21ce034d2c0d4f1ae4d181396"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_6.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_6.png",
+      "sha256": "fa0a739dcf0334d6153e685ebdcc9a148404b83c092954978e1dcebb0f678830"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_7.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_7.png",
+      "sha256": "d7943f91be46b2ff2bf5f50c8bb28feb6f41b4ec9c9e51d6ef8ed1268eb972b3"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_8.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_8.png",
+      "sha256": "4be050848cc9cd8b34a573494783d2b2836db53dd7c9a7b4486ae37058c7fe55"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_9.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_9.png",
+      "sha256": "ae775feb9446191068c6d836073703c9a1e442437232b8f716523c080e97a1b4"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_10.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_10.png",
+      "sha256": "f2706bfc6121919de6f22758ac9f67cb7abeb01d5493613e434cb0ad45dfce69"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_11.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_11.png",
+      "sha256": "b3918fdf79c751383fc71b56c4859558e98e3d36934ca7f211df6df8594b2659"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_12.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_12.png",
+      "sha256": "bd9526d92be6486ed853ad183b01f22bdb0cbc4bcfef7d00c6a4ffb5c7c5dd14"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_13.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_13.png",
+      "sha256": "63e9131aa3137fe7569eee04bfbb34e9454f9d7ce293402d314dd7838708ec49"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_14.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_14.png",
+      "sha256": "e0aba9d080da8cf44f206d3ae0303efff48c929a0a83ec5ab45910162029e32a"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_15.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_15.png",
+      "sha256": "734ef8efee7dad51f1eb0dc1da7d843d5963a8bb62ecbcfb5899ae6c3a63278d"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_16.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_16.png",
+      "sha256": "efdc0979b86afab2c1fd9f73775a053b212c79cc120a0afe123c47a7614fcfb0"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_17.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_17.png",
+      "sha256": "e3ba29e7df157eb23cf8d0f3472937ebd24343546b3f37ce14ef435c7adbc44f"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_18.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_18.png",
+      "sha256": "2686a1de5857db04dfa03d67822ee1c7a669322c52c331ad700d73420af8581e"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_19.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_19.png",
+      "sha256": "5af064c8c036049b4dc6e3a958c0d8920547db6071864675ad92241985c92465"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_20.png",
+      "source_path": "assets/map/bajun/npc/小猪/Sprite_20.png",
+      "sha256": "0d9449787d7f926089b47362d7141437cd3db6261018300058cb054a744113a0"
+    }
+  ]
+}

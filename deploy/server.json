@@ -1,0 +1,9 @@
+{
+  "port": 24567,
+  "bind_address": "*",
+  "max_players": 4,
+  "xp_multiplier": 1.0,
+  "drop_multiplier": 1.0,
+  "data_dir": "user://server",
+  "log_level": "info"
+}

@@ -1,0 +1,58 @@
+name: Test and package
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/cache@v4
+        with:
+          path: .tools
+          key: godot-linux-${{ hashFiles('.godot-version') }}
+      - run: python tools/engine.py
+      - run: python tools/check.py
+  package:
+    needs: test
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-latest
+            target: windows
+          - runner: macos-latest
+            target: macos
+          - runner: macos-latest
+            target: macos-server
+          - runner: ubuntu-latest
+            target: linux-server
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/cache@v4
+        with:
+          path: .tools
+          key: godot-${{ runner.os }}-${{ hashFiles('.godot-version') }}
+      - run: python tools/engine.py --templates
+      - run: python tools/check.py --skip-network
+      - run: python tools/package.py ${{ matrix.target }}
+      - run: python tests/export_smoke.py ${{ matrix.target }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qqsg-${{ matrix.target }}
+          path: build/qqsg-${{ matrix.target }}.zip
+          retention-days: 14
+          if-no-files-found: error

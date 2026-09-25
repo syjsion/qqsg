@@ -1,0 +1,14 @@
+.godot/
+.DS_Store
+build/
+tmp/
+.tools/
+*.log
+*.zip
+*.dmg
+*.exe
+*.pck
+server-data/
+server.local.json
+credentials.json
+__pycache__/

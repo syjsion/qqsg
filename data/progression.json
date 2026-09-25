@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "source_commit": "862b6479d8b6f1d6f1128d7f1f4f9407adf7722b",
+  "source": "WanderingQuantum/qqsganalysis",
+  "stats": {
+    "JS": [
+      {
+        "hp": 435,
+        "mp": 150,
+        "force": 45,
+        "intelligence": 35,
+        "constitution": 41,
+        "accuracy": 47,
+        "agility": 47
+      },
+      {
+        "hp": 465,
+        "mp": 160,
+        "force": 46,
+        "intelligence": 35,
+        "constitution": 41,
+        "accuracy": 47,
+        "agility": 48
+      },
+      {
+        "hp": 490,
+        "mp": 170,
+        "force": 46,
+        "intelligence": 35,
+        "constitution": 42,
+        "accuracy": 47,
+        "agility": 49
+      },
+      {
+        "hp": 520,
+        "mp": 180,
+        "force": 46,
+        "intelligence": 35,
+        "constitution": 42,
+        "accuracy": 48,
+        "agility": 50
+      },
+      {
+        "hp": 555,
+        "mp": 190,
+        "force": 47,
+        "intelligence": 35,
+        "constitution": 43,
+        "accuracy": 48,
+        "agility": 50
+      },
+      {
+        "hp": 585,
+        "mp": 200,
+        "force": 48,
+        "intelligence": 35,
+        "constitution": 43,
+        "accuracy": 49,
+        "agility": 50
+      },
+      {
+        "hp": 620,
+        "mp": 210,
+        "force": 48,
+        "intelligence": 35,
+        "constitution": 44,
+        "accuracy": 49,
+        "agility": 50
+      },
+      {
+        "hp": 650,
+        "mp": 220,
+        "force": 49,
+        "intelligence": 35,
+        "constitution": 44,
+        "accuracy": 50,
+        "agility": 50
+      },
+      {
+        "hp": 685,
+        "mp": 230,
+        "force": 49,
+        "intelligence": 35,
+        "constitution": 45,
+        "accuracy": 50,
+        "agility": 51
+      },
+      {
+        "hp": 720,
+        "mp": 240,
+        "force": 49,
+        "intelligence": 35,
+        "constitution": 45,
+        "accuracy": 50,
+        "agility": 52
+      }
+    ],
+    "XS": [
+      {
+        "hp": 260,
+        "mp": 200,
+        "force": 35,
+        "intelligence": 45,
+        "constitution": 38,
+        "accuracy": 52,
+        "agility": 45
+      },
+      {
+        "hp": 275,
+        "mp": 225,
+        "force": 35,
+        "intelligence": 45,
+        "constitution": 38,
+        "accuracy": 52,
+        "agility": 45
+      },
+      {
+        "hp": 290,
+        "mp": 250,
+        "force": 35,
+        "intelligence": 45,
+        "constitution": 38,
+        "accuracy": 52,
+        "agility": 45
+      },
+      {
+        "hp": 310,
+        "mp": 275,
+        "force": 35,
+        "intelligence": 46,
+        "constitution": 38,
+        "accuracy": 53,
+        "agility": 46
+      },
+      {
+        "hp": 330,
+        "mp": 300,
+        "force": 35,
+        "intelligence": 46,
+        "constitution": 39,
+        "accuracy": 53,
+        "agility": 46
+      },
+      {
+        "hp": 350,
+        "mp": 325,
+        "force": 35,
+        "intelligence": 47,
+        "constitution": 39,
+        "accuracy": 53,
+        "agility": 46
+      },
+      {
+        "hp": 365,
+        "mp": 350,
+        "force": 35,
+        "intelligence": 47,
+        "constitution": 39,
+        "accuracy": 54,
+        "agility": 47
+      },
+      {
+        "hp": 385,
+        "mp": 375,
+        "force": 36,
+        "intelligence": 47,
+        "constitution": 39,
+        "accuracy": 54,
+        "agility": 47
+      },
+      {
+        "hp": 405,
+        "mp": 400,
+        "force": 36,
+        "intelligence": 48,
+        "constitution": 40,
+        "accuracy": 54,
+        "agility": 47
+      },
+      {
+        "hp": 430,
+        "mp": 425,
+        "force": 36,
+        "intelligence": 48,
+        "constitution": 40,
+        "accuracy": 55,
+        "agility": 48
+      }
+    ]
+  },
+  "experience_to_next": [
+    30,
+    110,
+    300,
+    610,
+    1050,
+    1620,
+    2330,
+    3170,
+    4140,
+    5270
+  ]
+}

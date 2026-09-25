@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Install the pinned official Godot editor and templates. Python stdlib only."""
 import argparse
+import sys
 import os
 from pathlib import Path
 import platform
@@ -9,8 +10,11 @@ import stat
 import urllib.request
 import zipfile
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = (ROOT / '.godot-version').read_text().strip()
+VERSION = (ROOT / '.godot-version').read_text(encoding="utf-8").strip()
 BASE = f'https://github.com/godotengine/godot/releases/download/{VERSION}-stable/'
 
 def fetch(name, target):
@@ -62,7 +66,7 @@ def main():
                         shutil.copyfileobj(source, dest)
         print(f'Templates: {target}')
     if os.environ.get('GITHUB_ENV'):
-        with open(os.environ['GITHUB_ENV'], 'a') as f:
+        with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as f:
             f.write(f'GODOT={executable}\n')
     print(executable)
 

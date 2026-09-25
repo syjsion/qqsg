@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 import argparse
+import sys
 import os
 from pathlib import Path
 import shutil
 import platform
 import subprocess
 import zipfile
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 ROOT = Path(__file__).resolve().parents[1]
 PRESETS = {'windows':('Windows','Sanguo.exe'), 'macos':('macOS','Sanguo.zip'),
@@ -22,7 +26,7 @@ def main():
     # This directory contains generated artifacts only (never source or server saves).
     if output.exists(): shutil.rmtree(output)
     output.mkdir(parents=True, exist_ok=True)
-    result = subprocess.run([args.godot,'--headless','--path',str(ROOT),'--export-release',preset,str(output / name)], text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    result = subprocess.run([args.godot,'--headless','--path',str(ROOT),'--export-release',preset,str(output / name)], text=True,encoding="utf-8", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     if result.returncode or 'ERROR:' in result.stdout:
         print(result.stdout)
         raise SystemExit('export failed')
@@ -51,8 +55,8 @@ def main():
         if args.target == 'linux-server':
             (output/name).chmod(0o755)
             shutil.copy2(ROOT/'deploy/qqsg.service',output/'qqsg.service')
-    commit = subprocess.run(['git','rev-parse','--short','HEAD'],cwd=ROOT,text=True,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL).stdout.strip() or 'working-tree'
-    (output/'BUILD.txt').write_text(f'QQSG LAN 0.1.0\nGodot {(ROOT/".godot-version").read_text().strip()}\nCommit {commit}\nTarget {args.target}\n')
+    commit = subprocess.run(['git','rev-parse','--short','HEAD'],cwd=ROOT,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.DEVNULL).stdout.strip() or 'working-tree'
+    (output/'BUILD.txt').write_text(f'QQSG LAN 0.1.0\nGodot {(ROOT/".godot-version").read_text(encoding="utf-8").strip()}\nCommit {commit}\nTarget {args.target}\n', encoding='utf-8')
     # Create one zip that retains executable permissions on macOS/Linux.
     archive_path = ROOT/'build'/f'qqsg-{args.target}.zip'
     with zipfile.ZipFile(archive_path,'w',zipfile.ZIP_DEFLATED) as archive:

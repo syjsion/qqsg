@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Run the actual exported executable, using temporary server storage."""
 import argparse
+import sys
 import json
 import os
 from pathlib import Path
 import subprocess
 import tempfile
 import plistlib
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -27,7 +31,7 @@ def main():
         command = [str(executable),'--headless','--quit-after','120']
         if args.target.endswith('server'):
             command += ['--','--server',f'--config={folder/"server.json"}',f'--data_dir={temporary}','--port=25467']
-        result = subprocess.run(command,cwd=folder,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=30)
+        result = subprocess.run(command,cwd=folder,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=30)
         print(result.stdout)
         if result.returncode or 'SCRIPT ERROR' in result.stdout or '\nERROR:' in result.stdout:
             raise SystemExit('Exported program failed smoke test')

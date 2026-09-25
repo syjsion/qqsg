@@ -7,17 +7,20 @@ from pathlib import Path
 import subprocess
 import sys
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 ROOT = Path(__file__).resolve().parents[1]
 
 def run(command, marker=None, timeout=180):
-    result = subprocess.run(command, cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=timeout)
+    result = subprocess.run(command, cwd=ROOT, text=True,encoding="utf-8", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=timeout)
     output = result.stdout
     print(output[-12000:] if result.returncode or 'SCRIPT ERROR' in output else '\n'.join(line for line in output.splitlines() if not line.startswith('[')))
     if result.returncode or 'SCRIPT ERROR' in output or '\nERROR:' in output or (marker and marker not in output):
         raise SystemExit(f'Check failed: {command}')
 
 def validate_data():
-    content = json.loads((ROOT / 'data/content.json').read_text())
+    content = json.loads((ROOT / 'data/content.json').read_text(encoding="utf-8"))
     for job in content['classes'].values():
         for skill in job['skills']: assert skill in content['skills']
     for item in content['items'].values():
@@ -32,7 +35,7 @@ def validate_data():
         assert not quest['previous'] or quest['previous'] in content['quests']
         if quest['type'] == 'kill': assert quest['target'] in content['monsters']
         if quest['type'] == 'collect': assert quest['target'] in content['items']
-    art = json.loads((ROOT / 'data/art.json').read_text())
+    art = json.loads((ROOT / 'data/art.json').read_text(encoding="utf-8"))
     def walk(node):
         if isinstance(node, dict):
             for value in node.values(): walk(value)

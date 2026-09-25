@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-2026-09-25：首版 0.1.0 功能已实现，正在完成首次提交与四平台 CI 验证。SSH 已能访问目标仓库。Windows + macOS 两台真实电脑合作游玩待验证。
+2026-09-25：首版 0.1.0 已提交到目标仓库；四平台 CI 构建和导出后启动检查全部通过。SSH 推送正常。Windows + macOS 两台真实电脑合作游玩待验证。
 
 ## 开发入口
 
@@ -29,10 +29,10 @@
 | `python3 tools/check.py --godot "$GODOT"` | PASS：数据引用、引擎导入、81 个单元检查，0 失败；四客户端网络测试通过 |
 | 网络测试内容 | 实际服务端 + 四客户端进程；移动、互见、任务、重复请求、组队、聊天、重连及磁盘奖励检查通过；另验证版本错误、凭据错误、第五玩家拒绝 |
 | 单元测试内容 | 属性/经验/战斗、库存事务、掉落归属、完整六任务链、满包/体力/距离/死亡边界、写盘失败回滚、重启恢复与损坏存档备份恢复通过 |
-| `python3 tools/package.py macos --godot "$GODOT"` 与 `python3 tests/export_smoke.py macos` | 已成功导出与无界面启动；最终界面微调后由 CI 重建 |
+| `python3 tools/package.py macos --godot "$GODOT"` 与 `python3 tests/export_smoke.py macos` | 最终版本本机与 macOS runner 均成功导出并通过无界面启动检查 |
 | `python3 tools/package.py macos-server --godot "$GODOT"` 与 `python3 tests/export_smoke.py macos-server` | 已成功导出；独立服务端就绪和存档检查通过 |
 | `"$GODOT" --path . tests/render.tscn -- --preview=world --map=west --output=/private/tmp/qqsg-final.png` | 使用真实图形窗口截图检查；场景为模拟数据，不作为实机联机证据 |
-| Windows 客户端、Linux 服务端 | 等待 GitHub Actions 对应 runner 构建和启动检查 |
+| Windows 客户端、Linux 服务端 | 对应 Windows / Ubuntu runner 构建和启动检查均 PASS |
 | Windows + macOS 两台机器局域网 | 待验证：连接、防火墙、完整合作篇章、断线及服务重启 |
 
 存档损坏测试会有一条“已从有效备份恢复”预期警告；该测试通过不代表忽略其他引擎错误。完整检查脚本将 SCRIPT ERROR / ERROR 视为失败。
@@ -42,10 +42,16 @@
 - 目前是可游玩原型，地图连接、怪物、装备和多数技能参数仍为暂定设计。1–10 级基础成长有来源，不能将暂定数据称为官方数值。
 - 简化平台碰撞、怪物追击和动作动画；部分技能表现未还原完整原版。每次技能落盘只适用于当前四人规模。
 - 客户端凭据按 IP/端口/本地档案保存；更换服务器地址需迁移对应凭据。备份服务端存档和客户端凭据的操作见 PLAYING.md。
-- 下一步先取得四平台 CI 结果，再进行两机联机验收；后续按实际反馈调整战斗节奏、动作与地图内容。
+- 下一步进行两机联机验收；后续按实际反馈调整战斗节奏、动作与地图内容。
 
 ## 2026-09-25 / Windows 构建编码修复
 
 首次 CI 的 Ubuntu 完整检查及 Linux 服务端构建/启动通过，Windows 在读取中文 JSON 时因系统默认 CP1252 失败。所有 Python 工具和测试显式使用 UTF-8 读取数据、解析引擎输出并输出日志，避免依赖系统语言；构建记录和 GITHUB_ENV 同样固定 UTF-8。
 
 本机最终 macOS 客户端与服务端重新导出、启动检查均通过；营寨背包面板完成图形窗口检查。编码修复后 `python3 tools/check.py --godot "$GODOT"` 再次 PASS（81 项单元检查及四客户端网络测试）；Python 编译检查通过。推送触发四目标复验。跨 Windows/Mac 实机联机仍待验证。
+
+## 2026-09-25 / 四平台交付结果
+
+提交 `d958fde` 的 [GitHub Actions #2](https://github.com/syjsion/qqsg/actions/runs/36086831903) 全部成功：Ubuntu 完整检查（81 项单元检查、四客户端网络测试）、Windows 客户端、macOS 客户端、macOS 服务端、Linux 服务端。各构建任务执行 `tools/check.py --skip-network`、`tools/package.py <target>`、`tests/export_smoke.py <target>`，结果均 PASS。四个 zip artifact 已上传，保留 14 天。
+
+开发者可在该运行的 Artifacts 下载同一提交的全套包。当前提交仅记录验收结果，无运行时代码修改。Windows + macOS 两台真实电脑联机、防火墙及完整合作流程仍为待验证，不以 CI 无界面启动替代。

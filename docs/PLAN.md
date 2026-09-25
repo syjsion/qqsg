@@ -38,3 +38,7 @@ GitHub Actions 推送/PR/手动检查并输出 Windows、macOS 客户端及 macO
 - <https://github.com/Time1996/QQSanGuo>：素材、操作和场景参考，原代码是 Godot 3。
 - <https://github.com/WanderingQuantum/qqsganalysis>：角色基础属性、经验和战斗研究。
 - <https://github.com/ziwenhahaha/qqsg_struct>：领域字段参考，不依赖原客户端。
+
+## 2026-09-25 进度
+
+M0–M3 的首版实现及自动化验证已完成；四目标导出和启动检查通过，见 DEVELOPMENT.md。M4 已完成图形界面截图检查和打包，Windows + Mac 两台实机完整合作验收待验证。

@@ -1,9 +1,9 @@
 class_name Catalog
 extends RefCounted
 
-const PROTOCOL = 2
-const CONTENT = "0.1.1"
-const SAVE_VERSION = 1
+const PROTOCOL = 3
+const CONTENT = "0.2.0"
+const SAVE_VERSION = 2
 static var content: Dictionary = {}
 static var progression: Dictionary = {}
 
@@ -22,10 +22,9 @@ static func stats(record: Dictionary) -> Dictionary:
 	s.physical_attack = 6
 	s.magic_attack = 6
 	s.defense = 2
-	for item_id in record.equipment.values():
-		var item: Dictionary = table("items").get(item_id, {})
-		for key in item.get("stats", {}):
-			s[key] = s.get(key, 0) + item.stats[key]
+	for id in record.equipment.values():
+		var bonus = GearRules.stats(record.gear[id])
+		for key in bonus: s[key] = s.get(key, 0) + bonus[key]
 	return s
 
 static func required_exp(level: int) -> int:
@@ -33,9 +32,11 @@ static func required_exp(level: int) -> int:
 	return int(progression.experience_to_next[clampi(level, 1, 10) - 1])
 
 static func new_character(id: String, display_name: String, job: String) -> Dictionary:
+	var weapon = GearRules.create("iron_sword" if job == "JS" else "wood_staff")
+	var armor = GearRules.create("cloth")
 	return {"id": id, "name": display_name, "job": job, "level": 1, "xp": 0,
 		"money": 100, "map": "bajun", "inventory": {"potion": 8, "ether": 5},
-		"equipment": {"weapon": "iron_sword" if job == "JS" else "wood_staff", "armor": "cloth"},
+		"gear": {weapon.id:weapon, armor.id:armor}, "equipment": {"weapon":weapon.id, "armor":armor.id},
 		"quests": {}, "kills": {}, "revision": 0}
 
 static func gain_exp(record: Dictionary, amount: int) -> bool:

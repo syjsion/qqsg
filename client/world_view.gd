@@ -126,7 +126,9 @@ func _draw() -> void:
 		var mine = drop.owner == Session.player_id
 		draw_circle(p, 8, Color("f4ce77") if mine else Color("809e9e"))
 		draw_circle(p, 14, Color(1, 0.8, 0.4, 0.15))
-		_text(Catalog.table("items")[drop.item].name, p - Vector2(0, 20), Color("fff0ae") if mine else Color("bccccc"), 13)
+		var item: Dictionary = Catalog.table("items")[drop.item]
+		var label: String = item.name + (" +%d" % drop.gear.enhance if drop.has("gear") else " ×%d" % drop.count)
+		_text(label, p - Vector2(0, 20), (Color("83caff") if item.get("quality", "") == "fine" else Color("fff0ae")) if mine else Color("bccccc"), 13)
 	var actors: Array = state.get("players", []) + state.get("monsters", [])
 	if preview:
 		actors = [{"id": "preview_js", "job": "JS", "name": "剑侍", "x": 410.0, "y": 600.0, "facing": 1, "hp": 1, "max_hp": 1},

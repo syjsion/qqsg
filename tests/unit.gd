@@ -73,7 +73,7 @@ func run() -> void:
 	check(not sim.command(a.id, "skill", {"skill":"slash", "target":b.id}).ok, "no friendly damage")
 	sim.monsters["west:0"].hp = 1
 	check(sim.command(a.id, "skill", {"skill":"slash", "target":"west:0"}).ok, "monster death")
-	check(sim.monsters["west:0"].dead and sim.drops.size() == 1, "one death one drop")
+	check(sim.monsters["west:0"].dead and sim.drops.size() in [1,2], "one death base drop plus optional stone")
 	var drop_id = sim.drops.keys()[0]
 	var owner = sim.drops[drop_id].owner
 	var not_owner = b.id if owner == a.id else a.id
@@ -104,6 +104,7 @@ func run() -> void:
 	_chapter_tests()
 	_boundary_tests()
 	_feedback_tests()
+	preload("res://tests/progression.gd").run(check)
 	print("UNIT_RESULT checks=%d failures=%d" % [checks, failures])
 	quit(1 if failures else 0)
 
@@ -193,7 +194,8 @@ func _boundary_tests() -> void:
 	var id: String = ids[0]
 	sim.records[id].map = "west"
 	sim.records[id].x = 600
-	sim.records[id].inventory = {"iron_sword":24}
+	sim.records[id].inventory = {}
+	for i in range(24): InventoryRules.add_item(sim.records[id], "iron_sword")
 	sim.drops["capacity"] = {"id":"capacity", "item":"herb", "owner":id, "map":"west", "x":600,"y":600,"count":1}
 	check(not sim.command(id, "pickup", {"drop":"capacity"}).ok and sim.drops.has("capacity"), "full bag preserves drop")
 	var hp_before = sim.monsters["west:0"].hp

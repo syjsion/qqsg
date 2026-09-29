@@ -18,7 +18,7 @@
 
 多人开发时按模块拆分工作；新增静态内容优先修改数据表，新增玩法先在 Simulation/纯函数与测试落地，再接网络和 UI。
 
-## 协议 v2
+## 协议 v3
 
 统一 RPC 节点为 `/root/Session`，服务端 peer ID 为 1。客户端连接后 8 秒握手超时，未握手连接在服务端 5 秒后关闭。最多 4 个已认证角色。
 
@@ -35,7 +35,7 @@
 
 正常 20 Hz 快照。压缩包超过 1200 字节时降为可靠 10 Hz，避免 UDP 分片造成整帧丢失。快照只含当前地图实体、自身完整状态与精简队伍名单，不含令牌。客户端丢弃过时快照；本地重放尚未确认的输入，远端位置插值。
 
-请求操作：`skill(skill,target)`、`pickup(drop)`、`equip(item)`、`use(item)`、`buy(item)`、`sell(item)`、`quest(quest)`、`portal()`、`respawn()`、`invite(target)`、`accept()`、`leave_party()`。
+请求操作：`skill(skill,target)`、`pickup(drop)`、`equip(gear_id)`、`use(item)`、`buy(item)`、`sell(item)`、`quest(quest)`、`portal()`、`respawn()`、`invite(target)`、`accept()`、`leave_party()`。
 
 各连接请求序号递增，缓存最近 64 个回执；重复请求回发原结果，过期请求拒绝重做。断线重连后的幂等依靠持久任务状态和掉落 ID，不沿用旧连接序号。
 客户端只上传意图。距离、职业、技能等级、冷却、体力、库存、价格、掉落归属等均由服务端检查。
@@ -44,7 +44,7 @@
 
 `data/content.json` 包含 classes/skills/items/monsters/quests/maps；稳定 ID 为内容引用键，中文名称只用于显示。`data/progression.json` 为来源可追溯的属性/经验；`data/art.json` 为视图资源映射，不被服务端规则依赖。
 
-Catalog 中协议、内容和存档版本分别是 `PROTOCOL=2`、`CONTENT=0.1.1`、`SAVE_VERSION=1`。改变结构时升级对应版本，并提供迁移或明确拒绝旧数据。
+Catalog 中协议、内容和存档版本分别是 `PROTOCOL=3`、`CONTENT=0.2.0`、`SAVE_VERSION=2`。改变结构时升级对应版本，并提供迁移或明确拒绝旧数据。
 
 角色 ID 为服务端生成的随机 96 位十六进制串；登录凭据为随机 256 位值。客户端按服务器地址/端口/本地档案保存令牌，服务端仅保存令牌 SHA-256 到角色 ID 的索引。无公网账号系统，凭据不可分享。首次建立角色后网络在凭据到达客户端前中断可能留下未领取角色，重新创建将产生新角色，管理员可离线清理。
 
@@ -69,3 +69,13 @@ Catalog 中协议、内容和存档版本分别是 `PROTOCOL=2`、`CONTENT=0.1.1
 只有成功登录后的意外断线启动自动重连，间隔为 1、2、4、8、8 秒，单次握手上限 8 秒。取消、主动退出及服务端明确拒绝会结束重试。重连清空旧快照、输入队列和序号，不缓存重发经济操作。Session.reconnecting 通知界面展示状态与取消按钮。
 
 源码启动器通过 --control-dir 和随机 --instance-id 指定私有本机控制目录。服务端监听成功且存档可用后原子写 ready.json；stop.json 的实例标识匹配才处理停服。保存成功写 stop-result.json 后退出；失败写错误结果并继续服务。没有对应远程管理 RPC。启动器验证 PID 命令中的实例标识，只管理自己启动的服务，使用文件锁防止并发启动；端口冲突不修改存档。不要通过其他脚本同时使用同一存档目录开服。
+
+## 0.2.0 装备实例、掉落与强化事务
+
+当前版本为协议 v3 / 内容 0.2.0 / 存档 v2。inventory 仅保存可堆叠物品数量；gear 为实例 ID → `{id,item,enhance,failures,revision}`；equipment 的 weapon/armor 引用 gear 实例 ID。掉落生成时就确定装备实例，拾取原样转移，不能重新生成或改属性。实例在角色和地面间全局唯一。
+
+GearRules 管理装备属性、消耗预览和强化；LootRules 负责掉落抽取，InventoryRules 负责容量和穿戴。UI 不结算概率或奖励。新增 `enhance(gear_id,expected_revision)`、`sell_gear(gear_id)`，equip 改为 gear_id；原 sell(item) 仅用于可堆叠物品。
+
+强化结果放在回执 enhancement 字段中；ok=true 表示事务已落盘，enhanced=false 表示合法的概率失败，资源仍消耗。每次合法结算都提升装备 revision。重复同一 RPC 序号回放缓存回执；换序号或重连后的旧 expected_revision 拒绝执行，避免重复扣费与重新抽取。角色/装备/保底/随机状态按现有整体事务回滚机制处理，保存失败不发成功结果。
+
+v1 迁移使用角色、背包位置、穿戴槽或掉落 ID 派生稳定实例 ID，重复解码结果一致。先校验旧档、保存带摘要文件名的原始副本，转换后再原子写入 v2。独立旧档备份不参与常规轮换。错误引用、重复实例、非法数量、超容量和非法强化等级均拒绝；主文件损坏仍尝试有效常规备份。

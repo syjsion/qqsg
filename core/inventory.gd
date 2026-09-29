@@ -27,19 +27,32 @@ static func take(bag: Dictionary, id: String, count: int = 1) -> bool:
 		bag.erase(id)
 	return true
 
-static func equip(record: Dictionary, id: String) -> String:
-	var item: Dictionary = Catalog.table("items").get(id, {})
-	if not item.has("slot") or not record.inventory.has(id):
-		return "物品无法装备"
-	if int(item.get("level", 1)) > int(record.level):
-		return "等级不足"
-	if item.get("job", "") not in ["", record.job]:
-		return "职业不符"
+static func used_slots(record: Dictionary) -> int:
+	return slots(record.inventory) + record.gear.size() - record.equipment.size()
+
+static func add_item(record: Dictionary, item: String, count: int = 1, instance: Dictionary = {}) -> bool:
+	if count < 1 or not Catalog.table("items").has(item): return false
+	if Catalog.table("items")[item].has("slot"):
+		if used_slots(record) + count > CAPACITY: return false
+		if not instance.is_empty():
+			if count != 1 or record.gear.has(instance.id) or instance.item != item: return false
+			record.gear[instance.id] = instance.duplicate(true)
+		else:
+			for i in range(count):
+				var gear = GearRules.create(item)
+				record.gear[gear.id] = gear
+		return true
 	var bag: Dictionary = record.inventory.duplicate()
-	take(bag, id)
-	var previous: String = record.equipment.get(item.slot, "")
-	if previous != "" and not add(bag, previous):
-		return "背包已满"
+	if not add(bag, item, count): return false
+	if slots(bag) + record.gear.size() - record.equipment.size() > CAPACITY: return false
 	record.inventory = bag
+	return true
+
+static func equip(record: Dictionary, id: String) -> String:
+	if not record.gear.has(id): return "装备不存在"
+	var item: Dictionary = Catalog.table("items")[record.gear[id].item]
+	if id in record.equipment.values(): return "该装备已穿戴"
+	if int(item.get("level", 1)) > int(record.level): return "等级不足"
+	if item.get("job", "") not in ["", record.job]: return "职业不符"
 	record.equipment[item.slot] = id
 	return ""

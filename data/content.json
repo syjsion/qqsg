@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "version": "0.1.1",
+  "version": "0.2.0",
   "classes": {
     "JS": {
       "name": "剑侍",
@@ -101,20 +101,26 @@
       "price": 12,
       "stack": 99,
       "source": "provisional",
-      "hp": 100
+      "hp": 100,
+      "shop_buyable": true,
+      "sell_price": 4
     },
     "ether": {
       "name": "清心露",
       "price": 12,
       "stack": 99,
       "source": "provisional",
-      "mp": 100
+      "mp": 100,
+      "shop_buyable": true,
+      "sell_price": 4
     },
     "herb": {
       "name": "青叶草",
       "price": 3,
       "stack": 99,
-      "source": "provisional"
+      "source": "provisional",
+      "shop_buyable": false,
+      "sell_price": 1
     },
     "iron_sword": {
       "name": "铁剑",
@@ -125,7 +131,10 @@
       "slot": "weapon",
       "stats": {
         "physical_attack": 4
-      }
+      },
+      "shop_buyable": true,
+      "sell_price": 13,
+      "quality": "common"
     },
     "wood_staff": {
       "name": "桃木杖",
@@ -136,7 +145,10 @@
       "slot": "weapon",
       "stats": {
         "magic_attack": 6
-      }
+      },
+      "shop_buyable": true,
+      "sell_price": 13,
+      "quality": "common"
     },
     "bronze_sword": {
       "name": "青铜剑",
@@ -148,7 +160,10 @@
       "slot": "weapon",
       "stats": {
         "physical_attack": 20
-      }
+      },
+      "shop_buyable": true,
+      "sell_price": 60,
+      "quality": "common"
     },
     "jade_staff": {
       "name": "青玉杖",
@@ -160,7 +175,10 @@
       "slot": "weapon",
       "stats": {
         "magic_attack": 22
-      }
+      },
+      "shop_buyable": true,
+      "sell_price": 60,
+      "quality": "common"
     },
     "cloth": {
       "name": "布衣",
@@ -170,7 +188,10 @@
       "slot": "armor",
       "stats": {
         "defense": 4
-      }
+      },
+      "shop_buyable": true,
+      "sell_price": 11,
+      "quality": "common"
     },
     "leather": {
       "name": "皮甲",
@@ -182,13 +203,72 @@
       "stats": {
         "defense": 12,
         "hp": 50
-      }
+      },
+      "shop_buyable": true,
+      "sell_price": 53,
+      "quality": "common"
     },
     "seal": {
       "name": "营寨令牌",
       "price": 20,
       "stack": 99,
+      "source": "provisional",
+      "shop_buyable": false,
+      "sell_price": 6
+    },
+    "enhance_stone": {
+      "name": "强化石",
+      "price": 6,
+      "sell_price": 2,
+      "stack": 99,
+      "shop_buyable": false,
       "source": "provisional"
+    },
+    "camp_sword": {
+      "name": "营寨长剑",
+      "price": 360,
+      "sell_price": 120,
+      "stack": 1,
+      "shop_buyable": false,
+      "quality": "fine",
+      "source": "provisional",
+      "level": 8,
+      "slot": "weapon",
+      "job": "JS",
+      "stats": {
+        "physical_attack": 28
+      }
+    },
+    "jade_pattern_staff": {
+      "name": "玉纹法杖",
+      "price": 360,
+      "sell_price": 120,
+      "stack": 1,
+      "shop_buyable": false,
+      "quality": "fine",
+      "source": "provisional",
+      "level": 8,
+      "slot": "weapon",
+      "job": "XS",
+      "stats": {
+        "magic_attack": 30
+      }
+    },
+    "fine_armor": {
+      "name": "精制战甲",
+      "price": 300,
+      "sell_price": 100,
+      "stack": 1,
+      "shop_buyable": false,
+      "quality": "fine",
+      "source": "provisional",
+      "level": 8,
+      "slot": "armor",
+      "job": "",
+      "stats": {
+        "defense": 16,
+        "hp": 70
+      }
     }
   },
   "monsters": {
@@ -206,7 +286,8 @@
         "potion"
       ],
       "respawn": 15,
-      "source": "provisional"
+      "source": "provisional",
+      "stone_chance": 0.25
     },
     "boar": {
       "name": "小红猪",
@@ -222,7 +303,8 @@
         "ether"
       ],
       "respawn": 15,
-      "source": "provisional"
+      "source": "provisional",
+      "stone_chance": 0.35
     },
     "soldier": {
       "name": "益州斧兵",
@@ -238,7 +320,8 @@
         "leather"
       ],
       "respawn": 15,
-      "source": "provisional"
+      "source": "provisional",
+      "stone_chance": 0.5
     },
     "boss": {
       "name": "邓茂",
@@ -564,5 +647,69 @@
       "npcs": [],
       "source": "reference_art_rebuilt_layout"
     }
+  },
+  "enhancement": {
+    "source": "provisional",
+    "levels": [
+      {
+        "chance": 1,
+        "stones": 1,
+        "money": 20
+      },
+      {
+        "chance": 1,
+        "stones": 2,
+        "money": 40
+      },
+      {
+        "chance": 0.85,
+        "stones": 3,
+        "money": 80
+      },
+      {
+        "chance": 0.7,
+        "stones": 4,
+        "money": 120
+      },
+      {
+        "chance": 0.55,
+        "stones": 5,
+        "money": 180
+      },
+      {
+        "chance": 0.4,
+        "stones": 6,
+        "money": 260
+      }
+    ]
+  },
+  "boss_loot": {
+    "source": "provisional",
+    "guaranteed": {
+      "enhance_stone": 2,
+      "seal": 1
+    },
+    "equipment": [
+      {
+        "weight": 50,
+        "JS": "bronze_sword",
+        "XS": "jade_staff"
+      },
+      {
+        "weight": 30,
+        "JS": "leather",
+        "XS": "leather"
+      },
+      {
+        "weight": 15,
+        "JS": "camp_sword",
+        "XS": "jade_pattern_staff"
+      },
+      {
+        "weight": 5,
+        "JS": "fine_armor",
+        "XS": "fine_armor"
+      }
+    ]
   }
 }

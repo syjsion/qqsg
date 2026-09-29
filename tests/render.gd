@@ -33,11 +33,18 @@ func run() -> void:
 				else:
 					m.dead = true
 					m.death_started = 9.4
+		if args.preview == "enhance":
+			sim.records[a.id].inventory.enhance_stone = 40
+			sim.records[a.id].money = 1200
+			var gear: Dictionary = sim.records[a.id].gear[sim.records[a.id].equipment.weapon]
+			gear.enhance = 5
+			gear.failures = 3
+			game.enhance_selected = gear.id
 		Session.player_id = a.id
 		Session.latest = sim.snapshot(a.id)
 		game._connected()
 		game._snapshot(Session.latest)
-		if args.preview in ["bag", "team", "quests", "shop"]: game._open_panel(args.preview)
+		if args.preview in ["bag", "team", "quests", "shop", "enhance"]: game._open_panel(args.preview)
 	await get_tree().create_timer(2).timeout
 	if args.get("preview", "") == "combat":
 		game.world.effect({"target":Session.player_id,"kind":"cast","amount":0,"text":"wind"})

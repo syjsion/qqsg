@@ -17,6 +17,7 @@ var rng = RandomNumberGenerator.new()
 var store: SaveStore
 var config: Dictionary
 var fatal_error = ""
+var enhancement_result: Dictionary = {}
 
 func _init(save_store: SaveStore = null, options: Dictionary = {}) -> void:
 	Catalog.load_data()
@@ -78,7 +79,7 @@ func persistent_state() -> Dictionary:
 	for id in records:
 		var p: Dictionary = records[id]
 		var entry = {}
-		for key in ["id", "name", "job", "level", "xp", "money", "map", "inventory", "equipment", "quests", "kills", "revision", "hp", "mp"]:
+		for key in ["id", "name", "job", "level", "xp", "money", "map", "inventory", "equipment", "gear", "quests", "kills", "revision", "hp", "mp"]:
 			entry[key] = p[key]
 		saved[id] = entry
 	return {"version": Catalog.SAVE_VERSION, "content": Catalog.CONTENT, "records": saved,
@@ -227,6 +228,7 @@ func _resolve_monster_attack(m: Dictionary) -> void:
 			checkpoint()
 
 func command(id: String, operation: String, args: Dictionary) -> Dictionary:
+	enhancement_result = {}
 	if id not in online:
 		return {"ok": false, "message": "角色未在线"}
 	# Capture state before economic operations. A failed disk commit rolls everything back.
@@ -241,7 +243,7 @@ func command(id: String, operation: String, args: Dictionary) -> Dictionary:
 	if not checkpoint():
 		_restore(before)
 		return {"ok": false, "message": "保存失败，操作已撤销，请联系服务器管理者"}
-	return {"ok": true, "message": "", "revision": records[id].revision}
+	return {"ok": true, "message": "", "revision": records[id].revision, "enhancement":enhancement_result}
 
 func _restore(before: Dictionary) -> void:
 	records = before.records
@@ -271,7 +273,7 @@ func _execute(id: String, operation: String, args: Dictionary) -> String:
 		"skill": return _skill(p, str(args.get("skill", "")), str(args.get("target", "")))
 		"pickup": return _pickup(p, str(args.get("drop", "")))
 		"equip":
-			var result = InventoryRules.equip(p, str(args.get("item", "")))
+			var result = InventoryRules.equip(p, str(args.get("gear_id", "")))
 			if result == "":
 				var stats = Catalog.stats(p)
 				p.hp = mini(p.hp, stats.hp)
@@ -289,6 +291,18 @@ func _execute(id: String, operation: String, args: Dictionary) -> String:
 			p.hp = mini(stats.hp, int(p.hp) + int(item.get("hp", 0)))
 			p.mp = mini(stats.mp, int(p.mp) + int(item.get("mp", 0)))
 			p.cooldowns.potion = clock + 3
+			return ""
+		"enhance":
+			if not _near_npc(p, "merchant"): return "请靠近巴郡装备商人进行强化"
+			if not SaveStore._integer(args.get("expected_revision")): return "无效装备修订号"
+			enhancement_result = GearRules.enhance(p, str(args.get("gear_id", "")), int(args.expected_revision), rng)
+			return enhancement_result.error
+		"sell_gear":
+			if not _near_npc(p, "merchant"): return "请靠近巴郡装备商人"
+			var gid = str(args.get("gear_id", ""))
+			if not p.gear.has(gid) or gid in p.equipment.values(): return "装备不存在或仍在穿戴"
+			p.money += int(Catalog.table("items")[p.gear[gid].item].sell_price)
+			p.gear.erase(gid)
 			return ""
 		"buy", "sell": return _shop(p, operation, str(args.get("item", "")))
 		"quest": return _quest(p, str(args.get("quest", "")))
@@ -344,17 +358,17 @@ func _shop(p: Dictionary, op: String, id: String) -> String:
 	if item.is_empty():
 		return "物品不存在"
 	if op == "buy":
-		if id in ["herb", "seal"]:
+		if not item.get("shop_buyable", false):
 			return "该物品不在商店出售"
 		if p.money < item.price:
 			return "金钱不足"
-		if not InventoryRules.add(p.inventory, id):
+		if not InventoryRules.add_item(p, id):
 			return "背包已满"
 		p.money -= item.price
 	else:
 		if not InventoryRules.take(p.inventory, id):
 			return "没有该物品"
-		p.money += maxi(1, int(item.price) / 3)
+		p.money += int(item.sell_price)
 	return ""
 
 func _quest(p: Dictionary, id: String) -> String:
@@ -465,17 +479,25 @@ func _kill(killer: Dictionary, monster: Dictionary) -> void:
 			var q: Dictionary = Catalog.table("quests")[qid]
 			if p.quests[qid].state == "active" and q.type == "kill" and q.target == monster.kind:
 				p.quests[qid].progress = mini(q.count, int(p.quests[qid].progress) + 1)
-	var rolls = floori(float(config.drop_multiplier))
-	if rng.randf() < fmod(float(config.drop_multiplier), 1.0):
-		rolls += 1
-	for i in range(rolls):
-		var owner = eligible[loot_turn % eligible.size()]
-		loot_turn += 1
-		next_drop += 1
-		var drop_id = "drop_%d" % next_drop
-		var item: String = def.loot[rng.randi_range(0, def.loot.size() - 1)]
-		drops[drop_id] = {"id": drop_id, "item": item, "owner": owner, "map": monster.map,
-			"x": monster.x + i * 18, "y": monster.y, "count": 1}
+	if eligible.is_empty(): return
+	if monster.kind == "boss":
+		for owner in eligible:
+			for i in range(LootRules.rounds(float(config.drop_multiplier), rng)):
+				for entry in LootRules.boss(records[owner].job, rng): _drop(monster, owner, entry)
+	else:
+		for i in range(LootRules.rounds(float(config.drop_multiplier), rng)):
+			for entry in LootRules.monster(monster.kind, rng):
+				var owner = eligible[loot_turn % eligible.size()]
+				loot_turn += 1
+				_drop(monster, owner, entry)
+
+func _drop(monster: Dictionary, owner: String, entry: Dictionary) -> void:
+	next_drop += 1
+	var id = "drop_%d" % next_drop
+	var d = {"id":id, "item":entry.item, "owner":owner, "map":monster.map,
+		"x":monster.x + (next_drop % 7 - 3) * 18, "y":monster.y, "count":entry.count}
+	if Catalog.table("items")[entry.item].has("slot"): d.gear = GearRules.create(entry.item)
+	drops[id] = d
 
 func _pickup(p: Dictionary, id: String) -> String:
 	if not drops.has(id):
@@ -485,7 +507,7 @@ func _pickup(p: Dictionary, id: String) -> String:
 		return "该掉落属于其他队友"
 	if d.map != p.map or _distance(p, d) > 110:
 		return "请靠近掉落物"
-	if not InventoryRules.add(p.inventory, d.item, d.count):
+	if not InventoryRules.add_item(p, d.item, int(d.count), d.get("gear", {})):
 		return "背包已满，掉落物仍保留"
 	drops.erase(id)
 	return ""

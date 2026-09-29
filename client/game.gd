@@ -27,6 +27,9 @@ var connect_button: Button
 var skill_buttons: Array[Button] = []
 var target_label: Label
 var notice: Label
+var enhance_selected = ""
+var enhance_pending = 0
+var enhance_message = ""
 var dead_button: Button
 var cancel_retry: Button
 var bgm: AudioStreamPlayer
@@ -154,7 +157,7 @@ func _build_hud() -> void:
 	brand.custom_minimum_size.x = 260
 	row.add_child(brand)
 	brand.add_child(_label("三国 · 同游", 27, GOLD))
-	brand.add_child(_label("局域网合作篇章  /  0.1", 12, Color("9eb8ac")))
+	brand.add_child(_label("局域网合作篇章  /  0.2", 12, Color("9eb8ac")))
 	title = _label("巴郡  ·  故人相聚", 22)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.add_child(title)
@@ -296,6 +299,7 @@ func _connected() -> void:
 	chat_log.add_text("已进入服务器。前往简雍处开始旅程。\n")
 
 func _failed(message: String) -> void:
+	enhance_pending = 0
 	cancel_retry.hide()
 	pending_inputs.clear()
 	status.text = message
@@ -330,7 +334,7 @@ func _snapshot(state: Dictionary) -> void:
 	_update_hud(state)
 	var signature = str(state.invite)
 	for member in state.roster: signature += member.id + member.party + member.map
-	if modal and modal_kind in ["bag", "quests", "shop", "team"] and (int(state.self.revision) != modal_revision or (modal_kind == "team" and team_signature != signature)):
+	if modal and modal_kind in ["bag", "quests", "shop", "team", "enhance"] and (int(state.self.revision) != modal_revision or (modal_kind == "team" and team_signature != signature)):
 		_refresh_panel()
 	team_signature = signature
 
@@ -459,6 +463,13 @@ func _pickup() -> void:
 	Session.request("pickup", {"drop": loot[0].id})
 
 func _result(result: Dictionary) -> void:
+	if enhance_pending > 0 and int(result.get("seq", 0)) == enhance_pending:
+		enhance_pending = 0
+		if result.ok and not result.get("enhancement", {}).is_empty():
+			var outcome: Dictionary = result.enhancement
+			enhance_message = "强化成功！当前 +%d" % outcome.level if outcome.enhanced else "强化未成功，等级不变。连续失败 %d/3，材料和金钱已消耗。" % outcome.failures
+		else: enhance_message = str(result.get("message", "强化失败"))
+		_refresh_panel()
 	if not result.ok: _toast(result.message)
 
 func _event(event: Dictionary) -> void:
@@ -485,7 +496,7 @@ func _open_panel(kind: String) -> void:
 	modal.add_child(col)
 	var row = HBoxContainer.new()
 	col.add_child(row)
-	var caption = _label({"bag":"行囊与装备", "quests":"旅途任务 · 简雍", "shop":"巴郡商店", "team":"同游伙伴", "settings":"键位与声音"}[kind], 23, GOLD)
+	var caption = _label({"bag":"行囊与装备", "quests":"旅途任务 · 简雍", "shop":"巴郡商店", "enhance":"装备强化 · 上限 +6", "team":"同游伙伴", "settings":"键位与声音"}[kind], 23, GOLD)
 	caption.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.add_child(caption)
 	row.add_child(_button("关闭 ×", _close_panel))
@@ -536,15 +547,22 @@ func _refresh_panel() -> void:
 	modal_revision = int(p.revision)
 	match modal_kind:
 		"bag":
-			modal_body.add_child(_label("金钱 %d  ·  行囊 %d / 24 格" % [p.money, InventoryRules.slots(p.inventory)], 16, GOLD))
+			modal_body.add_child(_label("金钱 %d · 行囊 %d / 24 格" % [p.money, InventoryRules.used_slots(p)], 16, GOLD))
 			for slot in p.equipment:
-				modal_body.add_child(_label("已装备  %s" % Catalog.table("items")[p.equipment[slot]].name, 14, Color("9bd4bb")))
-			modal_body.add_child(_label("物攻 %s · 法攻 %s · 防御 %s" % [p.stats.physical_attack, p.stats.magic_attack, p.stats.defense], 14))
+				modal_body.add_child(_label("已装备  " + GearRules.label(p.gear[p.equipment[slot]]), 14, Color("9bd4bb")))
+			modal_body.add_child(_label("物攻 %d · 法攻 %d · 防御 %d" % [p.stats.physical_attack,p.stats.magic_attack,p.stats.defense],14))
+			for gid in p.gear:
+				if gid not in p.equipment.values():
+					var row = _row(_gear_description(p.gear[gid]), "装备", func(): Session.request("equip", {"gear_id":gid}))
+					row.tooltip_text = _gear_attributes(p.gear[gid])
+					if Catalog.table("items")[p.gear[gid].item].get("quality", "") == "fine": row.get_child(0).add_theme_color_override("font_color", Color("83caff"))
 			for id in p.inventory:
 				var item: Dictionary = Catalog.table("items")[id]
-				var op = "equip" if item.has("slot") else "use" if id in ["potion", "ether"] else ""
-				if op != "": _row("%s × %s" % [item.name, p.inventory[id]], "装备" if op == "equip" else "使用", func(): Session.request(op, {"item": id}))
-				else: modal_body.add_child(_label("%s × %s  ·  任务材料" % [item.name, p.inventory[id]], 15))
+				if id in ["potion","ether"]: _row("%s × %d" % [item.name,p.inventory[id]], "使用", func(): Session.request("use", {"item":id}))
+				else: modal_body.add_child(_label("%s × %d" % [item.name,p.inventory[id]],15))
+			modal_body.add_child(_button("前往强化页面（操作需靠近装备商人）", func(): _open_panel("enhance")))
+		"enhance":
+			_build_enhancement(p)
 		"quests":
 			modal_body.add_child(_label("领取、交付需要靠近巴郡简雍。", 14, Color("b2c3b5")))
 			for id in Catalog.table("quests"):
@@ -558,13 +576,17 @@ func _refresh_panel() -> void:
 			modal_body.add_child(_label("金钱 %d · 交易需要靠近装备商人" % p.money, 15, GOLD))
 			for id in Catalog.table("items"):
 				var item: Dictionary = Catalog.table("items")[id]
-				if id not in ["herb", "seal"]:
+				if item.get("shop_buyable", false):
 					_row("%s   %s 金钱" % [item.name, item.price], "购买", func(): Session.request("buy", {"item": id}))
 			modal_body.add_child(_label("出售行囊物品（每次 1 件）", 16, GOLD))
 			for id in p.inventory:
 				_row("%s × %s" % [Catalog.table("items")[id].name, p.inventory[id]], "出售", func(): Session.request("sell", {"item": id}))
+			for gid in p.gear:
+				if gid not in p.equipment.values():
+					_row(_gear_description(p.gear[gid]) + " · 售价 %d" % Catalog.table("items")[p.gear[gid].item].sell_price, "出售", func(): _sell_gear(gid))
+			modal_body.add_child(_button("装备强化", func(): _open_panel("enhance")))
 		"team":
-			modal_body.add_child(_label("同图附近队友共享击杀；掉落轮流归属。", 14))
+			modal_body.add_child(_label("小怪掉落轮流归属；Boss 附近存活队友各自掉落。", 14))
 			if not Session.latest.invite.is_empty():
 				_row("收到组队邀请", "接受", func(): Session.request("accept"))
 			for actor in Session.latest.roster:
@@ -598,3 +620,62 @@ func _save_settings() -> void:
 func _exit_tree() -> void:
 	if bgm: bgm.stop()
 	if sfx: sfx.stop()
+
+func _gear_description(gear: Dictionary) -> String:
+	var item: Dictionary = Catalog.table("items")[gear.item]
+	return "%s · %s · Lv.%d" % [GearRules.label(gear), "精良" if item.get("quality", "common") == "fine" else "普通", item.get("level",1)]
+
+func _sell_gear(gid: String) -> void:
+	if Session.latest.is_empty() or not Session.latest.self.gear.has(gid): return
+	var gear: Dictionary = Session.latest.self.gear[gid]
+	if int(gear.enhance) == 0:
+		Session.request("sell_gear", {"gear_id":gid})
+		return
+	var dialog = ConfirmationDialog.new()
+	dialog.dialog_text = "确定出售 %s？强化等级和保底进度将随装备一起失去。" % GearRules.label(gear)
+	dialog.confirmed.connect(func(): Session.request("sell_gear", {"gear_id":gid}); dialog.queue_free())
+	dialog.canceled.connect(func(): dialog.queue_free())
+	add_child(dialog)
+	dialog.popup_centered(Vector2i(500,150))
+
+func _build_enhancement(p: Dictionary) -> void:
+	modal_body.add_child(_label("靠近巴郡装备商人操作。失败不降级、不损坏。",14))
+	modal_body.add_child(_label("金钱 %d · 强化石 %d" % [p.money,p.inventory.get("enhance_stone",0)],16,GOLD))
+	var ids: Array = p.gear.keys()
+	ids.sort()
+	if ids.is_empty(): return
+	if enhance_selected not in ids: enhance_selected = ids[0]
+	var chooser = OptionButton.new()
+	for gid in ids: chooser.add_item(_gear_description(p.gear[gid]) + (" · 已穿戴" if gid in p.equipment.values() else ""))
+	chooser.select(ids.find(enhance_selected))
+	chooser.disabled = enhance_pending > 0
+	chooser.item_selected.connect(func(index): enhance_selected = ids[index]; enhance_message = ""; _refresh_panel())
+	modal_body.add_child(chooser)
+	var gear: Dictionary = p.gear[enhance_selected]
+	var quote = GearRules.quote(gear)
+	var current = GearRules.stats(gear)
+	var next = gear.duplicate()
+	next.enhance = mini(6, int(gear.enhance)+1)
+	var after = GearRules.stats(next)
+	var names = {"physical_attack":"物攻", "magic_attack":"法攻", "defense":"防御", "hp":"生命上限"}
+	for key in current: modal_body.add_child(_label("%s  %d → %d" % [names.get(key,key),current[key],after[key]],16))
+	if quote.is_empty(): modal_body.add_child(_label("已达强化上限 +6",18,GOLD))
+	else:
+		modal_body.add_child(_label("目标 +%d · 成功率 %d%%
+消耗 %d 强化石 / %d 金钱
+连续失败 %d/3，三次失败后下一次必成。" % [int(gear.enhance)+1,roundi(quote.chance*100),quote.stones,quote.money,gear.failures],16))
+		var button = _button("等待结算……" if enhance_pending > 0 else "强化一次", func():
+			enhance_pending = Session.request("enhance", {"gear_id":gear.id,"expected_revision":gear.revision})
+			_refresh_panel())
+		button.disabled = enhance_pending > 0 or int(p.money) < int(quote.money) or int(p.inventory.get("enhance_stone",0)) < int(quote.stones)
+		modal_body.add_child(button)
+	var message = _label(enhance_message,14,GOLD)
+	message.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	modal_body.add_child(message)
+
+func _gear_attributes(gear: Dictionary) -> String:
+	var names = {"physical_attack":"物攻", "magic_attack":"法攻", "defense":"防御", "hp":"生命上限"}
+	var parts: PackedStringArray = []
+	var values = GearRules.stats(gear)
+	for key in values: parts.append("%s +%d" % [names.get(key,key),values[key]])
+	return " · ".join(parts)

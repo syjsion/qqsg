@@ -35,6 +35,14 @@ def validate_data():
         assert not quest['previous'] or quest['previous'] in content['quests']
         if quest['type'] == 'kill': assert quest['target'] in content['monsters']
         if quest['type'] == 'collect': assert quest['target'] in content['items']
+    assert sum(entry['weight'] for entry in content['boss_loot']['equipment']) == 100
+    for entry in content['boss_loot']['equipment']:
+        for job in ['JS', 'XS']: assert entry[job] in content['items']
+    for item, count in content['boss_loot']['guaranteed'].items():
+        assert item in content['items'] and count > 0
+    assert len(content['enhancement']['levels']) == 6
+    for recipe in content['enhancement']['levels']:
+        assert 0 < recipe['chance'] <= 1 and recipe['money'] > 0 and recipe['stones'] > 0
     art = json.loads((ROOT / 'data/art.json').read_text(encoding="utf-8"))
     def walk(node):
         if isinstance(node, dict):
@@ -58,6 +66,7 @@ def main():
     if not args.skip_network:
         run([sys.executable, 'tests/network.py', '--godot', args.godot], 'NETWORK_RESULT', timeout=90)
         run([sys.executable, 'tests/reconnect.py', '--godot', args.godot], 'RECONNECT_RESULT', timeout=100)
+        run([sys.executable, 'tests/economy.py', '--godot', args.godot], 'ECONOMY_RESULT', timeout=100)
         if sys.platform != 'win32':
             run([sys.executable, 'tests/launcher.py', '--godot', args.godot], 'LAUNCHER_RESULT', timeout=180)
     print('CHECK_RESULT PASS')

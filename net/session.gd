@@ -1,5 +1,6 @@
 extends Node
 
+signal reconnecting(message: String)
 signal connected
 signal failed(message: String)
 signal snapshot_received(state: Dictionary)
@@ -27,10 +28,18 @@ var chat_at: Dictionary = {}
 var send_counter = 0
 var handshake_started = 0
 var welcomed = false
+var reconnect_allowed = false
+var retry_attempt = 0
+var retry_at = 0
+const RETRY_DELAYS = [1, 2, 4, 8, 8]
+var shutting_down = false
+var control_dir = ""
+var instance_id = ""
+
 
 func _ready() -> void:
 	multiplayer.connected_to_server.connect(_on_connected)
-	multiplayer.connection_failed.connect(func(): failed.emit("连接失败，请检查地址、UDP 端口和服务器"))
+	multiplayer.connection_failed.connect(func(): _transport_failed("连接失败，请检查地址、UDP 端口和服务器"))
 	multiplayer.server_disconnected.connect(_on_disconnected)
 	multiplayer.peer_connected.connect(func(peer):
 		if is_host: pending_peers[peer] = Time.get_ticks_msec())
@@ -63,18 +72,23 @@ func start_server() -> bool:
 	if port < 1024 or port > 65535 or int(options.max_players) < 1 or int(options.max_players) > 4 or float(options.xp_multiplier) <= 0 or float(options.xp_multiplier) > 100 or float(options.drop_multiplier) < 0 or float(options.drop_multiplier) > 10:
 		push_error("无效配置：端口 1024–65535、人数 1–4、经验倍率 (0,100]、掉落倍率 [0,10]")
 		return false
-	simulation = GameSimulation.new(SaveStore.new(str(options.data_dir)), options)
-	if simulation.fatal_error != "" or not simulation.checkpoint():
-		push_error("服务器存档不可用：" + simulation.fatal_error + simulation.store.error)
-		return false
 	var peer = ENetMultiplayerPeer.new()
 	peer.set_bind_ip(str(options.bind_address))
 	var error = peer.create_server(port, 12, 3)
 	if error != OK:
 		push_error("无法监听 UDP %s，错误 %s" % [port, error])
 		return false
+	simulation = GameSimulation.new(SaveStore.new(str(options.data_dir)), options)
+	if simulation.fatal_error != "" or not simulation.checkpoint():
+		push_error("服务器存档不可用：" + simulation.fatal_error + simulation.store.error)
+		peer.close()
+		return false
 	multiplayer.multiplayer_peer = peer
 	is_host = true
+	control_dir = str(args.get("control-dir", ""))
+	instance_id = str(args.get("instance-id", ""))
+	if control_dir != "" and instance_id != "":
+		_control_write("ready.json", {"instance": instance_id, "pid": OS.get_process_id(), "port": port, "data_dir": ProjectSettings.globalize_path(str(options.data_dir))})
 	print("SERVER_READY port=%s content=%s max_players=%s" % [port, Catalog.CONTENT, options.max_players])
 	return true
 
@@ -85,13 +99,16 @@ func connect_game(address: String, port: int, display_name: String, job: String,
 	pending_name = display_name
 	pending_job = job
 	profile = selected_profile
+	_open_connection()
+
+func _open_connection() -> void:
 	request_seq = 0
 	input_seq = 0
 	welcome_reset()
 	var peer = ENetMultiplayerPeer.new()
-	var error = peer.create_client(server_address, port, 3)
+	var error = peer.create_client(server_address, server_port, 3)
 	if error != OK:
-		failed.emit("无法建立连接，错误 %s" % error)
+		_transport_failed("无法建立连接，错误 %s" % error)
 		return
 	multiplayer.multiplayer_peer = peer
 	handshake_started = Time.get_ticks_msec()
@@ -102,6 +119,12 @@ func welcome_reset() -> void:
 	latest = {}
 
 func disconnect_game() -> void:
+	reconnect_allowed = false
+	retry_attempt = 0
+	retry_at = 0
+	_close_transport()
+
+func _close_transport() -> void:
 	handshake_started = 0
 	if multiplayer.multiplayer_peer:
 		multiplayer.multiplayer_peer.close()
@@ -109,8 +132,19 @@ func disconnect_game() -> void:
 	welcome_reset()
 
 func _on_disconnected() -> void:
-	welcome_reset()
-	failed.emit("服务器连接已断开。进度保存在服务器，可重新连接。")
+	_transport_failed("服务器连接已断开")
+
+func _transport_failed(message: String) -> void:
+	_close_transport()
+	if retry_at > 0: return
+	if reconnect_allowed and retry_attempt < RETRY_DELAYS.size():
+		var delay: int = RETRY_DELAYS[retry_attempt]
+		retry_attempt += 1
+		retry_at = Time.get_ticks_msec() + delay * 1000
+		reconnecting.emit("%s，%d 秒后重连（%d/5）" % [message, delay, retry_attempt])
+	else:
+		disconnect_game()
+		failed.emit(message + "。请检查服务器后重新连接。")
 
 func _on_connected() -> void:
 	var credentials = _read_credentials()
@@ -156,8 +190,8 @@ func _reject(peer: int, reason: String) -> void:
 
 @rpc("authority", "call_remote", "reliable", 0)
 func rejected(reason: String) -> void:
-	failed.emit(reason)
 	disconnect_game()
+	failed.emit(reason)
 
 @rpc("authority", "call_remote", "reliable", 0)
 func welcome(id: String, token: String) -> void:
@@ -178,6 +212,9 @@ func welcome(id: String, token: String) -> void:
 		return
 	player_id = id
 	welcomed = true
+	reconnect_allowed = true
+	retry_attempt = 0
+	retry_at = 0
 	handshake_started = 0
 	connected.emit()
 
@@ -235,6 +272,7 @@ func state_update(state: Dictionary) -> void:
 	_accept_state(state)
 
 func _accept_state(state: Dictionary) -> void:
+	if not welcomed: return
 	if not latest.is_empty() and float(state.time) < float(latest.time): return
 	if not latest.is_empty() and float(state.time) == float(latest.time) and int(state.self.revision) < int(latest.self.revision): return
 	latest = state
@@ -273,10 +311,14 @@ func _peer_left(peer: int) -> void:
 func _physics_process(dt: float) -> void:
 	if not is_host:
 		if handshake_started > 0 and not welcomed and Time.get_ticks_msec() - handshake_started > 8000:
-			handshake_started = 0
-			disconnect_game()
-			failed.emit("连接超时，请确认服务器已启动且 UDP 端口可达")
+			_transport_failed("连接超时，请确认服务器已启动且 UDP 端口可达")
+		if retry_at > 0 and Time.get_ticks_msec() >= retry_at:
+			retry_at = 0
+			reconnecting.emit("正在重连（%d/5）……" % retry_attempt)
+			_open_connection()
 		return
+	_poll_control()
+	if shutting_down: return
 	simulation.tick(dt)
 	send_counter += 1
 	if send_counter % 3 == 0:
@@ -306,3 +348,30 @@ func _flush_events() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST and is_host and simulation:
 		simulation.checkpoint()
+
+# Local launcher control only. No network management RPC is exposed.
+func _control_write(name: String, value: Dictionary) -> bool:
+	var path = control_dir.path_join(name)
+	var f = FileAccess.open(path + ".tmp", FileAccess.WRITE)
+	if f == null: return false
+	f.store_string(JSON.stringify(value))
+	f.flush()
+	var error = f.get_error()
+	f.close()
+	return error == OK and DirAccess.rename_absolute(path + ".tmp", path) == OK
+
+func _poll_control() -> void:
+	if control_dir == "" or instance_id == "": return
+	var path = control_dir.path_join("stop.json")
+	if not FileAccess.file_exists(path): return
+	var parser = JSON.new()
+	var valid = parser.parse(FileAccess.get_file_as_string(path)) == OK
+	DirAccess.remove_absolute(path)
+	if not valid or not parser.data is Dictionary or parser.data.get("instance", "") != instance_id: return
+	if not simulation.checkpoint():
+		_control_write("stop-result.json", {"ok": false, "error": simulation.store.error})
+		return
+	_control_write("stop-result.json", {"ok": true})
+	shutting_down = true
+	print("SERVER_STOPPED saved=true")
+	get_tree().quit()

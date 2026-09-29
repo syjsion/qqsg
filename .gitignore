@@ -12,3 +12,5 @@ server-data/
 server.local.json
 credentials.json
 __pycache__/
+
+.runtime/

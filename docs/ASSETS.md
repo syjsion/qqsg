@@ -34,3 +34,7 @@ Constraints: genuinely transparent alpha background; absolutely no grid lines, n
 ## 替换约定
 
 新图先保存独立版本，验收后更新 `data/art.json` 或生成素材引用。补充角色、图标、地图时保持大小、方向、脚底锚点和颜色一致。上游新增素材同步更新 manifest；生成素材记录完整提示词及生成日期。
+
+## 2026-09-29 / 0.1.1 表现补全
+
+复用现有 manifest 中的攻击、受击和死亡帧，不新增外部或 AI 生成位图。技能弧线、水瀑线条、治疗十字/圆环、受击颜色与首领预警由 Godot 绘图 API 实时绘制，属于本项目程序效果。死亡帧按时间播放一次，无死亡序列的素材回退已有 idle 帧并淡出。未改变原素材许可说明。

@@ -46,7 +46,8 @@ func _init(save_store: SaveStore = null, options: Dictionary = {}) -> void:
 			monsters[id] = {"id": id, "kind": spawn.kind, "name": kind.name, "map": map_id,
 				"x": float(spawn.x), "y": float(spawn.y), "home": float(spawn.x), "hp": kind.hp,
 				"max_hp": kind.hp, "facing": -1, "moving": false, "dead": false,
-				"respawn_at": 0.0, "attack_at": 0.0, "windup": 0.0, "target": "", "anim_until": 0.0}
+				"respawn_at": 0.0, "attack_at": 0.0, "windup": 0.0, "target": "", "anim_until": 0.0, "anim_started": 0.0,
+				"hurt_until": 0.0, "death_started": 0.0, "windup_started": 0.0, "attack_range": 170 if spawn.kind == "boss" else 85}
 
 func _initialize_body(p: Dictionary) -> void:
 	var map: Dictionary = Catalog.table("maps")[p.map]
@@ -64,6 +65,10 @@ func _initialize_body(p: Dictionary) -> void:
 	p.cooldowns = {}
 	p.party = ""
 	p.anim_until = 0.0
+	p.anim_started = 0.0
+	p.hurt_until = 0.0
+	p.death_started = 0.0
+	p.cast_skill = ""
 	p.combat_until = 0.0
 	p.regen_at = 0.0
 	p.input_seq = 0
@@ -107,7 +112,6 @@ func join(token: String, display_name: String, job: String) -> Dictionary:
 			return {"error": "创建角色失败：存档不可写"}
 	online.append(id)
 	inputs[id] = {"axis": Vector2.ZERO, "jump": false, "time": clock}
-	records[id].cooldowns = {}
 	records[id].input_seq = 0
 	return {"id": id, "token": token, "error": ""}
 
@@ -155,6 +159,15 @@ func _tick_monster(m: Dictionary, dt: float) -> void:
 			m.hp = def.hp
 			m.x = m.home
 			m.target = ""
+			m.windup = 0.0
+			m.death_started = 0.0
+			m.hurt_until = 0.0
+			m.anim_until = 0.0
+		return
+	# A telegraphed attack stays at its announced position until resolution.
+	if float(m.windup) > 0:
+		m.moving = false
+		if clock >= float(m.windup): _resolve_monster_attack(m)
 		return
 	var target = ""
 	var distance = 460.0 if m.kind == "boss" else 300.0
@@ -188,24 +201,27 @@ func _tick_monster(m: Dictionary, dt: float) -> void:
 		return
 	if clock < float(m.attack_at):
 		return
-	if float(m.windup) == 0:
-		m.windup = clock + (1.0 if m.kind == "boss" else 0.4)
-		m.anim_until = m.windup
-		return
-	if clock < float(m.windup):
-		return
+	m.windup_started = clock
+	m.windup = clock + (1.0 if m.kind == "boss" else 0.4)
+	m.anim_started = clock
+	m.anim_until = m.windup
+
+func _resolve_monster_attack(m: Dictionary) -> void:
+	var def: Dictionary = Catalog.table("monsters")[m.kind]
 	m.windup = 0.0
 	m.attack_at = clock + (2.0 if m.kind == "boss" else 1.4)
 	for id in online:
 		var p: Dictionary = records[id]
-		if p.map != m.map or p.dead or absf(float(p.y) - float(m.y)) > 70 or absf(float(p.x) - float(m.x)) > (170 if m.kind == "boss" else 85):
+		if p.map != m.map or p.dead or absf(float(p.y) - float(m.y)) > 70 or absf(float(p.x) - float(m.x)) > float(m.attack_range):
 			continue
-		if m.kind != "boss" and id != target:
+		if m.kind != "boss" and id != m.target:
 			continue
 		var amount = maxi(1, int(def.damage) - int(Catalog.stats(p).defense))
 		p.hp = maxi(0, int(p.hp) - amount)
 		p.combat_until = clock + 8
 		p.dead = p.hp == 0
+		p.hurt_until = clock + 0.2
+		if p.dead: p.death_started = clock
 		_emit(m.map, "damage", id, amount)
 		if p.dead:
 			checkpoint()
@@ -399,6 +415,7 @@ func _skill(p: Dictionary, skill_id: String, target: String) -> String:
 		p.facing = 1 if m.x > p.x else -1
 		var damage = CombatRules.damage(stats, float(Catalog.table("monsters")[m.kind].defense), skill, rng.randf())
 		m.hp = maxi(0, int(m.hp) - int(damage.amount))
+		m.hurt_until = clock + 0.2
 		_emit(p.map, "critical" if damage.critical else "damage", target, damage.amount)
 		if skill_id == "blood":
 			p.hp = mini(stats.hp, int(p.hp) + roundi(float(damage.amount) * 0.15))
@@ -407,6 +424,8 @@ func _skill(p: Dictionary, skill_id: String, target: String) -> String:
 	p.mp -= skill.cost
 	p.cooldowns[skill_id] = clock + float(skill.cooldown)
 	p.cooldowns.global = clock + 0.35
+	p.anim_started = clock
+	p.cast_skill = skill_id
 	p.anim_until = clock + 0.4
 	p.combat_until = clock + 8
 	_emit(p.map, "cast", p.id, 0, skill_id)
@@ -423,6 +442,9 @@ func _gain_exp(p: Dictionary, xp: int) -> void:
 		_emit(p.map, "level", p.id, p.level)
 
 func _kill(killer: Dictionary, monster: Dictionary) -> void:
+	if monster.dead: return
+	monster.death_started = clock
+	monster.windup = 0.0
 	monster.dead = true
 	monster.moving = false
 	var def: Dictionary = Catalog.table("monsters")[monster.kind]
@@ -482,7 +504,9 @@ func snapshot(id: String) -> Dictionary:
 			"map": actor.map, "x": actor.x, "y": actor.y, "hp": actor.hp, "mp": actor.mp,
 			"max_hp": stats.hp, "max_mp": stats.mp, "facing": actor.facing, "party": actor.party,
 			"dead": actor.dead, "moving": actor.moving, "climbing": actor.climbing,
-			"grounded": actor.grounded, "anim_until": actor.anim_until, "vy": actor.vy}
+			"grounded": actor.grounded, "anim_until": actor.anim_until, "vy": actor.vy,
+			"anim_started": actor.anim_started, "hurt_until": actor.hurt_until,
+			"death_started": actor.death_started, "cast_skill": actor.cast_skill}
 		roster.append(view)
 		if actor.map == p.map:
 			visible.append(view)

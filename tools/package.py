@@ -56,7 +56,7 @@ def main():
             (output/name).chmod(0o755)
             shutil.copy2(ROOT/'deploy/qqsg.service',output/'qqsg.service')
     commit = subprocess.run(['git','rev-parse','--short','HEAD'],cwd=ROOT,text=True,encoding="utf-8",stdout=subprocess.PIPE,stderr=subprocess.DEVNULL).stdout.strip() or 'working-tree'
-    (output/'BUILD.txt').write_text(f'QQSG LAN 0.1.0\nGodot {(ROOT/".godot-version").read_text(encoding="utf-8").strip()}\nCommit {commit}\nTarget {args.target}\n', encoding='utf-8')
+    (output/'BUILD.txt').write_text(f'QQSG LAN 0.1.1\nGodot {(ROOT/".godot-version").read_text(encoding="utf-8").strip()}\nCommit {commit}\nTarget {args.target}\n', encoding='utf-8')
     # Create one zip that retains executable permissions on macOS/Linux.
     archive_path = ROOT/'build'/f'qqsg-{args.target}.zip'
     with zipfile.ZipFile(archive_path,'w',zipfile.ZIP_DEFLATED) as archive:

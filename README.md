@@ -9,6 +9,10 @@ Godot 4.7.2 开发的 QQ 三国风格局域网合作游戏。Windows / macOS 客
 
 在仓库 **Actions → Test and package → 成功运行 → Artifacts** 下载对应平台包。服务端只需要其中一位玩家运行，其他人输入该电脑的局域网 IP。详细说明见 [游玩与部署](docs/PLAYING.md)。
 
+## 源码快速启动（macOS）
+
+双击根目录 `start.command`，或运行 `./start.command`，同时开服并进入游戏。关闭客户端后服务端继续运行；`./start.command status` 查看状态，`./start.command stop` 保存并停服。需要 Python 3 和 Godot 4.7.2，详见[启动说明](docs/PLAYING.md)。
+
 ## 源码运行
 
 安装 Godot 4.7.2 Standard（无需 .NET），用编辑器导入 `project.godot`。

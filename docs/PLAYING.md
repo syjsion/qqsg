@@ -1,5 +1,22 @@
 # 游玩与服务器部署
 
+## 本机源码一键启动（macOS）
+
+在仓库根目录双击 `start.command`，或终端运行 `./start.command`：自动找到 Godot 4.7.2、导入资源、启动后台服务器，等就绪后打开客户端并连接本机。需要 Python 3；若缺少引擎，运行 `python3 tools/engine.py`，或通过 `--godot /path/to/Godot` 指定。脚本不会自动下载工具。
+
+```bash
+./start.command                         # 开服并进入
+./start.command client --profile=roommate --name=室友 --job=XS
+./start.command client --connect=192.168.1.10
+./start.command server                  # 仅后台开服
+./start.command status                  # 查看 PID、端口、存档、日志
+./start.command stop                    # 保存后停止本脚本管理的服务器
+```
+
+关闭客户端或启动器终端后服务器继续运行。相同配置再次启动会复用服务器；不同配置须先 stop。可指定 `--port`、`--config` 和 `--data-dir`，默认沿用 deploy/server.json 的端口与 user://server 存档，不创建替代空档。状态与日志保存在 `.runtime`，实际存档绝对路径由 status 显示。stop 保存失败时保持开服，处理磁盘或权限问题后再次 stop；脚本不强杀进程。
+
+此入口用于源码开发，不随下载包要求玩家安装 Python；下载包仍按以下说明启动。不要同时用其他启动方式打开同一份服务端存档。
+
 ## 选择下载包
 
 客户端：Windows 下载 `qqsg-windows`，Mac 下载 `qqsg-macos`。服务器任选一台 Mac 或 Linux x64 电脑常驻运行，下载对应 `server` 包。先解压 GitHub artifact，再解压里面的游戏 zip。
@@ -63,3 +80,7 @@ Windows：运行 `Sanguo.exe`。Mac：打开 `Sanguo.app`。Mac 包采用本机�
 连接失败先检查服务端终端、IP、UDP、防火墙。版本不匹配时从同一 Actions 运行下载全套客户端和服务端；不要混用不同版本。
 “角色已经在线”时关闭旧客户端并稍候重试；“凭据无效”时恢复正确凭据，或换新的本地档案名创建角色。
 “保存失败，操作已撤销”时检查服务器磁盘空间和目录权限；此次操作不会消耗物品或金钱。
+
+## 自动重连
+
+成功登录后短暂断网或服务重启，客户端会按 1、2、4、8、8 秒间隔最多重连五次，并显示取消按钮。单次握手最多等待 8 秒。重连保留连接信息，用已有凭据恢复角色，不重新发送断线前的交易或任务请求。版本/凭据错误、人数限制等明确拒绝需要处理后手动连接。0.1.1 客户端和服务端应一起更新，已有角色存档继续兼容。

@@ -57,6 +57,9 @@ def main():
     run([args.godot, '--headless', '--path', str(ROOT), '--script', 'tests/unit.gd'], 'UNIT_RESULT')
     if not args.skip_network:
         run([sys.executable, 'tests/network.py', '--godot', args.godot], 'NETWORK_RESULT', timeout=90)
+        run([sys.executable, 'tests/reconnect.py', '--godot', args.godot], 'RECONNECT_RESULT', timeout=100)
+        if sys.platform != 'win32':
+            run([sys.executable, 'tests/launcher.py', '--godot', args.godot], 'LAUNCHER_RESULT', timeout=180)
     print('CHECK_RESULT PASS')
 
 if __name__ == '__main__':

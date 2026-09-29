@@ -1,8 +1,8 @@
 class_name Catalog
 extends RefCounted
 
-const PROTOCOL = 1
-const CONTENT = "0.1.0"
+const PROTOCOL = 2
+const CONTENT = "0.1.1"
 const SAVE_VERSION = 1
 static var content: Dictionary = {}
 static var progression: Dictionary = {}

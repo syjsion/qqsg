@@ -103,6 +103,7 @@ func run() -> void:
 	_save_tests()
 	_chapter_tests()
 	_boundary_tests()
+	_feedback_tests()
 	print("UNIT_RESULT checks=%d failures=%d" % [checks, failures])
 	quit(1 if failures else 0)
 
@@ -207,3 +208,70 @@ func _boundary_tests() -> void:
 	check(sim.command(id, "invite", {"target":ids[1]}).ok, "invite before expiry")
 	sim.clock += 31
 	check(not sim.command(ids[1], "accept", {}).ok, "expired invite rejected")
+
+func _feedback_tests() -> void:
+	var sim = GameSimulation.new()
+	var login = sim.join("", "反馈测试", "JS")
+	var id: String = login.id
+	var p: Dictionary = sim.records[id]
+	p.map = "camp"
+	var boss: Dictionary = {}
+	for m in sim.monsters.values():
+		if m.kind == "boss": boss = m
+	p.x = boss.x + 30
+	p.y = boss.y
+	sim.clock = 10
+	sim._tick_monster(boss, 0.016)
+	check(boss.windup == 11 and boss.windup_started == 10, "boss telegraph duration")
+	var origin: float = boss.x
+	p.x += 250
+	sim.clock = 10.5
+	sim._tick_monster(boss, 0.016)
+	check(boss.x == origin and not boss.moving, "windup stays at announced origin")
+	var hp = p.hp
+	sim.clock = 11
+	sim._tick_monster(boss, 0.016)
+	check(p.hp == hp and boss.windup == 0, "moving outside telegraph dodges")
+	boss.attack_at = 0
+	p.x = origin
+	sim._tick_monster(boss, 0.016)
+	p.y = boss.y - 71
+	sim.clock += 1
+	sim._tick_monster(boss, 0.016)
+	check(p.hp == hp, "jump above hit height dodges")
+	boss.attack_at = 0
+	p.y = boss.y
+	sim._tick_monster(boss, 0.016)
+	p.x = origin + 170
+	p.y = boss.y - 70
+	sim.clock += 1
+	sim._tick_monster(boss, 0.016)
+	check(p.hp < hp and p.hurt_until > sim.clock, "telegraph boundary hit and hurt state")
+	p.x = boss.x
+	p.y = boss.y
+	check(sim.command(id, "skill", {"skill":"slash", "target":boss.id}).ok, "attack accepted")
+	p = sim.records[id]
+	check(p.anim_started == sim.clock and p.cast_skill == "slash", "attack starts at cast time")
+	var ready_at = p.cooldowns.slash
+	sim.disconnect_player(id)
+	sim.join(login.token, "反馈测试", "JS")
+	# Existing-session reconnect must retain cooldowns; new bodies reset on server restart.
+	check(sim.records[id].cooldowns.slash == ready_at, "disconnect preserves cooldown")
+	check(sim.monsters[boss.id].hurt_until > sim.clock, "monster hurt feedback")
+	sim._kill(p, sim.monsters[boss.id])
+	var money = p.money
+	var drops = sim.drops.size()
+	sim._kill(p, sim.monsters[boss.id])
+	check(p.money == money and sim.drops.size() == drops, "death reward once")
+	check(not sim.command(id, "skill", {"skill":"slash", "target":boss.id}).ok, "dead monster cannot be attacked")
+	var stored = sim.persistent_state()
+	check(not stored.records[id].has("anim_started") and not stored.records[id].has("death_started"), "visual states excluded from save")
+	stored.content = "0.1.0"
+	var payload = JSON.stringify(stored)
+	check(not SaveStore.decode(JSON.stringify({"payload":payload,"sha256":payload.sha256_text()})).is_empty(), "v1 previous content save compatible")
+	p = sim.records[id]
+	p.dead = true
+	p.hp = 0
+	p.death_started = sim.clock
+	check(sim.command(id, "respawn", {}).ok, "revive after animation")
+	check(sim.records[id].death_started == 0 and sim.records[id].anim_until == 0, "revive resets visual state")

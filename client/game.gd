@@ -28,6 +28,7 @@ var skill_buttons: Array[Button] = []
 var target_label: Label
 var notice: Label
 var dead_button: Button
+var cancel_retry: Button
 var bgm: AudioStreamPlayer
 var sfx: AudioStreamPlayer
 var selected = ""
@@ -62,6 +63,7 @@ func _ready() -> void:
 	world.npc_clicked.connect(func(id): _open_panel("quests" if id == "guide" else "shop"))
 	_build_hud()
 	_build_lobby()
+	Session.reconnecting.connect(_reconnecting)
 	Session.connected.connect(_connected)
 	Session.failed.connect(_failed)
 	Session.snapshot_received.connect(_snapshot)
@@ -269,6 +271,9 @@ func _build_lobby() -> void:
 	col.add_child(profile_input)
 	connect_button = _button("启 程  →", _connect, Vector2(340, 48))
 	col.add_child(connect_button)
+	cancel_retry = _button("取消重连", func(): Session.disconnect_game(); _failed("已取消重连，可重新连接。"))
+	col.add_child(cancel_retry)
+	cancel_retry.hide()
 	status = _label("已有角色会自动恢复。\n角色进度保存在服务器，本机保存登录凭据。", 13, Color("b1bfae"))
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	col.add_child(status)
@@ -279,6 +284,9 @@ func _connect() -> void:
 	Session.connect_game(server_input.text, int(port_input.value), name_input.text, "JS" if class_input.selected == 0 else "XS", profile_input.text.strip_edges())
 
 func _connected() -> void:
+	cancel_retry.hide()
+	world.effects.clear()
+	world.smooth.clear()
 	lobby.hide()
 	hud.show()
 	world.preview = false
@@ -288,6 +296,8 @@ func _connected() -> void:
 	chat_log.add_text("已进入服务器。前往简雍处开始旅程。\n")
 
 func _failed(message: String) -> void:
+	cancel_retry.hide()
+	pending_inputs.clear()
 	status.text = message
 	connect_button.disabled = false
 	lobby.show()
@@ -297,7 +307,13 @@ func _failed(message: String) -> void:
 	world.predicted.clear()
 	world.preview = true
 
+func _reconnecting(message: String) -> void:
+	_failed(message)
+	connect_button.disabled = true
+	cancel_retry.show()
+
 func _snapshot(state: Dictionary) -> void:
+	world.snapshot_age = world.age
 	var changed_map = world.state.get("map", "") != state.map
 	world.state = state
 	predicted = state.self.duplicate(true)

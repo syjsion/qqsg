@@ -18,6 +18,8 @@ var effects: Array[Dictionary] = []
 var smooth: Dictionary = {}
 var preview = true
 
+var snapshot_age = 0.0
+
 func _ready() -> void:
 	art = JSON.parse_string(FileAccess.get_file_as_string("res://data/art.json"))
 	font = load(art.font)
@@ -42,8 +44,8 @@ func effect(e: Dictionary) -> void:
 	var position = Vector2.ZERO
 	for actor in state.get("players", []) + state.get("monsters", []):
 		if actor.id == e.target: position = Vector2(float(actor.x), float(actor.y))
-	if e.kind in ["damage", "critical", "heal", "level"]:
-		effects.append({"position": position, "life": 1.0, "kind": e.kind, "amount": e.amount})
+	if e.kind in ["damage", "critical", "heal", "level", "cast"]:
+		effects.append({"position": position, "life": 1.0, "kind": e.kind, "amount": e.amount, "skill": e.get("text", "")})
 
 func point(x: float, y: float) -> Vector2:
 	return Vector2(x - camera_x, y - camera_y)
@@ -132,6 +134,9 @@ func _draw() -> void:
 	for actor in actors:
 		_draw_actor(actor)
 	for effect_data in effects:
+		if effect_data.kind == "cast":
+			_draw_cast(effect_data)
+			continue
 		var pos: Vector2 = point(effect_data.position.x, effect_data.position.y - 100) - Vector2(0, (1.0 - float(effect_data.life)) * 65)
 		var color = Color("94ffd0") if effect_data.kind == "heal" else Color("ffde8b") if effect_data.kind == "critical" else Color.WHITE
 		color.a = minf(1, float(effect_data.life) * 2)
@@ -150,9 +155,10 @@ func _draw_actor(actor: Dictionary) -> void:
 	var p = point(position.x, position.y)
 	if p.x < -150 or p.x > 1430: return
 	var animation = "idle"
-	var time: float = state.get("time", age)
+	var time: float = float(state.get("time", age)) + minf(age - snapshot_age, 0.25)
 	if actor.get("dead", false): animation = "dead"
 	elif float(actor.get("anim_until", 0)) > time: animation = "attack"
+	elif float(actor.get("hurt_until", 0)) > time: animation = "hurt"
 	elif actor.get("climbing", false): animation = "climb"
 	elif not actor.get("grounded", true): animation = "jump"
 	elif actor.get("moving", false): animation = "run"
@@ -160,30 +166,38 @@ func _draw_actor(actor: Dictionary) -> void:
 	var facing = float(actor.get("facing", 1))
 	var chosen = actor.id == selected
 	var monster = actor.has("kind")
-	if monster and actor.get("dead", false):
-		return
+	var death_age = maxf(0, time - float(actor.get("death_started", 0)))
+	if monster and actor.get("dead", false) and death_age >= 1.2: return
+	var tint = Color.WHITE
+	if actor.get("dead", false) and monster: tint.a = clampf((1.2 - death_age) / 0.5, 0, 1)
+	elif float(actor.get("hurt_until", 0)) > time: tint = Color(1.0, 0.5, 0.5)
+	var phase = maxf(0, time - float(actor.get("anim_started", 0)))
+	if animation == "dead": phase = death_age
 	draw_set_transform(p, 0, Vector2(1, 0.3))
 	draw_circle(Vector2.ZERO, 29 if kind != "boss" else 55, Color(0.05, 0.1, 0.1, 0.3))
 	if chosen: draw_arc(Vector2.ZERO, 35, 0, TAU, 50, Color("f5d791"), 3)
 	draw_set_transform(Vector2.ZERO)
 	if actor.get("job", "") == "XS":
-		var idx = int(age * (10 if animation == "run" else 5)) % 4
+		var idx = mini(3, int(phase / 0.4 * 4)) if animation == "attack" else int(age * (10 if animation == "run" else 5)) % 4
 		var row = 0 if animation == "idle" else 1 if animation == "run" else 2 if animation == "attack" else 3
 		if row == 3: idx = {"jump": 0, "climb": 1, "hurt": 2, "dead": 3}.get(animation, 0)
 		var cell = sheet.get_size() / 4.0
 		draw_set_transform(p, 0, Vector2(facing, 1))
-		draw_texture_rect_region(sheet, Rect2(-62, -118, 124, 124), Rect2(Vector2(idx, row) * cell, cell))
+		draw_texture_rect_region(sheet, Rect2(-62, -118, 124, 124), Rect2(Vector2(idx, row) * cell, cell), tint)
 	else:
 		var frames: Array = art[kind].get(animation, art[kind].get("idle", []))
 		if not frames.is_empty():
-			var tex = texture(frames[int(age * (12 if animation == "attack" else 8)) % frames.size()])
+			var frame = int(age * 8) % frames.size()
+			if animation == "attack": frame = mini(frames.size() - 1, int(phase / maxf(0.1, float(actor.anim_until) - float(actor.get("anim_started", 0))) * frames.size()))
+			elif animation == "dead": frame = mini(frames.size() - 1, int(phase / 0.7 * frames.size()))
+			var tex = texture(frames[frame])
 			draw_set_transform(p, 0, Vector2(facing, 1))
 			if kind == "js":
-				draw_texture_rect(tex, Rect2(-90, -138, 180, 180), false)
+				draw_texture_rect(tex, Rect2(-90, -138, 180, 180), false, tint)
 			else:
 				var height = 140.0 if kind == "boss" else 70.0 if kind == "snake" else 85.0
 				var size = tex.get_size() * (height / tex.get_height())
-				draw_texture_rect(tex, Rect2(Vector2(-size.x / 2, -size.y), size), false)
+				draw_texture_rect(tex, Rect2(Vector2(-size.x / 2, -size.y), size), false, tint)
 	draw_set_transform(Vector2.ZERO)
 	var label_height = 170 if kind == "boss" else 130 if not monster else 110
 	_text(actor.name, p - Vector2(0, label_height), Color("ffda99") if monster else Color("fff9df"), 17)
@@ -192,7 +206,11 @@ func _draw_actor(actor: Dictionary) -> void:
 	draw_style_box(_health_background(), rect)
 	draw_rect(Rect2(rect.position, Vector2(60 * health, 5)), Color("d6664f") if monster else Color("76bd99"))
 	if float(actor.get("windup", 0)) > time:
-		draw_arc(p, 160 if kind == "boss" else 75, PI, TAU, 40, Color(1, 0.3, 0.15, 0.65), 3)
+		var radius = float(actor.get("attack_range", 85))
+		var progress = clampf((time - float(actor.get("windup_started", time))) / maxf(0.01, float(actor.windup) - float(actor.get("windup_started", time))), 0, 1)
+		draw_rect(Rect2(p - Vector2(radius, 70), Vector2(radius * 2, 140)), Color(1, 0.25, 0.1, 0.08 + progress * 0.15))
+		draw_line(p - Vector2(radius, 0), p + Vector2(radius, 0), Color(1, 0.35, 0.15), 4)
+		draw_line(p - Vector2(radius, 0), p + Vector2(-radius + radius * 2 * progress, 0), Color("ffe4a0"), 6)
 	if actor.get("dead", false): _text("已倒下", p - Vector2(0, 145), Color("eead9c"), 18)
 
 func _health_background() -> StyleBoxFlat:
@@ -214,6 +232,21 @@ func click(screen: Vector2) -> void:
 			npc_clicked.emit(npc.id)
 			return
 	for actor in state.get("players", []) + state.get("monsters", []):
-		if pos.distance_to(Vector2(float(actor.x), float(actor.y) - 45)) < 70:
+		if not actor.get("dead", false) and pos.distance_to(Vector2(float(actor.x), float(actor.y) - 45)) < 70:
 			entity_clicked.emit(actor.id)
 			return
+
+func _draw_cast(effect_data: Dictionary) -> void:
+	var center = point(effect_data.position.x, effect_data.position.y - 55)
+	var progress = 1.0 - float(effect_data.life)
+	var skill: String = effect_data.skill
+	var color = Color("8debc1") if skill in ["heal", "renew"] else Color("a1ddff") if skill == "bolt" else Color("ef9579") if skill == "blood" else Color("f5d791")
+	color.a = float(effect_data.life)
+	if skill in ["heal", "renew"]:
+		draw_arc(center, 25 + progress * 55, 0, TAU, 48, color, 3)
+		draw_line(center - Vector2(0, 18), center + Vector2(0, 18), color, 5)
+		draw_line(center - Vector2(18, 0), center + Vector2(18, 0), color, 5)
+	elif skill == "bolt":
+		for i in range(3): draw_line(center + Vector2(i * 14 - 14, -65 + progress * 40), center + Vector2(i * 14 - 14, 30 + progress * 40), color, 4)
+	else:
+		draw_arc(center, 35 + progress * (80 if skill == "wind" else 45), -PI * 0.8 + progress, PI * 0.3 + progress, 32, color, 5)

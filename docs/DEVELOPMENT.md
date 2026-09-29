@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-2026-09-29：正在完成 0.1.1 体验完善；完整检查已通过：96 项单元检查、原四客户端联机、真实重启重连及源码启动器测试；四平台 CI 待验证。
+2026-09-29：0.1.1 体验完善已交付；完整检查已通过：96 项单元检查、原四客户端联机、真实重启重连及源码启动器测试；四平台 CI 构建与启动检查全部通过。
 
 2026-09-25：首版 0.1.0 已提交到目标仓库；四平台 CI 构建和导出后启动检查全部通过。SSH 推送正常。Windows + macOS 两台真实电脑合作游玩待验证。
 
@@ -68,6 +68,12 @@
 - `python3 tests/launcher.py --godot "$GODOT"` PASS：真实服务进程启动、并发、复用、中文空格路径、缺少引擎、配置冲突、端口冲突不改存档、状态与安全停服。客户端子进程启动参数使用捕获替身验证，不冒充实际客户端游玩。
 - 真实图形窗口已检查营寨战斗特效、受击、死亡、首领预警截图；重连状态与取消按钮也已完成截图检查。截图使用模拟场景，不替代双机联机。
 - 已知边界：启动器面向本机 macOS 源码，依赖 Python 3；下载包启动方式保留。Linux CI 可以测试其 Unix 进程逻辑，Windows 不运行此脚本。未新增位图，复用素材和程序效果记录在 ASSETS.md。
-- 下一步：四平台打包与启动验证；Windows/Mac 两台真实电脑的联机验收仍待验证。
+- 下一步：Windows/Mac 两台真实电脑的联机验收仍待验证，重点检查防火墙、长时间合作、网络中断和安全停服。
 
 最终本机验证命令：`python3 tools/check.py --godot .tools/Godot.app/Contents/MacOS/Godot`，结果 CHECK_RESULT PASS（96 项、NETWORK_RESULT、RECONNECT_RESULT、LAUNCHER_RESULT 全部 PASS）。`python3 -m py_compile start.command tests/launcher.py tests/reconnect.py tools/check.py` 通过。重连保留当前服务会话的技能冷却，避免断线刷新冷却。
+
+### 0.1.1 交付结果
+
+提交 `11bb4a7` 的 [Actions #3](https://github.com/syjsion/qqsg/actions/runs/36550407858) 全部成功：Ubuntu 完整测试（含 96 项单元检查、四客户端网络、服务重启重连、启动器）、Windows/macOS 客户端与 macOS/Linux 服务端构建和导出后启动。四份 artifact 已上传。
+
+本机 `python3 tools/package.py macos --godot "$GODOT"` / `macos-server` 及相应 `python3 tests/export_smoke.py <target>` 均 PASS，build 中两份 macOS zip 已更新至 0.1.1。此处无界面启动及模拟场景截图不代表两台实机合作验收。

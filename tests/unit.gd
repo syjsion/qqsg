@@ -105,6 +105,7 @@ func run() -> void:
 	_boundary_tests()
 	_feedback_tests()
 	preload("res://tests/progression.gd").run(check)
+	preload("res://tests/companions.gd").run(check)
 	print("UNIT_RESULT checks=%d failures=%d" % [checks, failures])
 	quit(1 if failures else 0)
 
@@ -179,7 +180,7 @@ func _chapter_tests() -> void:
 		sim.records[id].x = 380
 		sim.records[id].y = 600
 		check(sim.command(id, "quest", {"quest":qid}).ok, "chapter complete " + qid)
-	check(sim.records[id].quests.size() == 6, "six quests complete through real command path")
+	check(sim.records[id].quests.size() == Catalog.table("quests").size(), "chapter plus companion introduction complete through real commands")
 	sim.disconnect_player(id)
 	check(sim.join(identity.token, "", "JS").id == id, "finished chapter reconnect")
 

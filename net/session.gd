@@ -38,6 +38,8 @@ var instance_id = ""
 
 
 func _ready() -> void:
+	# All traffic goes through the authoritative server; no peer relay is needed.
+	multiplayer.server_relay = false
 	multiplayer.connected_to_server.connect(_on_connected)
 	multiplayer.connection_failed.connect(func(): _transport_failed("连接失败，请检查地址、UDP 端口和服务器"))
 	multiplayer.server_disconnected.connect(_on_disconnected)
@@ -292,7 +294,8 @@ func chat(message: String) -> void:
 	if simulation.clock < float(chat_at.get(peer, 0)): return
 	chat_at[peer] = simulation.clock + 0.5
 	var sender_name: String = simulation.records[peers[peer]].name
-	for recipient in peers: chat_message.rpc_id(recipient, sender_name, message.strip_edges())
+	for recipient in peers:
+		if _peer_can_send(recipient): chat_message.rpc_id(recipient, sender_name, message.strip_edges())
 
 @rpc("authority", "call_remote", "reliable", 0)
 func chat_message(sender_name: String, message: String) -> void:
@@ -317,6 +320,8 @@ func _physics_process(dt: float) -> void:
 			reconnecting.emit("正在重连（%d/5）……" % retry_attempt)
 			_open_connection()
 		return
+	for peer in peers.keys():
+		if not _peer_can_send(peer): _peer_left(peer)
 	_poll_control()
 	if shutting_down: return
 	simulation.tick(dt)
@@ -331,6 +336,7 @@ func _physics_process(dt: float) -> void:
 			pending_peers.erase(peer)
 
 func _send_snapshot(peer: int) -> void:
+	if not peers.has(peer) or not _peer_can_send(peer): return
 	var state = simulation.snapshot(peers[peer])
 	var compressed = var_to_bytes(state).compress(FileAccess.COMPRESSION_DEFLATE)
 	if compressed.size() <= 1200:
@@ -342,7 +348,7 @@ func _send_snapshot(peer: int) -> void:
 func _flush_events() -> void:
 	for event in simulation.events:
 		for peer in peers:
-			if simulation.records[peers[peer]].map == event.map: world_event.rpc_id(peer, event)
+			if _peer_can_send(peer) and simulation.records[peers[peer]].map == event.map: world_event.rpc_id(peer, event)
 	simulation.events.clear()
 
 func _notification(what: int) -> void:
@@ -375,3 +381,10 @@ func _poll_control() -> void:
 	shutting_down = true
 	print("SERVER_STOPPED saved=true")
 	get_tree().quit()
+
+func _peer_can_send(peer_id: int) -> bool:
+	if peer_id not in multiplayer.get_peers(): return false
+	var transport = multiplayer.multiplayer_peer
+	if not transport is ENetMultiplayerPeer: return false
+	var packet_peer: ENetPacketPeer = transport.get_peer(peer_id)
+	return packet_peer != null and packet_peer.get_state() == ENetPacketPeer.STATE_CONNECTED and packet_peer.get_channels() >= 3

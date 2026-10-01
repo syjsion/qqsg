@@ -24,6 +24,12 @@ var lobby_preview: TextureRect
 var lobby_cards: Array[Button] = []
 var movement_hint: Label
 var window_scroll = 0
+var companion_health: ProgressBar
+var companion_hud_label: Label
+var companion_hud_icon: TextureRect
+var companion_tool_label: Label
+var companion_detail_status: Label
+var companion_actions: Array[Dictionary] = []
 var confirmation: Control
 
 func setup(game: Control) -> void:
@@ -91,7 +97,7 @@ func build_hud() -> void:
 	top.add_child(UIArt.image("symbols","combat",Vector2(48,48)))
 	var brand = column(top,215)
 	brand.add_child(label("三国 · 同游",25,Color("ffe29d")))
-	brand.add_child(label("局域网篇章  0.2.1",12))
+	brand.add_child(label("局域网篇章  0.3.0",12))
 	g.title = label("巴郡 · 故人相聚",20)
 	g.title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top.add_child(g.title)
@@ -125,7 +131,7 @@ func build_hud() -> void:
 	var spacer = Control.new()
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	footer.add_child(spacer)
-	for entry in [["行囊 B","bag"],["任务 Q","quests"],["队伍 T","team"],["商店","shop"]]:
+	for entry in [["行囊 B","bag"],["任务 Q","quests"],["队伍 T","team"],["商店","shop"],["副将 G","companions"]]:
 		var col = column(footer)
 		var slot = ItemSlot.new()
 		slot.icon_group = "symbols"
@@ -133,7 +139,8 @@ func build_hud() -> void:
 		slot.tooltip_text = entry[0]
 		slot.chosen.connect(func(_key): g._open_panel(entry[1]))
 		col.add_child(slot)
-		col.add_child(label(entry[0],12))
+		var tool_label = label(entry[0],12); col.add_child(tool_label)
+		if entry[1] == "companions": companion_tool_label = tool_label
 	g.hud = Control.new()
 	g.hud.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	g.hud.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -155,6 +162,12 @@ func build_hud() -> void:
 	g.target_label.clip_text = true; g.target_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	target_hp = bar(tc,Color("c95b46"),185)
 	target_panel.hide()
+	var companion_card = row(panel(Rect2(724,98,254,125),g.hud))
+	companion_hud_icon = UIArt.image("portraits","zhaoyun",Vector2(52,65)); companion_card.add_child(companion_hud_icon)
+	var cc = column(companion_card,155)
+	companion_hud_label = label("副将 · 尚未出战",13); cc.add_child(companion_hud_label)
+	companion_health = bar(cc,Color("83ae6c"),155)
+	cc.add_child(button("副将",func(): g._open_panel("companions"),"companions",Vector2(0,32)))
 	var tracker = column(panel(Rect2(994,98,270,160),g.hud))
 	var title_row = row(tracker)
 	tracker_icon = UIArt.image("symbols","quests",Vector2(28,28)); title_row.add_child(tracker_icon)
@@ -229,7 +242,7 @@ func open(kind: String) -> void:
 	var col = column(g.modal)
 	var line = row(col)
 	line.add_child(UIArt.image("symbols",kind,Vector2(34,34)))
-	var name_label = label({"bag":"行囊与装备","shop":"巴郡商店","enhance":"装备强化","quests":"旅途任务 · 简雍","team":"同游伙伴","settings":"键位与声音"}[kind],22,Color("ffe29d"))
+	var name_label = label({"bag":"行囊与装备","shop":"巴郡商店","enhance":"装备强化","quests":"旅途任务 · 简雍","team":"同游伙伴","settings":"键位与声音","companions":"名将同行 · 副将"}[kind],22,Color("ffe29d"))
 	name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL; line.add_child(name_label)
 	line.add_child(button("关闭",g._close_panel,"cancel"))
 	scroll = ScrollContainer.new(); scroll.custom_minimum_size = Vector2(772,419)
@@ -243,7 +256,7 @@ func close() -> void:
 	popup.hide()
 	if is_instance_valid(confirmation): confirmation.queue_free()
 	confirmation = null
-	slots.clear(); member_bars.clear(); proximity_actions.clear()
+	slots.clear(); member_bars.clear(); proximity_actions.clear(); companion_actions.clear(); companion_detail_status = null
 	detail = null; scroll = null
 
 func refresh() -> void:
@@ -251,7 +264,7 @@ func refresh() -> void:
 	var saved_scroll = scroll.scroll_vertical
 	for child in g.modal_body.get_children():
 		g.modal_body.remove_child(child); child.queue_free()
-	entries.clear(); slots.clear(); member_bars.clear(); proximity_actions.clear(); detail = null
+	entries.clear(); slots.clear(); member_bars.clear(); proximity_actions.clear(); companion_actions.clear(); companion_detail_status = null; detail = null
 	if g.modal_kind == "settings": _settings()
 	elif not Session.latest.is_empty():
 		var p: Dictionary = Session.latest.self
@@ -262,6 +275,7 @@ func refresh() -> void:
 			"enhance": _enhance(p)
 			"quests": _quests(p)
 			"team": _team(p)
+			"companions": _companions(p)
 	if scroll: scroll.set_deferred("scroll_vertical",saved_scroll)
 	update_dynamic()
 
@@ -369,6 +383,7 @@ func _enhance(p: Dictionary) -> void:
 
 func show_detail() -> void:
 	if not detail: return
+	if g.modal_kind == "companions": _companion_detail(); return
 	for child in detail.get_children(): detail.remove_child(child); child.queue_free()
 	proximity_actions.clear()
 	var entry = selected_entry()
@@ -424,6 +439,7 @@ func show_detail() -> void:
 			action.tooltip_text = "需满足职业与等级要求"
 		elif entry.item in ["potion","ether"]:
 			var action = button("使用一件",func(): activate_entry(entry.key),"heal"); action.disabled = pending > 0 or p.dead; detail.add_child(action)
+		if entry.item == "recruit_token": detail.add_child(button("招募副将",func(): g._open_panel("companions"),"companions"))
 		detail.add_child(button("前往强化",func(): g._open_panel("enhance"),"enhance"))
 	update_dynamic()
 
@@ -454,6 +470,7 @@ func activate_entry(key: String) -> void:
 		if entry.key in p.equipment.values() or item.get("job","") not in ["",p.job] or int(item.get("level",1)) > int(p.level): return
 		send("equip",{"gear_id":entry.key})
 	elif entry.item in ["potion","ether"]: send("use",{"item":entry.item})
+	elif entry.item == "recruit_token": g._open_panel("companions")
 
 func context_entry(key: String) -> void:
 	select_entry(key); context_key = key; popup.clear()
@@ -462,6 +479,7 @@ func context_entry(key: String) -> void:
 	if g.modal_kind == "bag":
 		if entry.has("gear"): popup.add_icon_item(UIArt.texture("symbols","combat"),"装备",0)
 		elif entry.item in ["potion","ether"]: popup.add_icon_item(UIArt.texture("symbols","heal"),"使用一件",0)
+		elif entry.item == "recruit_token": popup.add_icon_item(UIArt.texture("symbols","companions"),"招募副将",3)
 		popup.add_icon_item(UIArt.texture("symbols","quests"),"查看详情",1)
 	elif g.modal_kind == "shop": popup.add_icon_item(UIArt.texture("symbols","shop"),"购买一件" if shop_mode == "buy" else "出售一件",2)
 	elif g.modal_kind == "enhance": popup.add_icon_item(UIArt.texture("symbols","quests"),"选择强化目标",1)
@@ -486,6 +504,7 @@ func _context_action(id: int) -> void:
 	select_entry(context_key)
 	if id == 0: activate_entry(context_key)
 	elif id == 2 and not selected_entry().is_empty(): _trade(selected_entry())
+	elif id == 3: g._open_panel("companions")
 
 func send(action: String, payload: Dictionary) -> int:
 	if pending > 0: return 0
@@ -534,6 +553,18 @@ func update_dynamic() -> void:
 		if not is_instance_valid(entry.button): continue
 		entry.button.disabled = pending > 0 or p.dead or entry.base or not near(entry.npc)
 		entry.button.tooltip_text = "等待服务端结算" if pending > 0 else "角色已倒下" if p.dead else "需要靠近对应 NPC" if not near(entry.npc) else entry.reason if entry.base else ""
+	for action in companion_actions:
+		if not is_instance_valid(action.button): continue
+		var disabled = pending > 0 or p.dead
+		if action.kind == "recruit": disabled = disabled or not near("guide") or p.companions.size() >= 12 or int(p.inventory.get("recruit_token",0)) < 1
+		elif action.kind != "mode": disabled = disabled or float(Session.latest.time) < float(p.combat_until)
+		if action.kind == "release": disabled = disabled or action.id == p.active_companion
+		action.button.disabled = disabled
+	if is_instance_valid(companion_detail_status):
+		var cid = choices.get("companions","")
+		if p.companions.has(cid):
+			var c: Dictionary = p.companions[cid]
+			companion_detail_status.text = "生命 %d / %d\n经验 %d / %d%s\n技能冷却 %.1f 秒%s" % [c.hp,CompanionRules.stats(c).hp,c.xp,CompanionRules.required_exp(c.level)," · 等级已达当前上限" if c.level >= mini(10,p.level) else "",c.skill_cooldown_remaining,"\n倒下恢复还需 %.1f 秒脱战时间" % c.recovery_remaining if c.hp == 0 else ""]
 	for slot in slots:
 		slot.disabled = slot.icon_id == "" or pending > 0
 		slot.queue_redraw()
@@ -570,6 +601,13 @@ func update_hud(state: Dictionary) -> void:
 			target_portrait.texture = UIArt.texture("portraits",actor.get("job",actor.get("kind","snake")))
 			target_hp.max_value = actor.max_hp; target_hp.value = actor.hp
 			target_hp.get_child(0).text = "%d / %d" % [actor.hp,actor.max_hp]
+	var active: Dictionary = p.companions.get(p.active_companion,{})
+	companion_tool_label.text = "副将 " + OS.get_keycode_string(g.keys.companions)
+	companion_hud_icon.texture = UIArt.texture("portraits",active.get("kind","zhaoyun"))
+	companion_hud_label.text = "副将 · 尚未出战" if active.is_empty() else "%s Lv.%d · %s" % [Catalog.table("companions")[active.kind].name,active.level,"已倒下" if active.hp == 0 else "助战" if p.companion_mode == "assist" else "跟随"]
+	companion_health.max_value = 1 if active.is_empty() else CompanionRules.stats(active).hp
+	companion_health.value = active.get("hp",0)
+	companion_health.get_child(0).text = (OS.get_keycode_string(g.keys.companions)+" 打开副将") if active.is_empty() else "%d / %d" % [active.hp,companion_health.max_value]
 	g.hud.get_node("NoticePanel").visible = g.notice.text != ""
 	update_dynamic()
 
@@ -604,6 +642,9 @@ func _quests(p: Dictionary) -> void:
 	var rewards = row(info)
 	rewards.add_child(UIArt.image("items","xp",Vector2(30,30))); rewards.add_child(label("经验 %d" % q.xp))
 	rewards.add_child(UIArt.image("items","money",Vector2(30,30))); rewards.add_child(label("三国币 %d" % q.money))
+	if q.has("companion_reward"):
+		rewards.add_child(UIArt.image("portraits",q.companion_reward,Vector2(42,42)))
+		rewards.add_child(label("副将 " + Catalog.table("companions")[q.companion_reward].name))
 	var done = state.get("state","") == "done"
 	var blocked = q.previous != "" and p.quests.get(q.previous,{}).get("state","") != "done"
 	var ready = q.type == "talk" or progress >= int(q.count)
@@ -634,13 +675,81 @@ func _team(p: Dictionary) -> void:
 func _settings() -> void:
 	header(g.modal_body,"点击按键后按下新键；Esc 取消","settings")
 	var grid_node = GridContainer.new(); grid_node.columns = 2; grid_node.add_theme_constant_override("h_separation",24); g.modal_body.add_child(grid_node)
-	var names = {"left":"向左","right":"向右","up":"向上／传送","down":"向下","jump":"跳跃","attack":"普攻","skill1":"技能一","skill2":"技能二","pickup":"拾取","target":"切换目标","bag":"背包","quests":"任务","team":"队伍","interact":"交谈"}
+	var names = {"left":"向左","right":"向右","up":"向上／传送","down":"向下","jump":"跳跃","attack":"普攻","skill1":"技能一","skill2":"技能二","pickup":"拾取","target":"切换目标","bag":"背包","quests":"任务","team":"队伍","interact":"交谈","companions":"副将"}
 	for action in g.keys:
 		var line = row(grid_node)
-		var icon: String = {"bag":"bag","quests":"quests","team":"team","interact":"shop","pickup":"bag"}.get(action,"combat")
+		var icon: String = {"bag":"bag","quests":"quests","team":"team","interact":"shop","pickup":"bag","companions":"companions"}.get(action,"combat")
 		line.add_child(UIArt.image("symbols",icon,Vector2(24,24)))
 		var caption = label(names[action],14); caption.custom_minimum_size.x = 135; line.add_child(caption)
 		line.add_child(button("请按新键…" if g.rebinding == action else OS.get_keycode_string(g.keys[action]),func(): g.rebinding = action; refresh(),"",Vector2(130,32)))
 	var audio = row(g.modal_body); audio.add_child(UIArt.image("symbols","sound",Vector2(32,32)))
 	var mute = CheckButton.new(); mute.text = "静音"; mute.button_pressed = AudioServer.is_bus_mute(0)
 	mute.toggled.connect(func(value): AudioServer.set_bus_mute(0,value); g._save_settings()); audio.add_child(mute)
+
+func _companions(p: Dictionary) -> void:
+	var body = row(g.modal_body)
+	var collection = column(body,345)
+	header(collection,"副将收藏 %d / 12" % p.companions.size(),"companions")
+	var grid_node = GridContainer.new(); grid_node.columns = 4; collection.add_child(grid_node)
+	var ids: Array = p.companions.keys(); ids.sort()
+	for i in range(12):
+		var slot = ItemSlot.new(); slot.custom_minimum_size = Vector2(78,78); slot.icon_group = "portraits"
+		if i < ids.size():
+			var c: Dictionary = p.companions[ids[i]]
+			slot.entry = {"key":c.id,"item":c.kind,"companion":c}
+			slot.icon_id = c.kind; slot.badge = "Lv.%d" % c.level; slot.marked = choices.get("companions","") == c.id
+			slot.key_hint = "出战" if c.id == p.active_companion else ""
+			slot.tooltip_text = "%s Lv.%d [%s]" % [Catalog.table("companions")[c.kind].name,c.level,c.id.right(6)]
+			slot.chosen.connect(select_entry); entries.append(slot.entry)
+		else: slot.disabled = true
+		grid_node.add_child(slot); slots.append(slot)
+	text_block(collection,"同名副将独立培养；最多出战一名。\n出战、收回和放生需要脱战。",330,13)
+	var tokens = row(collection); tokens.add_child(UIArt.image("items","recruit_token",Vector2(36,36))); tokens.add_child(label("招募令 ×%d" % p.inventory.get("recruit_token",0),15))
+	var recruit_row = row(collection)
+	for kind in Catalog.table("companions"):
+		var b = button("招募" + Catalog.table("companions")[kind].name,func(): _companion_send("companion_recruit",{"kind":kind}),"",Vector2(104,35))
+		recruit_row.add_child(b); companion_actions.append({"button":b,"kind":"recruit"})
+	text_block(collection,"靠近巴郡简雍，自选招募；每次消耗一枚招募令。首次副将从“名将同行”任务领取。",330,13)
+	_prepare_detail(body)
+
+func _companion_detail() -> void:
+	for child in detail.get_children(): detail.remove_child(child); child.queue_free()
+	companion_actions = companion_actions.filter(func(a): return a.kind == "recruit")
+	companion_detail_status = null
+	var entry = selected_entry()
+	if entry.is_empty():
+		detail.add_child(UIArt.image("symbols","companions",Vector2(120,120)))
+		text_block(detail,"选择左侧副将查看能力与出战状态。",230)
+		return
+	var c: Dictionary = Session.latest.self.companions[entry.key]
+	var def: Dictionary = Catalog.table("companions")[c.kind]
+	detail.add_child(UIArt.image("characters",c.kind,Vector2(108,108)))
+	text_block(detail,"%s Lv.%d [%s]\n%s · %s" % [def.name,c.level,c.id.right(6),def.role,def.skill],230,15)
+	companion_detail_status = text_block(detail,"",230,13)
+	var skill_row = row(detail); skill_row.add_child(UIArt.image("companion_skills",c.kind,Vector2(38,38)))
+	text_block(skill_row,"%s %d · 距离 %d\n间隔 %.1f 秒 · 防御 %d" % ["治疗" if c.kind == "huatuo" else "伤害",CompanionRules.stats(c).power,def.range,def.cooldown,CompanionRules.stats(c).defense],180,13)
+	var active = c.id == Session.latest.self.active_companion
+	var deploy = button("收回副将" if active else "出战副将",func(): _companion_send("companion_recall" if active else "companion_deploy",{} if active else {"companion_id":c.id}),"companions")
+	detail.add_child(deploy); companion_actions.append({"button":deploy,"kind":"deploy"})
+	var mode = button("改为仅跟随" if Session.latest.self.companion_mode == "assist" else "改为助战",func(): _companion_send("companion_mode",{"mode":"follow" if Session.latest.self.companion_mode == "assist" else "assist"}),"combat")
+	detail.add_child(mode); companion_actions.append({"button":mode,"kind":"mode"})
+	var release = button("放生副将",func(): _confirm_release(c.id),"cancel")
+	detail.add_child(release); companion_actions.append({"button":release,"kind":"release","id":c.id})
+	update_dynamic()
+
+func _companion_send(action: String, payload: Dictionary) -> void:
+	payload.expected_revision = Session.latest.self.companion_revision
+	send(action,payload)
+
+func _confirm_release(cid: String) -> void:
+	if pending > 0 or is_instance_valid(confirmation) or not Session.latest.self.companions.has(cid): return
+	var c: Dictionary = Session.latest.self.companions[cid]
+	var revision = int(Session.latest.self.companion_revision)
+	confirmation = Control.new(); confirmation.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT); confirmation.mouse_filter = Control.MOUSE_FILTER_STOP; g.add_child(confirmation)
+	var col = column(panel(Rect2(384,220,512,280),confirmation))
+	header(col,"确认放生副将","companions")
+	var info = row(col); info.add_child(UIArt.image("portraits",c.kind,Vector2(72,72)))
+	text_block(info,"放生 %s Lv.%d [%s]？\n培养进度将永久失去，无返还奖励。" % [Catalog.table("companions")[c.kind].name,c.level,c.id.right(6)],340,15)
+	var actions = row(col)
+	actions.add_child(button("确认放生",func(): confirmation.queue_free(); confirmation = null; send("companion_release",{"companion_id":cid,"expected_revision":revision}),"confirm"))
+	actions.add_child(button("保留副将",func(): confirmation.queue_free(); confirmation = null,"cancel"))

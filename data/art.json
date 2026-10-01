@@ -771,6 +771,15 @@
         313.5,
         313.5
       ]
+    },
+    "recruit_token": {
+      "path": "res://assets/generated/companion-icons-v1.png",
+      "region": [
+        1330.5,
+        0,
+        443.5,
+        443.5
+      ]
     }
   },
   "symbols": {
@@ -926,6 +935,15 @@
         313.5,
         313.5
       ]
+    },
+    "companions": {
+      "path": "res://assets/generated/companion-icons-v1.png",
+      "region": [
+        1380.5,
+        443.5,
+        393.5,
+        443.5
+      ]
     }
   },
   "skills": {
@@ -986,7 +1004,34 @@
       ]
     },
     "guide": "res://assets/reference/assets/map/bajun/npc/简雍/Sprite_1.png",
-    "merchant": "res://assets/reference/assets/map/bajun/npc/铁匠/Sprite_5.png"
+    "merchant": "res://assets/reference/assets/map/bajun/npc/铁匠/Sprite_5.png",
+    "zhaoyun": {
+      "path": "res://assets/generated/zhaoyun-sheet-v1.png",
+      "region": [
+        0,
+        0,
+        313.5,
+        313.5
+      ]
+    },
+    "huangzhong": {
+      "path": "res://assets/generated/huangzhong-sheet-v1.png",
+      "region": [
+        0,
+        0,
+        313.5,
+        313.5
+      ]
+    },
+    "huatuo": {
+      "path": "res://assets/generated/huatuo-sheet-v1.png",
+      "region": [
+        0,
+        0,
+        313.5,
+        313.5
+      ]
+    }
   },
   "portraits": {
     "JS": {
@@ -1012,6 +1057,67 @@
     "snake": "res://assets/reference/Monster_ui/竹叶青/101345-1.png",
     "boar": "res://assets/reference/assets/map/bajun/npc/小猪/Sprite_1.png",
     "soldier": "res://assets/reference/Monster_ui/益州斧兵/Sprite_1.png",
-    "boss": "res://assets/reference/Monster_ui/dengmao/闲置/53330-1.png"
+    "boss": "res://assets/reference/Monster_ui/dengmao/闲置/53330-1.png",
+    "zhaoyun": {
+      "path": "res://assets/generated/companion-icons-v1.png",
+      "region": [
+        0.0,
+        0,
+        443.5,
+        443.5
+      ]
+    },
+    "huangzhong": {
+      "path": "res://assets/generated/companion-icons-v1.png",
+      "region": [
+        443.5,
+        0,
+        443.5,
+        443.5
+      ]
+    },
+    "huatuo": {
+      "path": "res://assets/generated/companion-icons-v1.png",
+      "region": [
+        887.0,
+        0,
+        443.5,
+        443.5
+      ]
+    }
+  },
+  "companion_sheets": {
+    "zhaoyun": "res://assets/generated/zhaoyun-sheet-v1.png",
+    "huangzhong": "res://assets/generated/huangzhong-sheet-v1.png",
+    "huatuo": "res://assets/generated/huatuo-sheet-v1.png"
+  },
+  "companion_skills": {
+    "zhaoyun": {
+      "path": "res://assets/generated/companion-icons-v1.png",
+      "region": [
+        0.0,
+        443.5,
+        443.5,
+        443.5
+      ]
+    },
+    "huangzhong": {
+      "path": "res://assets/generated/companion-icons-v1.png",
+      "region": [
+        443.5,
+        443.5,
+        443.5,
+        443.5
+      ]
+    },
+    "huatuo": {
+      "path": "res://assets/generated/companion-icons-v1.png",
+      "region": [
+        887.0,
+        443.5,
+        443.5,
+        443.5
+      ]
+    }
   }
 }

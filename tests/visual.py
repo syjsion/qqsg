@@ -6,6 +6,16 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 SCENARIOS = {
+    'companions': ['--preview=companions', '--map=bajun'],
+    'companions-full': ['--preview=companions', '--map=bajun', '--full=true'],
+    'companions-empty': ['--preview=companions', '--map=bajun', '--empty=true'],
+    'companions-small-down': ['--preview=companions', '--map=bajun', '--down=true', '--width=960', '--height=700'],
+    'companion-release': ['--preview=companions', '--map=bajun', '--release=true'],
+    'companion-attack': ['--preview=companion-world', '--map=west', '--motion=attack'],
+    'companion-hurt': ['--preview=companion-world', '--map=west', '--motion=hurt'],
+    'companion-run': ['--preview=companion-world', '--map=west', '--motion=run'],
+    'companion-down': ['--preview=companion-world', '--map=west', '--down=true'],
+    'companion-world': ['--preview=companion-world', '--map=west'],
     'bag': ['--preview=bag', '--map=bajun'],
     'bag-full': ['--preview=bag', '--map=bajun', '--full=true'],
     'bag-empty-long': ['--preview=bag', '--map=bajun', '--empty=true', '--long=true'],

@@ -58,3 +58,9 @@ Constraints: genuinely transparent alpha background; absolutely no grid lines, n
 完整最终提示词、日期、工具模式、尺寸与哈希保存在 `assets/generated/manifest.json`。图集按实际尺寸划分 4×4 区域，AtlasTexture 开启区域裁切；原角色图以区域引用作为头像与预览。按钮文字、数量、品质、强化、任务状态及冷却均由 Godot 绘制，未烘焙进贴图。JS 技能复用已有 19768/19769/19770 图像作为当前三个技能的表现映射，不将此映射声明为官方技能资源编号。
 
 检查方式：实际图形窗口查看图标在 30/54/66 像素下的轮廓、透明背景、两职业、满格、空格、右键菜单、强化和奖励；完整检查验证所有内容都有图标、区域不越界、源文件哈希匹配。截图使用模拟状态，不代替 LAN 实测。
+
+## 2026-10-01 / 0.3.0 名将副将
+
+使用 imagegen 内置工具生成四个透明 RGBA 文件：`zhaoyun-sheet-v1.png`、`huangzhong-sheet-v1.png`、`huatuo-sheet-v1.png` 和 `companion-icons-v1.png`，保存于 assets/generated。未使用 API/CLI fallback。三张动作图为 4×4，行分别为待机、跑动、攻击／治疗，末行为跳跃、攀爬、受伤、倒下；运行时按实际尺寸取帧，角色面向右、需要左向时镜像。动作图预览用首帧，脚底按格子底边锚定。生成姿势和名将形象是本项目原创近似风格，不是官方原图，帧间锚点细微差异属于已知美术边界。
+
+图标图集为 4×2：首行赵云／黄忠／华佗头像、招募令；第二行长枪／弓箭／治疗技能、双盔副将入口。独立保留源图，AtlasTexture 按实际尺寸划分，不修改位图。完整提示词、工具模式、日期、尺寸和 SHA-256 记录于 assets/generated/manifest.json；完整检查验证三名角色的所有映射与文件哈希。

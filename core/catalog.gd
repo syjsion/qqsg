@@ -1,9 +1,9 @@
 class_name Catalog
 extends RefCounted
 
-const PROTOCOL = 3
-const CONTENT = "0.2.0"
-const SAVE_VERSION = 2
+const PROTOCOL = 4
+const CONTENT = "0.3.0"
+const SAVE_VERSION = 3
 static var content: Dictionary = {}
 static var progression: Dictionary = {}
 
@@ -37,7 +37,8 @@ static func new_character(id: String, display_name: String, job: String) -> Dict
 	return {"id": id, "name": display_name, "job": job, "level": 1, "xp": 0,
 		"money": 100, "map": "bajun", "inventory": {"potion": 8, "ether": 5},
 		"gear": {weapon.id:weapon, armor.id:armor}, "equipment": {"weapon":weapon.id, "armor":armor.id},
-		"quests": {}, "kills": {}, "revision": 0}
+		"quests": {}, "kills": {}, "revision": 0, "companions": {},
+		"active_companion":"", "companion_mode":"assist", "companion_revision":0, "companion_combat_remaining":0.0}
 
 static func gain_exp(record: Dictionary, amount: int) -> bool:
 	var leveled = false

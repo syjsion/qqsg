@@ -40,7 +40,7 @@ var predicted: Dictionary = {}
 var pending_inputs: Array[Dictionary] = []
 var keys: Dictionary = {"left": KEY_LEFT, "right": KEY_RIGHT, "up": KEY_UP, "down": KEY_DOWN,
 	"jump": KEY_SPACE, "attack": KEY_A, "skill1": KEY_S, "skill2": KEY_D, "pickup": KEY_C,
-	"target": KEY_TAB, "bag": KEY_B, "quests": KEY_Q, "team": KEY_T, "interact": KEY_E}
+	"target": KEY_TAB, "bag": KEY_B, "quests": KEY_Q, "team": KEY_T, "interact": KEY_E, "companions": KEY_G}
 var rebinding = ""
 var modal_revision = -1
 var shot_timer = 0.0
@@ -230,7 +230,7 @@ func _snapshot(state: Dictionary) -> void:
 	_update_hud(state)
 	var signature = str(state.invite)
 	for member in state.roster: signature += member.id + member.party + member.map
-	if modal and modal_kind in ["bag", "quests", "shop", "team", "enhance"] and (int(state.self.revision) != modal_revision or (modal_kind == "team" and team_signature != signature)):
+	if modal and modal_kind in ["bag", "quests", "shop", "team", "enhance", "companions"] and (int(state.self.revision) != modal_revision or (modal_kind == "team" and team_signature != signature)):
 		_refresh_panel()
 	team_signature = signature
 
@@ -308,6 +308,7 @@ func _input(event: InputEvent) -> void:
 	elif key == keys.bag: _open_panel("bag")
 	elif key == keys.quests: _open_panel("quests")
 	elif key == keys.team: _open_panel("team")
+	elif key == keys.companions: _open_panel("companions")
 	elif modal != null: return
 	elif key == keys.attack: _cast(0)
 	elif key == keys.skill1: _cast(1)

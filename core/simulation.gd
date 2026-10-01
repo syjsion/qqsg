@@ -18,6 +18,8 @@ var store: SaveStore
 var config: Dictionary
 var fatal_error = ""
 var enhancement_result: Dictionary = {}
+var companion_bodies: Dictionary = {}
+var ai_retry_at = 0.0
 
 func _init(save_store: SaveStore = null, options: Dictionary = {}) -> void:
 	Catalog.load_data()
@@ -70,17 +72,19 @@ func _initialize_body(p: Dictionary) -> void:
 	p.hurt_until = 0.0
 	p.death_started = 0.0
 	p.cast_skill = ""
-	p.combat_until = 0.0
+	p.combat_until = clock+float(p.get("companion_combat_remaining",0.0))
 	p.regen_at = 0.0
 	p.input_seq = 0
+	p.companion_target = ""
 
 func persistent_state() -> Dictionary:
 	var saved: Dictionary = {}
 	for id in records:
 		var p: Dictionary = records[id]
 		var entry = {}
-		for key in ["id", "name", "job", "level", "xp", "money", "map", "inventory", "equipment", "gear", "quests", "kills", "revision", "hp", "mp"]:
+		for key in ["id", "name", "job", "level", "xp", "money", "map", "inventory", "equipment", "gear", "quests", "kills", "revision", "hp", "mp", "companions", "active_companion", "companion_mode", "companion_revision"]:
 			entry[key] = p[key]
+		entry.companion_combat_remaining = maxf(0,float(p.combat_until)-clock)
 		saved[id] = entry
 	return {"version": Catalog.SAVE_VERSION, "content": Catalog.CONTENT, "records": saved,
 		"tokens": tokens, "drops": drops, "next_drop": next_drop, "loot_turn": loot_turn}
@@ -119,6 +123,7 @@ func join(token: String, display_name: String, job: String) -> Dictionary:
 func disconnect_player(id: String) -> void:
 	online.erase(id)
 	inputs.erase(id)
+	companion_bodies.erase(id)
 	invites.erase(id)
 	if records.has(id):
 		records[id].moving = false
@@ -145,8 +150,10 @@ func tick(dt: float) -> void:
 			p.hp = mini(stats.hp, int(p.hp) + (25 if p.map == "bajun" else 4))
 			p.mp = mini(stats.mp, int(p.mp) + (25 if p.map == "bajun" else 5))
 			p.regen_at = clock + 2.0
-	for m in monsters.values():
-		_tick_monster(m, dt)
+	for id in online: _tick_companion_body(records[id],dt)
+	for mid in monsters.keys():
+		_tick_monster(monsters[mid], dt)
+	for id in online: _tick_companion_action(records[id])
 	if save_clock >= 30:
 		save_clock = 0
 		if not checkpoint():
@@ -172,13 +179,12 @@ func _tick_monster(m: Dictionary, dt: float) -> void:
 		return
 	var target = ""
 	var distance = 460.0 if m.kind == "boss" else 300.0
-	for id in online:
-		var p: Dictionary = records[id]
+	for p in _combatants():
 		if p.map != m.map or p.dead or absf(float(p.y) - float(m.y)) > 75:
 			continue
 		var dx = absf(float(p.x) - float(m.x))
 		if dx < distance:
-			target = id
+			target = p.id
 			distance = dx
 	if absf(float(m.x) - float(m.home)) > 550:
 		target = ""
@@ -194,7 +200,7 @@ func _tick_monster(m: Dictionary, dt: float) -> void:
 			m.x = float(m.home) + sin(clock * 0.55 + float(m.home)) * 22.0
 		m.hp = minf(float(def.hp), float(m.hp) + dt * 5)
 		return
-	var victim: Dictionary = records[target]
+	var victim: Dictionary = _actor(target)
 	m.facing = 1 if victim.x > m.x else -1
 	if distance > (100 if m.kind == "boss" else 62):
 		m.x += float(m.facing) * float(def.speed) * dt
@@ -208,33 +214,53 @@ func _tick_monster(m: Dictionary, dt: float) -> void:
 	m.anim_until = m.windup
 
 func _resolve_monster_attack(m: Dictionary) -> void:
+	if clock < ai_retry_at: return
+	var before = _capture_state()
 	var def: Dictionary = Catalog.table("monsters")[m.kind]
 	m.windup = 0.0
 	m.attack_at = clock + (2.0 if m.kind == "boss" else 1.4)
-	for id in online:
-		var p: Dictionary = records[id]
-		if p.map != m.map or p.dead or absf(float(p.y) - float(m.y)) > 70 or absf(float(p.x) - float(m.x)) > float(m.attack_range):
-			continue
-		if m.kind != "boss" and id != m.target:
-			continue
-		var amount = maxi(1, int(def.damage) - int(Catalog.stats(p).defense))
-		p.hp = maxi(0, int(p.hp) - amount)
-		p.combat_until = clock + 8
-		p.dead = p.hp == 0
-		p.hurt_until = clock + 0.2
-		if p.dead: p.death_started = clock
-		_emit(m.map, "damage", id, amount)
-		if p.dead:
-			checkpoint()
+	var hit = false
+	for actor in _combatants():
+		if actor.map != m.map or actor.dead or absf(float(actor.y) - float(m.y)) > 70 or absf(float(actor.x) - float(m.x)) > float(m.attack_range): continue
+		if m.kind != "boss" and actor.id != m.target: continue
+		hit = true
+		if actor.get("entity_type","") == "companion":
+			var owner: Dictionary = records[actor.owner]
+			var c: Dictionary = owner.companions[actor.id]
+			var amount = maxi(1,int(def.damage) - int(CompanionRules.stats(c).defense))
+			c.hp = maxi(0,int(c.hp)-amount)
+			if c.hp == 0: c.recovery_remaining = 20.0
+			companion_bodies[owner.id].hurt_until = clock+0.2
+			if c.hp == 0: companion_bodies[owner.id].death_started = clock
+			owner.combat_until = clock+8
+			_emit(m.map,"damage",c.id,amount)
+		else:
+			var p: Dictionary = records[actor.id]
+			var amount = maxi(1,int(def.damage) - int(Catalog.stats(p).defense))
+			p.hp = maxi(0,int(p.hp)-amount); p.dead = p.hp == 0
+			p.combat_until = clock+8; p.hurt_until = clock+0.2
+			if p.dead: p.death_started = clock
+			_emit(m.map,"damage",p.id,amount)
+	if hit: _commit_ai(before)
+
+func _capture_state() -> Dictionary:
+	return {"records":records.duplicate(true),"monsters":monsters.duplicate(true),
+		"drops":drops.duplicate(true),"invites":invites.duplicate(true),"events":events.duplicate(true),
+		"next_drop":next_drop,"loot_turn":loot_turn,"rng":rng.state,"inputs":inputs.duplicate(true),
+		"companion_bodies":companion_bodies.duplicate(true)}
+
+func _commit_ai(before: Dictionary) -> bool:
+	if checkpoint(): return true
+	_restore(before)
+	ai_retry_at = clock+1.0
+	return false
 
 func command(id: String, operation: String, args: Dictionary) -> Dictionary:
 	enhancement_result = {}
 	if id not in online:
 		return {"ok": false, "message": "角色未在线"}
 	# Capture state before economic operations. A failed disk commit rolls everything back.
-	var before = {"records": records.duplicate(true), "monsters": monsters.duplicate(true),
-		"drops": drops.duplicate(true), "invites": invites.duplicate(true), "events": events.duplicate(true),
-		"next_drop": next_drop, "loot_turn": loot_turn, "rng": rng.state, "inputs": inputs.duplicate(true)}
+	var before = _capture_state()
 	var message = _execute(id, operation, args)
 	if message != "":
 		_restore(before)
@@ -255,6 +281,7 @@ func _restore(before: Dictionary) -> void:
 	loot_turn = before.loot_turn
 	rng.state = before.rng
 	inputs = before.inputs
+	companion_bodies = before.companion_bodies
 
 func _execute(id: String, operation: String, args: Dictionary) -> String:
 	var p: Dictionary = records[id]
@@ -262,6 +289,7 @@ func _execute(id: String, operation: String, args: Dictionary) -> String:
 		if not p.dead:
 			return "角色尚未倒下"
 		p.map = "bajun"
+		p.companion_combat_remaining = maxf(0,float(p.combat_until)-clock)
 		_initialize_body(p)
 		p.hp = Catalog.stats(p).hp
 		p.mp = Catalog.stats(p).mp
@@ -269,6 +297,7 @@ func _execute(id: String, operation: String, args: Dictionary) -> String:
 		return ""
 	if p.dead:
 		return "请先回城复活"
+	if operation.begins_with("companion_"): return _companion_command(p,operation,args)
 	match operation:
 		"skill": return _skill(p, str(args.get("skill", "")), str(args.get("target", "")))
 		"pickup": return _pickup(p, str(args.get("drop", "")))
@@ -390,6 +419,11 @@ func _quest(p: Dictionary, id: String) -> String:
 		return "任务目标尚未完成"
 	if q.type == "collect":
 		InventoryRules.take(p.inventory, q.target, q.count)
+	if q.has("companion_reward"):
+		if p.companions.size() >= CompanionRules.CAPACITY: return "副将收藏已满，请先放生一名副将"
+		var c = CompanionRules.create(q.companion_reward)
+		p.companions[c.id] = c
+		p.companion_revision += 1
 	current.state = "done"
 	p.money += int(q.money)
 	_gain_exp(p, roundi(float(q.xp) * float(config.xp_multiplier)))
@@ -426,6 +460,7 @@ func _skill(p: Dictionary, skill_id: String, target: String) -> String:
 		var m: Dictionary = monsters[target]
 		if _distance(p, m) > float(skill.range) or absf(float(p.y) - float(m.y)) > 85:
 			return "目标超出技能范围"
+		p.companion_target = target
 		p.facing = 1 if m.x > p.x else -1
 		var damage = CombatRules.damage(stats, float(Catalog.table("monsters")[m.kind].defense), skill, rng.randf())
 		m.hp = maxi(0, int(m.hp) - int(damage.amount))
@@ -472,7 +507,11 @@ func _kill(killer: Dictionary, monster: Dictionary) -> void:
 	for id in eligible:
 		var p: Dictionary = records[id]
 		p.revision += 1
-		_gain_exp(p, maxi(1, roundi(float(def.xp) * float(config.xp_multiplier) / eligible.size())))
+		var awarded = maxi(1,roundi(float(def.xp)*float(config.xp_multiplier)/eligible.size()))
+		_gain_exp(p,awarded)
+		if p.companions.has(p.active_companion):
+			var c: Dictionary = p.companions[p.active_companion]
+			if c.hp > 0: CompanionRules.gain_exp(c,floori(awarded*0.2),int(p.level))
 		p.money += maxi(1, int(def.money) / eligible.size())
 		p.kills[monster.kind] = int(p.kills.get(monster.kind, 0)) + 1
 		for qid in p.quests:
@@ -547,5 +586,136 @@ func snapshot(id: String) -> Dictionary:
 	for skill in p.cooldowns:
 		cooldowns[skill] = maxf(0, float(p.cooldowns[skill]) - clock)
 	own.cooldowns = cooldowns
-	return {"time": clock, "map": p.map, "self": own, "players": visible, "monsters": mobs,
+	var companions: Array = []
+	for actor in _combatants():
+		if actor.get("entity_type","") == "companion" and actor.map == p.map: companions.append(actor)
+	own.companion_combat_remaining = maxf(0,float(p.combat_until)-clock)
+	own.companion_stats = {}
+	for cid in p.companions: own.companion_stats[cid] = CompanionRules.stats(p.companions[cid])
+	return {"companions":companions,"time": clock, "map": p.map, "self": own, "players": visible, "monsters": mobs,
 		"drops": loot, "roster": roster, "invite": invites.get(id, {}), "ack": p.input_seq}
+
+func _companion_command(p: Dictionary, operation: String, args: Dictionary) -> String:
+	if not SaveStore._integer(args.get("expected_revision")) or int(args.expected_revision) != int(p.companion_revision): return "副将状态已变化，请刷新后重试"
+	var cid = str(args.get("companion_id",""))
+	if operation == "companion_recruit":
+		if not _near_npc(p,"guide"): return "请靠近巴郡简雍招募副将"
+		var kind = str(args.get("kind",""))
+		if not Catalog.table("companions").has(kind): return "副将不存在"
+		if p.companions.size() >= CompanionRules.CAPACITY: return "副将收藏已满"
+		if not InventoryRules.take(p.inventory,"recruit_token",1): return "没有武将招募令"
+		var c = CompanionRules.create(kind); p.companions[c.id] = c
+	else:
+		if operation != "companion_mode" and clock < float(p.combat_until): return "请脱战后操作副将"
+		match operation:
+			"companion_deploy":
+				if not p.companions.has(cid): return "副将不存在"
+				p.active_companion = cid; companion_bodies.erase(p.id)
+			"companion_recall":
+				if p.active_companion == "": return "没有出战副将"
+				p.active_companion = ""; companion_bodies.erase(p.id)
+			"companion_mode":
+				var mode = str(args.get("mode",""))
+				if mode not in ["assist","follow"]: return "无效助战模式"
+				p.companion_mode = mode
+			"companion_release":
+				if not p.companions.has(cid): return "副将不存在"
+				if cid == p.active_companion: return "请先收回该副将"
+				p.companions.erase(cid)
+			_: return "未知副将操作"
+	p.companion_revision += 1
+	return ""
+
+func _companion_view(owner: Dictionary) -> Dictionary:
+	if owner.dead or not owner.companions.has(owner.active_companion) or not companion_bodies.has(owner.id): return {}
+	var c: Dictionary = owner.companions[owner.active_companion]
+	var view: Dictionary = companion_bodies[owner.id].duplicate()
+	view.merge({"entity_type":"companion","owner":owner.id,"owner_name":owner.name,"kind":c.kind,
+		"name":Catalog.table("companions")[c.kind].name,"level":c.level,"hp":c.hp,
+		"max_hp":CompanionRules.stats(c).hp,"dead":c.hp == 0},true)
+	return view
+
+func _combatants() -> Array:
+	var result: Array = []
+	for id in online:
+		result.append(records[id])
+		var view = _companion_view(records[id])
+		if not view.is_empty(): result.append(view)
+	return result
+
+func _actor(id: String) -> Dictionary:
+	for actor in _combatants():
+		if actor.id == id: return actor
+	return {}
+
+func _tick_companion_body(p: Dictionary, dt: float) -> void:
+	if p.dead or not p.companions.has(p.active_companion): companion_bodies.erase(p.id); return
+	var c: Dictionary = p.companions[p.active_companion]
+	if not companion_bodies.has(p.id) or companion_bodies[p.id].id != c.id or companion_bodies[p.id].map != p.map:
+		companion_bodies[p.id] = {"id":c.id,"map":p.map,"x":p.x-float(p.facing)*70,"y":p.y,"vy":0.0,
+			"facing":p.facing,"grounded":p.grounded,"climbing":false,"moving":false,"anim_until":0.0,
+			"anim_started":0.0,"hurt_until":0.0,"death_started":0.0,"lost_time":0.0,"regen_at":0.0,"settle_until":clock+0.5}
+	var body: Dictionary = companion_bodies[p.id]
+	c.skill_cooldown_remaining = maxf(0,float(c.skill_cooldown_remaining)-dt)
+	if clock >= float(p.combat_until):
+		if c.hp == 0:
+			c.recovery_remaining = maxf(0,float(c.recovery_remaining)-dt)
+			if c.recovery_remaining <= 0: c.hp = CompanionRules.stats(c).hp
+		elif clock >= float(body.regen_at):
+			c.hp = mini(int(CompanionRules.stats(c).hp),int(c.hp)+maxi(1,ceili(CompanionRules.stats(c).hp*0.1)))
+			body.regen_at = clock+2
+	body.lost_time = float(body.lost_time)+dt if absf(float(p.x)-float(body.x)) > 360 or absf(float(p.y)-float(body.y)) > 120 else 0.0
+	if body.lost_time >= 1:
+		body.x = p.x-float(p.facing)*70; body.y = p.y; body.vy = 0.0; body.grounded = p.grounded
+		body.lost_time = 0.0; body.settle_until = clock+0.5
+	var goal = float(p.x)-float(p.facing)*70
+	var enemy = _companion_enemy(p,body)
+	if c.hp > 0 and p.companion_mode == "assist" and c.kind != "huatuo" and clock >= float(body.settle_until) and not enemy.is_empty():
+		goal = clampf(float(enemy.x)-signf(float(enemy.x)-float(body.x))*float(Catalog.table("companions")[c.kind].range)*0.7,float(p.x)-160,float(p.x)+160)
+	var dx = goal-float(body.x)
+	var axis = Vector2(clampf(dx/maxf(0.001,MovementRules.SPEED*dt),-1,1) if absf(dx)>12 else 0, -1 if p.climbing and p.y < body.y else 1 if p.climbing else 0)
+	MovementRules.step(body,axis,p.y < body.y-60 and body.grounded,dt,Catalog.table("maps")[p.map])
+
+func _companion_enemy(p: Dictionary, body: Dictionary) -> Dictionary:
+	var candidates: Array = []
+	if clock < float(p.combat_until) and monsters.has(p.companion_target): candidates.append(monsters[p.companion_target])
+	for m in monsters.values():
+		if m.target in [p.id,p.active_companion] and m not in candidates: candidates.append(m)
+	for m in candidates:
+		if not m.dead and m.map == p.map and _distance(p,m)<=320 and absf(float(m.y)-float(body.y))<=85: return m
+	return {}
+
+func _tick_companion_action(p: Dictionary) -> void:
+	if clock < ai_retry_at or p.dead or p.companion_mode != "assist" or not p.companions.has(p.active_companion) or not companion_bodies.has(p.id): return
+	var c: Dictionary = p.companions[p.active_companion]
+	var body: Dictionary = companion_bodies[p.id]
+	if c.hp == 0 or c.skill_cooldown_remaining > 0 or clock < float(body.settle_until): return
+	var def: Dictionary = Catalog.table("companions")[c.kind]
+	var stats = CompanionRules.stats(c)
+	var target: Dictionary = {}
+	if c.kind == "huatuo":
+		var candidates: Array = [p,_companion_view(p)]
+		for id in online:
+			if id != p.id and p.party != "" and records[id].party == p.party: candidates.append(records[id])
+		for candidate in candidates:
+			var max_hp = CompanionRules.stats(c).hp if candidate.get("entity_type","") == "companion" else Catalog.stats(candidate).hp
+			if candidate.map == p.map and not candidate.dead and candidate.hp < max_hp*0.7 and _distance(body,candidate)<=float(def.range): target = candidate; break
+	else:
+		target = _companion_enemy(p,body)
+		if not target.is_empty() and _distance(body,target) > float(def.range): target = {}
+	if target.is_empty(): return
+	var before = _capture_state()
+	c.skill_cooldown_remaining = float(def.cooldown)
+	body.anim_started = clock; body.anim_until = clock+0.4; body.facing = 1 if target.x > body.x else -1
+	if c.kind == "huatuo":
+		var patient: Dictionary = c if target.id == c.id else records[target.id]
+		var maximum = stats.hp if target.id == c.id else Catalog.stats(patient).hp
+		var amount = mini(int(stats.power),int(maximum)-int(patient.hp))
+		patient.hp += amount; _emit(p.map,"heal",target.id,amount)
+	else:
+		var amount = maxi(1,roundi(float(stats.power)-float(Catalog.table("monsters")[target.kind].defense)*0.6))
+		target.hp = maxi(0,int(target.hp)-amount); target.hurt_until = clock+0.2
+		p.combat_until = clock+8; _emit(p.map,"damage",target.id,amount)
+		if target.hp == 0: _kill(p,target)
+	_emit(p.map,"cast",c.id,0,c.kind)
+	_commit_ai(before)

@@ -38,7 +38,7 @@ func _draw() -> void:
 	if background: draw_texture_rect(background, Rect2(Vector2.ZERO, size), false)
 	var icon = UIArt.texture(icon_group, icon_id)
 	if icon: draw_texture_rect(icon, Rect2(Vector2(7, 7), size - Vector2(14,14)), false, Color(0.5,0.5,0.5) if disabled or locked else Color.WHITE)
-	if entry.has("item") and Catalog.table("items")[entry.item].get("quality", "") == "fine":
+	if entry.has("item") and Catalog.table("items").get(entry.item,{}).get("quality", "") == "fine":
 		draw_rect(Rect2(Vector2(2,2),size-Vector2(4,4)), Color("73c8ff"), false, 2)
 	if marked: draw_rect(Rect2(Vector2(1,1),size-Vector2(2,2)), Color("ffe192"), false, 2)
 	if cooldown > 0:

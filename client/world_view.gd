@@ -43,10 +43,12 @@ func _process(dt: float) -> void:
 
 func effect(e: Dictionary) -> void:
 	var position = Vector2.ZERO
-	for actor in state.get("players", []) + state.get("monsters", []):
-		if actor.id == e.target: position = Vector2(float(actor.x), float(actor.y))
+	var facing = 1.0
+	for actor in state.get("players", []) + state.get("monsters", []) + state.get("companions", []):
+		if actor.id == e.target:
+			position = Vector2(float(actor.x), float(actor.y)); facing = float(actor.get("facing",1))
 	if e.kind in ["damage", "critical", "heal", "level", "cast"]:
-		effects.append({"position": position, "life": 1.0, "kind": e.kind, "amount": e.amount, "skill": e.get("text", "")})
+		effects.append({"position": position, "life": 1.0, "kind": e.kind, "amount": e.amount, "skill": e.get("text", ""),"facing":facing})
 
 func point(x: float, y: float) -> Vector2:
 	return Vector2(x - camera_x, y - camera_y)
@@ -148,7 +150,7 @@ func _draw() -> void:
 			label_rect.position.y -= 19
 		drop_labels.append(label_rect)
 		drop_captions.append({"text":label,"at":Vector2(p.x,label_rect.position.y+14),"color":(Color("83caff") if item.get("quality", "") == "fine" else Color("fff0ae")) if mine else Color("bccccc")})
-	var actors: Array = state.get("players", []) + state.get("monsters", [])
+	var actors: Array = state.get("players", []) + state.get("monsters", []) + state.get("companions", [])
 	if preview:
 		actors = [{"id": "preview_js", "job": "JS", "name": "剑侍", "x": 410.0, "y": 600.0, "facing": 1, "hp": 1, "max_hp": 1},
 			{"id": "preview_xs", "job": "XS", "name": "仙术士", "x": 520.0, "y": 600.0, "facing": -1, "hp": 1, "max_hp": 1}]
@@ -201,7 +203,8 @@ func _draw_actor(actor: Dictionary) -> void:
 	var kind: String = actor.get("kind", "js")
 	var facing = float(actor.get("facing", 1))
 	var chosen = actor.id == selected
-	var monster = actor.has("kind")
+	var companion = actor.get("entity_type","") == "companion"
+	var monster = actor.has("kind") and not companion
 	var death_age = maxf(0, time - float(actor.get("death_started", 0)))
 	if monster and actor.get("dead", false) and death_age >= 1.2: return
 	var tint = Color.WHITE
@@ -213,7 +216,15 @@ func _draw_actor(actor: Dictionary) -> void:
 	draw_circle(Vector2.ZERO, 29 if kind != "boss" else 55, Color(0.05, 0.1, 0.1, 0.3))
 	if chosen: draw_arc(Vector2.ZERO, 35, 0, TAU, 50, Color("f5d791"), 3)
 	draw_set_transform(Vector2.ZERO)
-	if actor.get("job", "") == "XS":
+	if companion:
+		var companion_sheet = texture(art.companion_sheets[kind])
+		var idx = mini(3,int(phase/0.4*4)) if animation == "attack" else int(age*(10 if animation == "run" else 5))%4
+		var row = 0 if animation == "idle" else 1 if animation == "run" else 2 if animation == "attack" else 3
+		if row == 3: idx = {"jump":0,"climb":1,"hurt":2,"dead":3}.get(animation,0)
+		var cell = companion_sheet.get_size()/4.0
+		draw_set_transform(p,0,Vector2(facing,1))
+		draw_texture_rect_region(companion_sheet,Rect2(-53,-106,106,106),Rect2(Vector2(idx,row)*cell,cell),tint)
+	elif actor.get("job", "") == "XS":
 		var idx = mini(3, int(phase / 0.4 * 4)) if animation == "attack" else int(age * (10 if animation == "run" else 5)) % 4
 		var row = 0 if animation == "idle" else 1 if animation == "run" else 2 if animation == "attack" else 3
 		if row == 3: idx = {"jump": 0, "climb": 1, "hurt": 2, "dead": 3}.get(animation, 0)
@@ -235,8 +246,8 @@ func _draw_actor(actor: Dictionary) -> void:
 				var size = tex.get_size() * (height / tex.get_height())
 				draw_texture_rect(tex, Rect2(Vector2(-size.x / 2, -size.y), size), false, tint)
 	draw_set_transform(Vector2.ZERO)
-	var label_height = 170 if kind == "boss" else 130 if not monster else 110
-	_text(actor.name, p - Vector2(0, label_height), Color("ffda99") if monster else Color("fff9df"), 17)
+	var label_height = 145 if companion else 170 if kind == "boss" else 130 if not monster else 110
+	_text(("%s Lv.%d" % [actor.name,actor.level]) if companion else actor.name, p - Vector2(0, label_height), Color("ffda99") if monster else Color("fff9df"), 17)
 	var health = float(actor.get("hp", 0)) / maxf(1, float(actor.get("max_hp", 1)))
 	var rect = Rect2(p - Vector2(30, label_height - 8), Vector2(60, 5))
 	draw_style_box(_health_background(), rect)
@@ -247,7 +258,9 @@ func _draw_actor(actor: Dictionary) -> void:
 		draw_rect(Rect2(p - Vector2(radius, 70), Vector2(radius * 2, 140)), Color(1, 0.25, 0.1, 0.08 + progress * 0.15))
 		draw_line(p - Vector2(radius, 0), p + Vector2(radius, 0), Color(1, 0.35, 0.15), 4)
 		draw_line(p - Vector2(radius, 0), p + Vector2(-radius + radius * 2 * progress, 0), Color("ffe4a0"), 6)
-	if actor.get("dead", false): _text("已倒下", p - Vector2(0, 145), Color("eead9c"), 18)
+	if companion and Rect2(p-Vector2(45,95),Vector2(90,100)).has_point(get_viewport().get_mouse_position()):
+		_text(actor.owner_name+"的副将",p-Vector2(0,185 if actor.get("dead",false) else 165),Color("e6dfaa"),13)
+	if actor.get("dead", false): _text("已倒下", p - Vector2(0, 165 if companion else 145), Color("eead9c"), 18)
 
 func _health_background() -> StyleBoxFlat:
 	var box = StyleBoxFlat.new()
@@ -267,7 +280,8 @@ func click(screen: Vector2) -> void:
 		if pos.distance_to(Vector2(float(npc.x), float(npc.y) - 50)) < 65:
 			npc_clicked.emit(npc.id)
 			return
-	for actor in state.get("players", []) + state.get("monsters", []):
+	for actor in state.get("players", []) + state.get("monsters", []) + state.get("companions", []):
+		if actor.get("entity_type","") == "companion": continue
 		if not actor.get("dead", false) and pos.distance_to(Vector2(float(actor.x), float(actor.y) - 45)) < 70:
 			entity_clicked.emit(actor.id)
 			return
@@ -276,12 +290,14 @@ func _draw_cast(effect_data: Dictionary) -> void:
 	var center = point(effect_data.position.x, effect_data.position.y - 55)
 	var progress = 1.0 - float(effect_data.life)
 	var skill: String = effect_data.skill
-	var color = Color("8debc1") if skill in ["heal", "renew"] else Color("a1ddff") if skill == "bolt" else Color("ef9579") if skill == "blood" else Color("f5d791")
+	var color = Color("8debc1") if skill in ["heal", "renew", "huatuo"] else Color("a1ddff") if skill == "bolt" else Color("ef9579") if skill == "blood" else Color("f5d791")
 	color.a = float(effect_data.life)
-	if skill in ["heal", "renew"]:
+	if skill in ["heal", "renew", "huatuo"]:
 		draw_arc(center, 25 + progress * 55, 0, TAU, 48, color, 3)
 		draw_line(center - Vector2(0, 18), center + Vector2(0, 18), color, 5)
 		draw_line(center - Vector2(18, 0), center + Vector2(18, 0), color, 5)
+	elif skill == "huangzhong":
+		draw_line(center,center+Vector2((80+progress*50)*float(effect_data.get("facing",1)),-10),color,3)
 	elif skill == "bolt":
 		for i in range(3): draw_line(center + Vector2(i * 14 - 14, -65 + progress * 40), center + Vector2(i * 14 - 14, 30 + progress * 40), color, 4)
 	else:

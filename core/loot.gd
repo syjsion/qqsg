@@ -14,6 +14,7 @@ static func boss(job: String, rng: RandomNumberGenerator) -> Array:
 		if roll < 0:
 			result.append({"item":entry[job],"count":1})
 			break
+	if rng.randf() < float(table.recruit_chance): result.append({"item":"recruit_token","count":1})
 	return result
 
 static func monster(kind: String, rng: RandomNumberGenerator) -> Array:

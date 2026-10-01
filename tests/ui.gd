@@ -164,6 +164,44 @@ func run() -> void:
 	check(not game.cancel_retry.visible and not game.connect_button.disabled,"retry cancelled lobby usable")
 	game._open_panel("settings")
 	check(not descendants(game.modal_body,"TextureRect").is_empty(),"settings use functional icons")
+	Session.latest.self.dead = false; Session.latest.self.job = "JS"; Session.latest.self.level = 10
+	Session.latest.self.combat_until = 0; Session.latest.self.x = 380; Session.latest.self.y = 600
+	Session.latest.self.inventory.recruit_token = 1
+	var companion = CompanionRules.create("zhaoyun")
+	var duplicate = CompanionRules.create("zhaoyun")
+	Session.latest.self.companions = {companion.id:companion,duplicate.id:duplicate}
+	game._open_panel("companions")
+	await get_tree().process_frame; await get_tree().process_frame
+	check(game.interface.slots.size() == 12,"companion page renders twelve collection slots")
+	game.interface.select_entry(companion.id)
+	check(game.interface.selected_entry().key == companion.id,"duplicate heroes selected by instance ID")
+	var status: Label = game.interface.companion_detail_status
+	Session.latest.self.companions[companion.id].hp = 17
+	game.interface.update_dynamic()
+	check(game.interface.companion_detail_status == status and status.text.contains("17 /"),"companion HP updates without rebuilding")
+	Session.latest.self.combat_until = Session.latest.time+8; game.interface.update_dynamic()
+	check(game.interface.companion_actions.filter(func(a): return a.kind == "deploy")[0].button.disabled,"deploy disabled in combat")
+	Session.latest.self.combat_until = 0; Session.latest.self.active_companion = companion.id; game._refresh_panel()
+	check(game.interface.companion_actions.filter(func(a): return a.kind == "release")[0].button.disabled,"deployed companion release disabled")
+	Session.latest.self.active_companion = ""; game._refresh_panel()
+	game.interface._confirm_release(companion.id)
+	check(is_instance_valid(game.interface.confirmation),"release requires visible confirmation")
+	var before_requests = requests.size()
+	var confirm_buttons = descendants(game.interface.confirmation,"Button")
+	confirm_buttons[0].pressed.emit()
+	check(requests.size() == before_requests+1 and requests[-1].action == "companion_release" and requests[-1].payload.companion_id == companion.id,"confirmed release sends exact instance")
+	check(Session.latest.self.companions.has(companion.id),"release never removes local data before authoritative state")
+	game._result({"seq":100+requests.size(),"ok":false,"message":"状态已变化"})
+	check(game.interface.pending == 0,"rejected companion operation unlocks page")
+	game._refresh_panel(); Session.latest.self.x = 900; game.interface.update_dynamic()
+	check(game.interface.companion_actions.filter(func(a): return a.kind == "recruit")[0].button.disabled,"recruit disabled away from guide")
+	Session.latest.self.x = 380; Session.latest.self.companions.erase(companion.id); game._refresh_panel()
+	check(game.interface.selected_entry().is_empty(),"released companion invalidates selection without choosing duplicate")
+	Session.latest.self.active_companion = duplicate.id; game._update_hud(Session.latest)
+	check(game.interface.companion_hud_label.text.contains("赵云"),"deployed hero visible on HUD")
+	check(game.keys.companions == KEY_G,"companion page has configurable default G key")
+	game.keys.companions = KEY_H; game._update_hud(Session.latest)
+	check(game.interface.companion_tool_label.text == "副将 H","companion shortcut caption follows rebinding")
 	game.queue_free(); await get_tree().process_frame; await get_tree().process_frame
 	print("UI_RESULT %d checks %d failures" % [checks,failures])
 	get_tree().quit(1 if failures else 0)

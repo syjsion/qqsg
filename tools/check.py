@@ -56,7 +56,7 @@ def validate_data():
     walk(art)
     for group, ids in [('items', content['items']), ('skills', content['skills'])]:
         assert all(identifier in art[group] for identifier in ids), group
-    for group in ['items', 'skills', 'portraits', 'characters', 'symbols']:
+    for group in ['items', 'skills', 'portraits', 'characters', 'symbols', 'companion_skills']:
         for entry in art[group].values():
             if isinstance(entry, dict):
                 assert len(entry['region']) == 4 and min(entry['region']) >= 0
@@ -67,6 +67,11 @@ def validate_data():
     for manifest in ['assets/manifest.json', 'assets/generated/manifest.json']:
         for entry in json.loads((ROOT / manifest).read_text(encoding='utf-8'))['files']:
             assert hashlib.sha256((ROOT / entry['path']).read_bytes()).hexdigest() == entry['sha256'], entry['path']
+    assert len(content['companions']) == 3
+    assert 0 <= content['boss_loot']['recruit_chance'] <= 1
+    for identifier, companion in content['companions'].items():
+        assert all(identifier in art[group] for group in ['portraits', 'characters', 'companion_skills', 'companion_sheets'])
+        assert companion['hp'] > 0 and companion['cooldown'] > 0 and companion['range'] > 0
     assert (ROOT / 'assets/generated/healer-sheet.png').is_file()
     print('DATA_RESULT references and content constraints PASS')
 
@@ -82,6 +87,7 @@ def main():
     if not args.skip_network:
         run([sys.executable, 'tests/network.py', '--godot', args.godot], 'NETWORK_RESULT', timeout=90)
         run([sys.executable, 'tests/reconnect.py', '--godot', args.godot], 'RECONNECT_RESULT', timeout=100)
+        run([sys.executable, 'tests/companions_network.py', '--godot', args.godot], 'COMPANION_NETWORK_RESULT', timeout=100)
         run([sys.executable, 'tests/economy.py', '--godot', args.godot], 'ECONOMY_RESULT', timeout=100)
         if sys.platform != 'win32':
             run([sys.executable, 'tests/launcher.py', '--godot', args.godot], 'LAUNCHER_RESULT', timeout=180)

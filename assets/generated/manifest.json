@@ -35,6 +35,62 @@
         1254
       ],
       "sha256": "e9e8c16f49fbdaffba5741846b20bd5f1659d23daebb4a209638490db2853a6c"
+    },
+    {
+      "path": "assets/generated/zhaoyun-sheet-v1.png",
+      "sha256": "a696210943766eabf7e32f3f223c98be221f815cf3ebf8259612ab2fd018e706",
+      "prompt": "Use case: stylized-concept. Asset type: transparent 2D side scrolling Three Kingdoms RPG companion animation sprite sheet. Hand-painted pre-rendered Chinese chibi MMORPG art, crisp outlines, big head short legs, rich shaded costume, readable at 90px. Square canvas exactly four columns and four rows of equal cells; ONE SAME full-body character in every cell, facing RIGHT. Consistent scale and feet anchored at local 85 percent cell height, all weapons fit inside cell with padding. Row 1 four idle breathing frames; row 2 four running cycle frames; row 3 four attack/cast frames; row 4 jumping, climbing, hurt recoil, collapsed unconscious. No grid lines, labels, text, scenery, shadows outside character. Truly transparent alpha. Zhao Yun: youthful Chinese male general, silver blue armor, blue cape, white-plumed helmet, long silver spear; attack frames thrust spear forward.",
+      "date": "2026-10-01",
+      "tool": "imagegen built-in",
+      "width": 1254,
+      "height": 1254,
+      "transparent_background": true,
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/generated/huangzhong-sheet-v1.png",
+      "sha256": "0c74f9b4efb85bd9a4ce118df1d25a94ee7bf5b34f43b47c874ba0e5ff6cfb72",
+      "prompt": "Use case: stylized-concept. Asset type: transparent 2D side scrolling Three Kingdoms RPG companion animation sprite sheet. Hand-painted pre-rendered Chinese chibi MMORPG art, crisp outlines, big head short legs, rich shaded costume, readable at 90px. Square canvas exactly four columns and four rows of equal cells; ONE SAME full-body character in every cell, facing RIGHT. Consistent scale and feet anchored at local 85 percent cell height, all weapons fit inside cell with padding. Row 1 four idle breathing frames; row 2 four running cycle frames; row 3 four attack/cast frames; row 4 jumping, climbing, hurt recoil, collapsed unconscious. No grid lines, labels, text, scenery, shadows outside character. Truly transparent alpha. Huang Zhong: elderly Chinese male archer, white beard, bronze green armor, green headband, curved wooden bow, quiver; attack frames draw and release an arrow.",
+      "date": "2026-10-01",
+      "tool": "imagegen built-in",
+      "width": 1254,
+      "height": 1254,
+      "transparent_background": true,
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/generated/huatuo-sheet-v1.png",
+      "sha256": "94e9130a49e7ac160c5dd75cb4c079b83b6580ddef6b91655ffb1ce2ab28f0f6",
+      "prompt": "Use case: stylized-concept. Asset type: transparent 2D side scrolling Three Kingdoms RPG companion animation sprite sheet. Hand-painted pre-rendered Chinese chibi MMORPG art, crisp outlines, big head short legs, rich shaded costume, readable at 90px. Square canvas exactly four columns and four rows of equal cells; ONE SAME full-body character in every cell, facing RIGHT. Consistent scale and feet anchored at local 85 percent cell height, all weapons fit inside cell with padding. Row 1 four idle breathing frames; row 2 four running cycle frames; row 3 four attack/cast frames; row 4 jumping, climbing, hurt recoil, collapsed unconscious. No grid lines, labels, text, scenery, shadows outside character. Truly transparent alpha. Hua Tuo: elderly Chinese male physician, kind face, white beard, jade green and cream scholar robes, medicine pouch, small herbal staff; casting frames raise staff with small jade healing glow.",
+      "date": "2026-10-01",
+      "tool": "imagegen built-in",
+      "width": 1254,
+      "height": 1254,
+      "transparent_background": true,
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/generated/companion-icons-v1.png",
+      "sha256": "9beb86dc81420c85c9f63f50f40507a43b2beb06456399f9b0c877e5017ea8c5",
+      "prompt": "Use case: stylized-concept. Asset type: transparent 2D Three Kingdoms MMORPG UI icon atlas. Exactly 4 columns by 2 rows of evenly spaced square icon cells on a wide canvas. Each object centered with 15 percent padding, no labels or cell borders. Row 1: silver blue armored youthful general portrait with white plume (Zhao Yun); elderly bronze green armored archer portrait with white beard (Huang Zhong); kindly elderly jade cream robed physician portrait (Hua Tuo); ornate jade and bronze recruitment warrant scroll with red tassel and NO characters or text. Row 2: silver spear with blue thrust arc; wooden bow and flying gold arrow; jade healing staff with herbal green glow; two small general helmets together representing companions menu. Hand painted pre-rendered 2000s Chinese chibi RPG style, dark outlines, highly readable at 30-66 pixels. All backgrounds genuinely transparent alpha, no scenery, no watermark, no text.",
+      "date": "2026-10-01",
+      "tool": "imagegen built-in",
+      "width": 1774,
+      "height": 887,
+      "transparent_background": true,
+      "alpha_range": [
+        0,
+        255
+      ]
     }
   ]
 }

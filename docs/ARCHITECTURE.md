@@ -18,7 +18,7 @@
 
 多人开发时按模块拆分工作；新增静态内容优先修改数据表，新增玩法先在 Simulation/纯函数与测试落地，再接网络和 UI。
 
-## 协议 v3
+## 协议 v4
 
 统一 RPC 节点为 `/root/Session`，服务端 peer ID 为 1。客户端连接后 8 秒握手超时，未握手连接在服务端 5 秒后关闭。最多 4 个已认证角色。
 
@@ -44,13 +44,13 @@
 
 `data/content.json` 包含 classes/skills/items/monsters/quests/maps；稳定 ID 为内容引用键，中文名称只用于显示。`data/progression.json` 为来源可追溯的属性/经验；`data/art.json` 为视图资源映射，不被服务端规则依赖。
 
-Catalog 中协议、内容和存档版本分别是 `PROTOCOL=3`、`CONTENT=0.2.0`、`SAVE_VERSION=2`。改变结构时升级对应版本，并提供迁移或明确拒绝旧数据。
+Catalog 中协议、内容和存档版本分别是 `PROTOCOL=4`、`CONTENT=0.3.0`、`SAVE_VERSION=3`。改变结构时升级对应版本，并提供迁移或明确拒绝旧数据。
 
 角色 ID 为服务端生成的随机 96 位十六进制串；登录凭据为随机 256 位值。客户端按服务器地址/端口/本地档案保存令牌，服务端仅保存令牌 SHA-256 到角色 ID 的索引。无公网账号系统，凭据不可分享。首次建立角色后网络在凭据到达客户端前中断可能留下未领取角色，重新创建将产生新角色，管理员可离线清理。
 
 ## 持久化和故障
 
-存档外层为 `{payload: JSON字符串, sha256: 校验摘要}`。payload 含 version/content、records、令牌摘要索引、drops、next_drop、loot_turn。记录保留等级、经验、金钱、装备、背包、任务、击杀、生命/体力和所在地图；临时输入、在线 peer、队伍、邀请、冷却不跨服务端重启。
+存档外层为 `{payload: JSON字符串, sha256: 校验摘要}`。payload 含 version/content、records、令牌摘要索引、drops、next_drop、loot_turn。记录保留等级、经验、金钱、装备、背包、任务、击杀、生命/体力和所在地图；临时输入、在线 peer、队伍、邀请和玩家技能冷却不跨服务端重启；副将的生命、技能冷却、恢复进度与主人剩余脱战等待单独持久化。
 
 每个成功的客户端状态操作执行：备份内存状态 → 检查并修改 → 更新 revision → 保存整体快照 → 返回成功。写盘失败恢复角色、怪物、掉落、邀请、随机状态等；不会先发成功再失败。代价是每次技能也落盘，当前只面向 4 人，扩容前需实现事务日志。
 
@@ -91,3 +91,25 @@ v1 迁移使用角色、背包位置、穿戴槽或掉落 ID 派生稳定实例 
 界面经济请求使用一个待处理序号拦截重复点击，匹配回执才解除；断线清空待处理状态，不重放请求。装备强化沿用 expected_revision；失败回执与成功回执显示不同结果。UI 预览规则用于提示及禁用按钮，服务器仍验证职业、等级、容量、距离、资源及事务写盘。服务端结构和握手版本不变。
 
 UI 回归入口为 `tests/ui.tscn`（真实控件输入、请求捕获替身，不是 LAN 测试）；图形截图入口为 `python3 tests/visual.py --godot <Godot> --output <临时目录>`。后者生成模拟页面，须人工检查 PNG，不能代替双机实测。
+
+## 0.3.0 副将接口与存档
+
+`CompanionRules` 负责独立实例、属性成长、经验和校验；Simulation 负责 AI、目标、伤害、治疗及事务。`content.companions` 为三个稳定模板 ID，所有新增数值标 provisional；art 记录独立动作图、头像、技能和招募令。
+
+角色新增 `companions`（实例 ID→记录）、`active_companion`、`companion_mode`（assist/follow）、`companion_revision`、`companion_combat_remaining`。实例字段为 id/kind/level/xp/hp/recovery_remaining/skill_cooldown_remaining；实例 ID 为 comp_ 前缀加随机 128 位串，全档唯一。收藏修订只随获得、部署、模式和放生变化，生命和经验变化不使操作修订无意义地失效。
+
+| intent 操作 | 参数（均需 expected_revision，即收藏修订号） | 附加验证 |
+| --- | --- | --- |
+| companion_recruit | kind | 简雍双轴距离、令牌、收藏容量 |
+| companion_deploy | companion_id | 自有实例、存活、脱战 |
+| companion_recall | 无 | 已出战、存活、脱战 |
+| companion_mode | mode | assist/follow、存活 |
+| companion_release | companion_id | 自有非出战实例、存活、脱战 |
+
+快照新增 `companions` 同图数组，实体含 entity_type=companion、id、owner、owner_name、kind、name、level、map、位置、生命、朝向和动画。self 含完整收藏及 companion_stats；不暴露其他玩家的未出战收藏。运行身体独立放在 companion_bodies，以主人 ID 索引，不写位置/目标/动画到存档。
+
+AI 伤害、治疗和怪物攻击通过内存备份与 checkpoint 提交，写盘失败恢复角色、身体、怪物、奖励、掉落、事件、输入和 RNG，自动动作一秒后再试。只有成功的持久化结果才广播。副将击杀复用一次性 _kill，由主人承担击杀者身份。60 Hz 更新身体，快照频率及大包回退规则沿用。
+
+服务重启保留副将冷却和倒下恢复剩余秒数、主人剩余战斗锁；离线暂停计时。出战换图重建身体，不重置实例状态。收回暂停该副将的恢复与冷却。旧 v1 先转换独立装备再补副将字段；旧 v2 只补空收藏。读取旧档前留存原始字节，迁移备份冲突或失败则停止。
+
+网络只使用客户端↔权威服务器 RPC，SceneMultiplayer 在建立连接前关闭 server_relay；玩家互见由 roster 和地图快照提供。发送前检查 ENet 状态／通道，避免四客户端同时退出时向已关闭连接发送。该配置不提供客户端间 RPC。

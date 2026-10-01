@@ -61,14 +61,43 @@ func run() -> void:
 			gear.enhance = 5
 			gear.failures = 3
 			game.enhance_selected = gear.id
+		if args.preview in ["companions","companion-world"]:
+			var p: Dictionary = sim.records[a.id]
+			p.x = 380 if args.get("map", "west") == "bajun" else 650
+			p.inventory.recruit_token = 3
+			var number = 12 if args.get("full","false") == "true" else 3
+			if args.get("empty","false") == "true": number = 0
+			for i in range(number):
+				var c = CompanionRules.create(["zhaoyun","huangzhong","huatuo"][i%3])
+				c.level = 3; c.hp = CompanionRules.stats(c).hp
+				p.companions[c.id] = c
+				if i == 0: p.active_companion = c.id
+			if p.active_companion != "":
+				var c: Dictionary = p.companions[p.active_companion]
+				if args.get("down","false") == "true": c.hp = 0; c.recovery_remaining = 13.5
+				sim._tick_companion_body(p,0.016)
+				for i in range(2):
+					var owner: Dictionary = sim.records[b.id] if i == 0 else sim.records[sim.join("","岚山客","JS").id]
+					owner.map = p.map; owner.x = p.x+150+i*130; owner.y = p.y
+					var other = CompanionRules.create(["huangzhong","huatuo"][i]); owner.companions[other.id] = other; owner.active_companion = other.id
+					sim._tick_companion_body(owner,0.016)
+		if args.has("motion"):
+			for body in sim.companion_bodies.values():
+				if args.motion == "attack": body.anim_started = 0.0; body.anim_until = 0.4
+				elif args.motion == "hurt": body.hurt_until = 0.5
+				elif args.motion == "run": body.moving = true
 		Session.player_id = a.id
 		Session.latest = sim.snapshot(a.id)
 		game._connected()
 		game._snapshot(Session.latest)
-		if args.preview in ["bag", "team", "quests", "shop", "enhance", "settings", "menu"]:
+		if args.preview in ["bag", "team", "quests", "shop", "enhance", "settings", "menu", "companions"]:
 			if args.get("sell","false") == "true": game.interface.shop_mode = "sell"
 			game._open_panel("bag" if args.preview == "menu" else args.preview)
 			if args.preview in ["bag", "shop"] and not game.interface.entries.is_empty(): game.interface.select_entry(game.interface.entries[0].key)
+		if args.preview == "companions" and not game.interface.entries.is_empty(): game.interface.select_entry(Session.latest.self.active_companion)
+		if args.get("release","false") == "true":
+			for entry in game.interface.entries:
+				if entry.key != Session.latest.self.active_companion: game.interface._confirm_release(entry.key); break
 		if args.preview == "death":
 			Session.latest.self.dead = true; game._update_hud(Session.latest)
 		if args.preview == "drops":
@@ -82,6 +111,8 @@ func run() -> void:
 	if args.get("preview","") == "menu" and not game.interface.entries.is_empty():
 		game.interface.context_entry(game.interface.entries[0].key)
 		await get_tree().create_timer(0.1).timeout
+	if args.get("motion", "") == "attack":
+		for actor in Session.latest.get("companions",[]): game.world.effect({"target":actor.id,"kind":"cast","amount":0,"text":actor.kind})
 	if args.get("preview", "") == "combat":
 		game.world.effect({"target":Session.player_id,"kind":"cast","amount":0,"text":"wind"})
 		await get_tree().create_timer(0.15).timeout

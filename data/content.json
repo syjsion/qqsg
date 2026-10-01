@@ -269,6 +269,15 @@
         "defense": 16,
         "hp": 70
       }
+    },
+    "recruit_token": {
+      "name": "武将招募令",
+      "description": "在巴郡简雍处自选招募赵云、黄忠或华佗。",
+      "stack": 99,
+      "price": 100,
+      "sell_price": 50,
+      "shop_buyable": false,
+      "source": "provisional"
     }
   },
   "monsters": {
@@ -406,6 +415,18 @@
       "previous": "soldiers",
       "xp": 3000,
       "money": 300,
+      "source": "original_chapter"
+    },
+    "companion_intro": {
+      "name": "名将同行",
+      "description": "回到简雍身边，领取赵云副将，开启并肩作战的旅程。",
+      "type": "talk",
+      "target": "guide",
+      "count": 1,
+      "previous": "arrival",
+      "xp": 0,
+      "money": 0,
+      "companion_reward": "zhaoyun",
       "source": "original_chapter"
     }
   },
@@ -710,6 +731,51 @@
         "JS": "fine_armor",
         "XS": "fine_armor"
       }
-    ]
+    ],
+    "recruit_chance": 0.5
+  },
+  "companions": {
+    "zhaoyun": {
+      "name": "赵云",
+      "role": "近战",
+      "hp": 220,
+      "hp_growth": 25,
+      "defense": 4,
+      "defense_step": 1,
+      "power": 12,
+      "power_growth": 2,
+      "cooldown": 1.8,
+      "range": 90,
+      "skill": "龙胆突刺",
+      "source": "provisional"
+    },
+    "huangzhong": {
+      "name": "黄忠",
+      "role": "远程",
+      "hp": 160,
+      "hp_growth": 20,
+      "defense": 2,
+      "defense_step": 2,
+      "power": 10,
+      "power_growth": 2,
+      "cooldown": 2.2,
+      "range": 260,
+      "skill": "百步穿杨",
+      "source": "provisional"
+    },
+    "huatuo": {
+      "name": "华佗",
+      "role": "治疗",
+      "hp": 180,
+      "hp_growth": 22,
+      "defense": 3,
+      "defense_step": 2,
+      "power": 20,
+      "power_growth": 3,
+      "cooldown": 5.0,
+      "range": 240,
+      "skill": "青囊济世",
+      "source": "provisional"
+    }
   }
 }

@@ -16,8 +16,9 @@ func read() -> Dictionary:
 		var raw = FileAccess.get_file_as_string(path)
 		var state = decode(raw)
 		if not state.is_empty():
-			if int(_payload(raw).get("version", 0)) == 1:
-				var backup = directory.path_join("world.v1." + raw.sha256_text().left(16) + ".json")
+			var old_version = int(_payload(raw).get("version", 0))
+			if old_version in [1,2]:
+				var backup = directory.path_join("world.v%d." % old_version + raw.sha256_text().left(16) + ".json")
 				if FileAccess.file_exists(backup) and FileAccess.get_file_as_string(backup) != raw:
 					error = "旧档迁移备份存在但内容不一致，拒绝覆盖"
 					return {}
@@ -50,10 +51,12 @@ static func _gear_valid(g, id: String) -> bool:
 
 static func decode(text: String) -> Dictionary:
 	var state = _payload(text)
-	if int(state.get("version", 0)) not in [1, Catalog.SAVE_VERSION]: return {}
+	if int(state.get("version", 0)) not in [1, 2, Catalog.SAVE_VERSION]: return {}
 	var legacy = int(state.version) == 1
 	for key in ["records", "tokens", "drops"]:
 		if not state.get(key) is Dictionary: return {}
+	var old_version = int(state.version)
+	var all_companions: Dictionary = {}
 	var all_gear: Dictionary = {}
 	for id in state.records:
 		var p = state.records[id]
@@ -90,6 +93,16 @@ static func decode(text: String) -> Dictionary:
 			if not gid is String or all_gear.has(gid) or not _gear_valid(p.gear[gid], gid): return {}
 			all_gear[gid] = true
 		if InventoryRules.used_slots(p) > InventoryRules.CAPACITY: return {}
+		if old_version < 3:
+			p.companions = {}; p.active_companion = ""; p.companion_mode = "assist"; p.companion_revision = 0; p.companion_combat_remaining = 0.0
+		if not p.get("companions") is Dictionary or p.companions.size() > CompanionRules.CAPACITY: return {}
+		if not SaveStore._integer(p.get("companion_revision")) or p.get("companion_mode") not in ["assist","follow"]: return {}
+		if not p.get("active_companion") is String or (p.active_companion != "" and not p.companions.has(p.active_companion)): return {}
+		var combat_remaining = p.get("companion_combat_remaining")
+		if not (combat_remaining is float or combat_remaining is int) or not is_finite(float(combat_remaining)) or combat_remaining < 0 or combat_remaining > 8.001: return {}
+		for cid in p.companions:
+			if not cid is String or all_companions.has(cid) or not CompanionRules.valid(p.companions[cid],cid,int(p.level)): return {}
+			all_companions[cid] = true
 	for id in state.drops:
 		var d = state.drops[id]
 		if not d is Dictionary or d.get("id", "") != id or not state.records.has(d.get("owner", "")): return {}
@@ -105,7 +118,7 @@ static func decode(text: String) -> Dictionary:
 			all_gear[gid] = true
 	for token in state.tokens:
 		if not state.records.has(state.tokens[token]): return {}
-	if legacy:
+	if old_version < 3:
 		state.version = Catalog.SAVE_VERSION
 		state.content = Catalog.CONTENT
 	return state

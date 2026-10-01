@@ -7,10 +7,12 @@ func run() -> void:
 	var game = load("res://client/game.gd").new()
 	add_child(game)
 	var args = Session.arguments()
-	if args.has("preview"):
+	if args.has("preview") and args.preview != "login":
 		var sim = GameSimulation.new()
 		var a = sim.join("", "云间客", "JS")
 		var b = sim.join("", "青萝", "XS")
+		if args.get("job", "JS") == "XS":
+			var swap = a; a = b; b = swap
 		for id in [a.id, b.id]:
 			sim.records[id].map = args.get("map", "west")
 			sim.records[id].level = 6
@@ -19,6 +21,25 @@ func run() -> void:
 			sim.records[id].mp = Catalog.stats(sim.records[id]).mp
 			sim.records[id].party = a.id
 			sim.records[id].quests.snakes = {"state":"active", "progress":3}
+		if args.preview in ["bag", "shop", "enhance", "quests", "menu"]:
+			sim.records[a.id].inventory.herb = 14
+			sim.records[a.id].inventory.seal = 3
+			sim.records[a.id].inventory.enhance_stone = 40
+			for item in ["camp_sword", "jade_pattern_staff", "fine_armor", "leather", "bronze_sword", "jade_staff"]:
+				var gear = GearRules.create(item)
+				if item == "camp_sword": gear.enhance = 3
+				sim.records[a.id].gear[gear.id] = gear
+			if args.get("full", "false") == "true":
+				while InventoryRules.used_slots(sim.records[a.id]) < 24:
+					var gear = GearRules.create("iron_sword"); sim.records[a.id].gear[gear.id] = gear
+		if args.preview in ["shop", "enhance"] and args.get("map", "west") == "bajun":
+			sim.records[a.id].x = 780
+		if args.preview == "quests" and args.get("map", "west") == "bajun": sim.records[a.id].x = 380
+		if args.get("empty","false") == "true":
+			sim.records[a.id].inventory.clear()
+			for gid in sim.records[a.id].gear.keys():
+				if gid not in sim.records[a.id].equipment.values(): sim.records[a.id].gear.erase(gid)
+		if args.get("long","false") == "true": sim.records[a.id].name = "巴郡城里与你共同游历山河的旅人"
 		if args.preview == "combat":
 			sim.clock = 10
 			sim.records[a.id].anim_started = 10
@@ -44,8 +65,23 @@ func run() -> void:
 		Session.latest = sim.snapshot(a.id)
 		game._connected()
 		game._snapshot(Session.latest)
-		if args.preview in ["bag", "team", "quests", "shop", "enhance"]: game._open_panel(args.preview)
+		if args.preview in ["bag", "team", "quests", "shop", "enhance", "settings", "menu"]:
+			if args.get("sell","false") == "true": game.interface.shop_mode = "sell"
+			game._open_panel("bag" if args.preview == "menu" else args.preview)
+			if args.preview in ["bag", "shop"] and not game.interface.entries.is_empty(): game.interface.select_entry(game.interface.entries[0].key)
+		if args.preview == "death":
+			Session.latest.self.dead = true; game._update_hud(Session.latest)
+		if args.preview == "drops":
+			game.world.state.drops = [{"id":"preview_drop","item":"enhance_stone","count":3,"owner":a.id,"x":680,"y":600}, {"id":"preview_gear","item":"camp_sword","count":1,"owner":a.id,"x":745,"y":600,"gear":{"enhance":2}}]
+		if args.get("confirm","false") == "true":
+			for gid in sim.records[a.id].gear:
+				if sim.records[a.id].gear[gid].enhance > 0: game._sell_gear(gid); break
+		if args.has("width"):
+			get_window().size = Vector2i(int(args.width),int(args.get("height","800")))
 	await get_tree().create_timer(2).timeout
+	if args.get("preview","") == "menu" and not game.interface.entries.is_empty():
+		game.interface.context_entry(game.interface.entries[0].key)
+		await get_tree().create_timer(0.1).timeout
 	if args.get("preview", "") == "combat":
 		game.world.effect({"target":Session.player_id,"kind":"cast","amount":0,"text":"wind"})
 		await get_tree().create_timer(0.15).timeout
@@ -55,4 +91,6 @@ func run() -> void:
 	game.queue_free()
 	await get_tree().process_frame
 	await get_tree().process_frame
+	# Let the audio mixer release stopped Ogg playback before engine shutdown.
+	await get_tree().create_timer(0.2).timeout
 	get_tree().quit()

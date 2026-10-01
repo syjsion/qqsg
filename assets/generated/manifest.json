@@ -1,0 +1,40 @@
+{
+  "files": [
+    {
+      "path": "assets/generated/item-icons-v1.png",
+      "prompt": "Production 2D game icon atlas for a classic 2000s Chinese chibi MMORPG. Transparent background. EXACT 4 columns by 4 rows of equal square cells, all sixteen objects centered individually with generous empty padding; no borders, no labels, no text, no shadows outside objects. Hand-painted pre-rendered QQ-SanGuo-like icons, rich muted jewel colors, crisp dark outlines, readable at 48 pixels. Each object fills about 70% of cell, consistent scale. Row 1 left to right: red ceramic medicine bottle with beige paper stopper; blue-green glass restorative flask; bundle of three green medicinal leaves; plain iron sword with brown grip. Row 2: short peach wood wizard staff with green jade bead; bronze sword with turquoise bronze guard; elegant green jade staff; folded cream cloth tunic. Row 3: brown leather chest armor; red lacquer military command token with gold tassel but no writing; faceted glowing violet strengthening stone; long silver army sword with red wrapped grip and gold hilt. Row 4: ornate jade-pattern staff with leaf-shaped pale jade head; refined blue steel and gold chest armor; three ancient golden square-hole coins; small luminous golden experience orb. Front/three-quarter isolated object views, not characters. Every cell contains exactly one icon, no scenery. This is a tightly aligned transparent sprite atlas, not a concept collage. Requested 1024x1024.",
+      "tool": "imagegen built-in",
+      "date": "2026-10-01",
+      "transparent_background": true,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "bb499bc15201ad74aacd703bba1f2d4932b17c356f7f0a6ef34e9e27772941b4"
+    },
+    {
+      "path": "assets/generated/ui-symbols-v1.png",
+      "prompt": "Production UI icon atlas for a classic 2000s Chinese chibi MMORPG, hand-painted pre-rendered QQ SanGuo-like look, gold brass outlines, jewel green/blue, crisp readable silhouette at 48px. Transparent background, exactly 4 columns x 4 rows equal cells, ONE centered icon per cell, generous padding, no grid borders, no captions, NO TEXT or letters. Row1 left to right: a blue waterfall spell splashing in a crescent; pink lotus surrounded by emerald healing light; jade talisman surrounded by warm green restorative sparks; brown leather traveling backpack. Row2: rolled parchment quest scroll with red tie; two friendly chibi ancient Chinese heads together indicating party; small merchant stall with jade canopy; blacksmith hammer over anvil with golden sparks. Row3: crossed sword and wand combat symbol; green healing heart with golden rim; rounded gold checkmark; red lacquer X cross. Row4: golden arrow turning upward indicating return/respawn; ancient wooden open door; bronze speaker with small sound waves; ornate bronze cogwheel for settings. No surrounding frames, no scene, no extraneous objects. Each illustration stays within its own equal cell; consistent scale and size. Requested 1024x1024.",
+      "tool": "imagegen built-in",
+      "date": "2026-10-01",
+      "transparent_background": true,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "38538fd5288510963947f08b250f277f7e83d4af23cef24202ff06d1b3508eb3"
+    },
+    {
+      "path": "assets/generated/window-frame-v1.png",
+      "prompt": "Production game UI nine-slice panel texture for classic 2000s Chinese MMORPG QQ SanGuo style. One single square panel, full canvas 512x512, straight rectangular ornate dark warm wood outer frame 30pixels wide with narrow golden brass inset border and modest carved cloud curls only in four corners. Entire center is an opaque uniform deep desaturated blue-teal (#143945) with a very subtle fine painted texture. Corners exactly symmetric, straight edges tile/stretch cleanly. Outer silhouette fills the entire canvas except 3px transparent padding. No title bar, no handles, no banners, no text, no letters, no icons, no compartments, no symbols, no perspective. This image will be stretched with nine-slice margins at runtime to many window sizes, so decorations ONLY inside outer 40px frame. Crisp hand-painted pre-rendered bitmap, minimal shading, not a screenshot or mockup.",
+      "tool": "imagegen built-in",
+      "date": "2026-10-01",
+      "transparent_background": true,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "e9e8c16f49fbdaffba5741846b20bd5f1659d23daebb4a209638490db2853a6c"
+    }
+  ]
+}

@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Single local/CI validation entrypoint. Fails on Godot script errors, even exit 0."""
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
 import subprocess
+import struct
 import sys
 
 if hasattr(sys.stdout, "reconfigure"):
@@ -52,6 +54,19 @@ def validate_data():
         elif isinstance(node, str) and node.startswith('res://'):
             assert (ROOT / node[6:]).is_file(), node
     walk(art)
+    for group, ids in [('items', content['items']), ('skills', content['skills'])]:
+        assert all(identifier in art[group] for identifier in ids), group
+    for group in ['items', 'skills', 'portraits', 'characters', 'symbols']:
+        for entry in art[group].values():
+            if isinstance(entry, dict):
+                assert len(entry['region']) == 4 and min(entry['region']) >= 0
+                assert entry['region'][2] > 0 and entry['region'][3] > 0
+                width, height = struct.unpack('>II', (ROOT / entry['path'][6:]).read_bytes()[16:24])
+                x, y, w, h = entry['region']
+                assert x + w <= width and y + h <= height, entry
+    for manifest in ['assets/manifest.json', 'assets/generated/manifest.json']:
+        for entry in json.loads((ROOT / manifest).read_text(encoding='utf-8'))['files']:
+            assert hashlib.sha256((ROOT / entry['path']).read_bytes()).hexdigest() == entry['sha256'], entry['path']
     assert (ROOT / 'assets/generated/healer-sheet.png').is_file()
     print('DATA_RESULT references and content constraints PASS')
 
@@ -63,6 +78,7 @@ def main():
     validate_data()
     run([args.godot, '--headless', '--path', str(ROOT), '--editor', '--import'])
     run([args.godot, '--headless', '--path', str(ROOT), '--script', 'tests/unit.gd'], 'UNIT_RESULT')
+    run([args.godot, '--headless', '--path', str(ROOT), 'tests/ui.tscn'], 'UI_RESULT')
     if not args.skip_network:
         run([sys.executable, 'tests/network.py', '--godot', args.godot], 'NETWORK_RESULT', timeout=90)
         run([sys.executable, 'tests/reconnect.py', '--godot', args.godot], 'RECONNECT_RESULT', timeout=100)

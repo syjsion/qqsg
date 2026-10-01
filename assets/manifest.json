@@ -2780,6 +2780,41 @@
       "path": "assets/reference/assets/map/bajun/npc/小猪/Sprite_20.png",
       "source_path": "assets/map/bajun/npc/小猪/Sprite_20.png",
       "sha256": "0d9449787d7f926089b47362d7141437cd3db6261018300058cb054a744113a0"
+    },
+    {
+      "path": "assets/reference/UI/item_icons/金疮药.png",
+      "source_path": "UI/item_icons/金疮药.png",
+      "sha256": "41180977f84684e0be8fa81f0654fbc7e5ad041e9400ff1c61031225939d5530"
+    },
+    {
+      "path": "assets/reference/UI/item_icons/清心露.png",
+      "source_path": "UI/item_icons/清心露.png",
+      "sha256": "6265ccd58a3c491b067ef44d0a133e4a4b0c1a894afe971a00cb7e1634657215"
+    },
+    {
+      "path": "assets/reference/UI/item_icons/铁剑.png",
+      "source_path": "UI/item_icons/铁剑.png",
+      "sha256": "12ed2fc656805eaeafac89bb83b7000e6c9b4c5ccb8aa93526b72b7dbf29e31f"
+    },
+    {
+      "path": "assets/reference/item_slot_default_background.png",
+      "source_path": "item_slot_default_background.png",
+      "sha256": "c3b84c3a0c1d60e865241f3ff4f4006057a61181b264de1d6f3526ccae70513f"
+    },
+    {
+      "path": "assets/reference/item_slot_empty_background.png",
+      "source_path": "item_slot_empty_background.png",
+      "sha256": "8b3180ceb294406266605c595db27f6e7d7d64a650d8d215184e113aa2517ec3"
+    },
+    {
+      "path": "assets/reference/item_slot_selected_background.png",
+      "source_path": "item_slot_selected_background.png",
+      "sha256": "9bae533d2d388d038adf31a38a1209c76302d30807340541d8bf244c33e161a9"
+    },
+    {
+      "path": "assets/reference/assets/map/bajun/npc/铁匠/Sprite_5.png",
+      "source_path": "assets/map/bajun/npc/铁匠/Sprite_5.png",
+      "sha256": "93dbee199ce112970eaeaf48747236979af1ccd15a3dfbef8ace730cbf703261"
     }
   ]
 }

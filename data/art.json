@@ -261,7 +261,8 @@
     ]
   },
   "npc": {
-    "guide": "res://assets/reference/assets/map/bajun/npc/简雍/Sprite_1.png"
+    "guide": "res://assets/reference/assets/map/bajun/npc/简雍/Sprite_1.png",
+    "merchant": "res://assets/reference/assets/map/bajun/npc/铁匠/Sprite_5.png"
   },
   "scenery": {
     "18278-1": "res://assets/reference/assets/map/bajun/18278-1.png",
@@ -649,5 +650,368 @@
   "font": "res://assets/reference/assets/font/PuHuiTi-Regular.otf",
   "music": "res://assets/reference/MUSIC/bajun(shu).ogg",
   "hit": "res://assets/reference/MUSIC/js/A.wav",
-  "cast": "res://assets/reference/MUSIC/js/hhfl.wav"
+  "cast": "res://assets/reference/MUSIC/js/hhfl.wav",
+  "items": {
+    "potion": "res://assets/reference/UI/item_icons/金疮药.png",
+    "ether": "res://assets/reference/UI/item_icons/清心露.png",
+    "herb": {
+      "path": "res://assets/generated/item-icons-v1.png",
+      "region": [
+        627.0,
+        0.0,
+        313.5,
+        313.5
+      ]
+    },
+    "iron_sword": "res://assets/reference/UI/item_icons/铁剑.png",
+    "wood_staff": {
+      "path": "res://assets/generated/item-icons-v1.png",
+      "region": [
+        0.0,
+        313.5,
+        313.5,
+        313.5
+      ]
+    },
+    "bronze_sword": {
+      "path": "res://assets/generated/item-icons-v1.png",
+      "region": [
+        313.5,
+        313.5,
+        313.5,
+        313.5
+      ]
+    },
+    "jade_staff": {
+      "path": "res://assets/generated/item-icons-v1.png",
+      "region": [
+        627.0,
+        313.5,
+        313.5,
+        313.5
+      ]
+    },
+    "cloth": {
+      "path": "res://assets/generated/item-icons-v1.png",
+      "region": [
+        940.5,
+        313.5,
+        313.5,
+        313.5
+      ]
+    },
+    "leather": {
+      "path": "res://assets/generated/item-icons-v1.png",
+      "region": [
+        0.0,
+        627.0,
+        313.5,
+        313.5
+      ]
+    },
+    "seal": {
+      "path": "res://assets/generated/item-icons-v1.png",
+      "region": [
+        313.5,
+        627.0,
+        313.5,
+        313.5
+      ]
+    },
+    "enhance_stone": {
+      "path": "res://assets/generated/item-icons-v1.png",
+      "region": [
+        627.0,
+        627.0,
+        313.5,
+        313.5
+      ]
+    },
+    "camp_sword": {
+      "path": "res://assets/generated/item-icons-v1.png",
+      "region": [
+        940.5,
+        627.0,
+        313.5,
+        313.5
+      ]
+    },
+    "jade_pattern_staff": {
+      "path": "res://assets/generated/item-icons-v1.png",
+      "region": [
+        0.0,
+        940.5,
+        313.5,
+        313.5
+      ]
+    },
+    "fine_armor": {
+      "path": "res://assets/generated/item-icons-v1.png",
+      "region": [
+        313.5,
+        940.5,
+        313.5,
+        313.5
+      ]
+    },
+    "money": {
+      "path": "res://assets/generated/item-icons-v1.png",
+      "region": [
+        627.0,
+        940.5,
+        313.5,
+        313.5
+      ]
+    },
+    "xp": {
+      "path": "res://assets/generated/item-icons-v1.png",
+      "region": [
+        940.5,
+        940.5,
+        313.5,
+        313.5
+      ]
+    }
+  },
+  "symbols": {
+    "bolt": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        0.0,
+        0.0,
+        313.5,
+        313.5
+      ]
+    },
+    "heal": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        313.5,
+        627.0,
+        313.5,
+        313.5
+      ]
+    },
+    "renew": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        627.0,
+        0.0,
+        313.5,
+        313.5
+      ]
+    },
+    "bag": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        940.5,
+        0.0,
+        313.5,
+        313.5
+      ]
+    },
+    "quests": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        0.0,
+        313.5,
+        313.5,
+        313.5
+      ]
+    },
+    "team": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        313.5,
+        313.5,
+        313.5,
+        313.5
+      ]
+    },
+    "shop": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        627.0,
+        313.5,
+        313.5,
+        313.5
+      ]
+    },
+    "enhance": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        940.5,
+        313.5,
+        313.5,
+        313.5
+      ]
+    },
+    "combat": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        0.0,
+        627.0,
+        313.5,
+        313.5
+      ]
+    },
+    "heart": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        313.5,
+        627.0,
+        313.5,
+        313.5
+      ]
+    },
+    "confirm": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        627.0,
+        627.0,
+        313.5,
+        313.5
+      ]
+    },
+    "cancel": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        940.5,
+        627.0,
+        313.5,
+        313.5
+      ]
+    },
+    "return": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        0.0,
+        940.5,
+        313.5,
+        313.5
+      ]
+    },
+    "door": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        313.5,
+        940.5,
+        313.5,
+        313.5
+      ]
+    },
+    "sound": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        627.0,
+        940.5,
+        313.5,
+        313.5
+      ]
+    },
+    "settings": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        940.5,
+        940.5,
+        313.5,
+        313.5
+      ]
+    },
+    "party": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        313.5,
+        313.5,
+        313.5,
+        313.5
+      ]
+    }
+  },
+  "skills": {
+    "slash": "res://assets/reference/assets/skill_icon/js/19768-1.png",
+    "blood": "res://assets/reference/assets/skill_icon/js/19769-1.png",
+    "wind": "res://assets/reference/assets/skill_icon/js/19770-1.png",
+    "bolt": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        0.0,
+        0,
+        313.5,
+        313.5
+      ]
+    },
+    "heal": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        313.5,
+        0,
+        313.5,
+        313.5
+      ]
+    },
+    "renew": {
+      "path": "res://assets/generated/ui-symbols-v1.png",
+      "region": [
+        627.0,
+        0,
+        313.5,
+        313.5
+      ]
+    }
+  },
+  "ui": {
+    "frame": "res://assets/generated/window-frame-v1.png",
+    "slot": "res://assets/reference/item_slot_default_background.png",
+    "slot_empty": "res://assets/reference/item_slot_empty_background.png",
+    "slot_selected": "res://assets/reference/item_slot_selected_background.png"
+  },
+  "characters": {
+    "JS": {
+      "path": "res://assets/reference/assets/motion/idle2/Sprite_1.png",
+      "region": [
+        78,
+        60,
+        124,
+        178
+      ]
+    },
+    "XS": {
+      "path": "res://assets/generated/healer-sheet.png",
+      "region": [
+        32,
+        44,
+        264,
+        269
+      ]
+    },
+    "guide": "res://assets/reference/assets/map/bajun/npc/简雍/Sprite_1.png",
+    "merchant": "res://assets/reference/assets/map/bajun/npc/铁匠/Sprite_5.png"
+  },
+  "portraits": {
+    "JS": {
+      "path": "res://assets/reference/assets/motion/idle2/Sprite_1.png",
+      "region": [
+        108,
+        58,
+        91,
+        107
+      ]
+    },
+    "XS": {
+      "path": "res://assets/generated/healer-sheet.png",
+      "region": [
+        83,
+        56,
+        163,
+        147
+      ]
+    },
+    "guide": "res://assets/reference/assets/map/bajun/npc/简雍/Sprite_1.png",
+    "merchant": "res://assets/reference/assets/map/bajun/npc/铁匠/Sprite_5.png",
+    "snake": "res://assets/reference/Monster_ui/竹叶青/101345-1.png",
+    "boar": "res://assets/reference/assets/map/bajun/npc/小猪/Sprite_1.png",
+    "soldier": "res://assets/reference/Monster_ui/益州斧兵/Sprite_1.png",
+    "boss": "res://assets/reference/Monster_ui/dengmao/闲置/53330-1.png"
+  }
 }

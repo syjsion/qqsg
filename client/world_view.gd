@@ -17,6 +17,7 @@ var age = 0.0
 var effects: Array[Dictionary] = []
 var smooth: Dictionary = {}
 var preview = true
+var interact_key = "E"
 
 var snapshot_age = 0.0
 
@@ -121,20 +122,39 @@ func _draw() -> void:
 			draw_texture_rect(tex, Rect2(p - Vector2(35, 95), Vector2(70, 95)), false)
 		_text(npc.name, p - Vector2(0, 115), Color("f9dfa1"), 18)
 		_text(npc.role, p - Vector2(0, 95), Color("fff4dc"), 13)
+		var marker = "shop" if npc.id == "merchant" else _quest_marker()
+		if marker != "":
+			var icon = UIArt.texture("symbols",marker)
+			draw_texture_rect(icon,Rect2(p-Vector2(15,150+sin(age*3)*3),Vector2(30,30)),false)
+		if not predicted.is_empty() and absf(float(predicted.x)-float(npc.x)) < 150 and absf(float(predicted.y)-float(npc.y)) < 70:
+			_text(interact_key + " 交谈",p+Vector2(0,18),Color("ffe29d"),14)
+	var drop_labels: Array[Rect2] = []
+	var drop_captions: Array[Dictionary] = []
 	for drop in state.get("drops", []):
 		var p = point(float(drop.x), float(drop.y)) - Vector2(0, 12 + sin(age * 3) * 3)
 		var mine = drop.owner == Session.player_id
-		draw_circle(p, 8, Color("f4ce77") if mine else Color("809e9e"))
 		draw_circle(p, 14, Color(1, 0.8, 0.4, 0.15))
 		var item: Dictionary = Catalog.table("items")[drop.item]
+		var border = Color("73c8ff") if item.get("quality","") == "fine" else Color("e9c875")
+		if not mine: border = Color("779394")
+		draw_rect(Rect2(p-Vector2(17,17),Vector2(34,34)),Color("183640"))
+		draw_rect(Rect2(p-Vector2(17,17),Vector2(34,34)),border,false,2)
+		draw_texture_rect(UIArt.texture("items",drop.item),Rect2(p-Vector2(15,15),Vector2(30,30)),false,Color.WHITE if mine else Color(0.5,0.5,0.5))
+		if mine: draw_texture_rect(UIArt.texture("symbols","confirm"),Rect2(p+Vector2(8,8),Vector2(13,13)),false)
 		var label: String = item.name + (" +%d" % drop.gear.enhance if drop.has("gear") else " ×%d" % drop.count)
-		_text(label, p - Vector2(0, 20), (Color("83caff") if item.get("quality", "") == "fine" else Color("fff0ae")) if mine else Color("bccccc"), 13)
+		var width = font.get_string_size(label,HORIZONTAL_ALIGNMENT_LEFT,-1,13).x + 10
+		var label_rect = Rect2(p-Vector2(width/2,35),Vector2(width,18))
+		while drop_labels.any(func(rect): return rect.intersects(label_rect)):
+			label_rect.position.y -= 19
+		drop_labels.append(label_rect)
+		drop_captions.append({"text":label,"at":Vector2(p.x,label_rect.position.y+14),"color":(Color("83caff") if item.get("quality", "") == "fine" else Color("fff0ae")) if mine else Color("bccccc")})
 	var actors: Array = state.get("players", []) + state.get("monsters", [])
 	if preview:
 		actors = [{"id": "preview_js", "job": "JS", "name": "剑侍", "x": 410.0, "y": 600.0, "facing": 1, "hp": 1, "max_hp": 1},
 			{"id": "preview_xs", "job": "XS", "name": "仙术士", "x": 520.0, "y": 600.0, "facing": -1, "hp": 1, "max_hp": 1}]
 	for actor in actors:
 		_draw_actor(actor)
+	for caption in drop_captions: _text(caption.text,caption.at,caption.color,13)
 	for effect_data in effects:
 		if effect_data.kind == "cast":
 			_draw_cast(effect_data)
@@ -145,6 +165,20 @@ func _draw() -> void:
 		var text = "+%s" % effect_data.amount if effect_data.kind == "heal" else str(effect_data.amount)
 		if effect_data.kind == "level": text = "升级！ Lv.%s" % effect_data.amount
 		_text(text, pos, color, 24 if effect_data.kind == "critical" else 19)
+
+func _quest_marker() -> String:
+	if state.is_empty() or not state.has("self"): return "quests"
+	var player: Dictionary = state.self
+	var available = false
+	for id in Catalog.table("quests"):
+		var q: Dictionary = Catalog.table("quests")[id]
+		var progress: Dictionary = player.quests.get(id,{})
+		if progress.get("state","") == "done": continue
+		if q.previous != "" and player.quests.get(q.previous,{}).get("state","") != "done": continue
+		available = true
+		var count = int(player.inventory.get(q.target,0)) if q.type == "collect" else int(progress.get("progress",0))
+		if progress.get("state","") == "active" and (q.type == "talk" or count >= int(q.count)): return "confirm"
+	return "quests" if available else ""
 
 func _draw_actor(actor: Dictionary) -> void:
 	var position = Vector2(float(actor.x), float(actor.y))
